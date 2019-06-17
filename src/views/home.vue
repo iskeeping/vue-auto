@@ -25,21 +25,11 @@
 </template>
 
 <script>
-    import * as el from 'element-ui'
-    import lang from 'element-ui/lib/locale/lang/en'
-    import locale from 'element-ui/lib/locale'
     import side from '@/components/side'
     import top from '@/components/top'
-    import '@/assets/font/iconfont.css'
-    // 设置语言
-    locale.use(lang)
     export default {
         name: 'app',
         components: {
-            'el-container': el.Container,
-            'el-aside': el.Aside,
-            'el-header': el.Header,
-            'el-main': el.Main,
             side,
             top
         }

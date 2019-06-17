@@ -12,17 +12,12 @@
     </div>
 </template>
 <script>
-    import * as el from 'element-ui'
-    console.log(el)
     export default {
         name: 'top',
         data() {
             return {};
         },
         components: {
-            'el-dropdown-menu': el.DropdownMenu,
-            'el-dropdown-item': el.DropdownItem,
-            'el-dropdown': el.Dropdown,
         },
         created() {
         },

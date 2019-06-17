@@ -46,7 +46,6 @@
 <script>
     import mainContainer from '@/components/mainContainer'
     import page from '@/components/page'
-    import * as el from 'element-ui'
     export default {
         data() {
             return {
@@ -81,15 +80,7 @@
         },
         components: {
             mainContainer,
-            page,
-            'el-form':el.Form,
-            'el-row':el.Row,
-            'el-col':el.Col,
-            'el-form-item':el.FormItem,
-            'el-input':el.Input,
-            'el-button':el.Button,
-            'el-table':el.Table,
-            'el-table-column':el.TableColumn
+            page
         },
         activated() {
         },

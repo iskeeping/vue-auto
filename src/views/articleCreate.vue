@@ -41,7 +41,6 @@
 
 <script>
     import mainContainer from '@/components/mainContainer'
-    import * as el from 'element-ui'
     export default {
         data() {
             return {
@@ -76,12 +75,7 @@
             }
         },
         components: {
-            mainContainer,
-            'el-form':el.Form,
-            'el-row':el.Row,
-            'el-form-item':el.FormItem,
-            'el-input':el.Input,
-            'el-button':el.Button
+            mainContainer
         },
         activated() {
         },
