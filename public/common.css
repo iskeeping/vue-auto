@@ -28,6 +28,10 @@ a {
     text-decoration: none;
 }
 
+li,ol,ul {
+    list-style: none
+}
+
 body {
     font-family: 'Hiragino Sans GB', 'Helvetica Neue', Helvetica, STHeiTi, 'Microsoft Yahei', sans-serif;
     background-color: #fff;
