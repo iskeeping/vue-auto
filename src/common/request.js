@@ -19,19 +19,17 @@ let request = (
     headers: {
       'Content-Type': 'application/json; charset=UTF-8'
     }
+  }).then(res => {
+    // res期望返回的数据结构是{code:200,data:{}/[],message: ''}
+    nextCallback(res)
+  }).catch((err) => {
+    nextCallback(
+      {
+        code: -1,
+        err
+      }
+    )
   })
-    .then(res => {
-      // res期望返回的数据结构是{code:200,data:{}/[],message: ''}
-      nextCallback(res)
-    })
-    .catch((err) => {
-      nextCallback(
-        {
-          code: -1,
-          err
-        }
-      )
-    })
 }
 
 export default request

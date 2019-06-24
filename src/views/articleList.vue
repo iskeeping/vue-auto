@@ -1,6 +1,6 @@
 <template>
   <mainContainer>
-    <div style="form-con">
+    <div class="form-con">
       <el-form ref="form"
                :model="params" label-width="80px"
                label-position="left" size="small">
@@ -51,9 +51,8 @@ import mainContainer from '@/components/mainContainer'
 import page from '@/components/page'
 
 export default {
-  data() {
+  data () {
     return {
-
       params: {
         name: '',
         id: '',
@@ -74,18 +73,18 @@ export default {
     mainContainer,
     page
   },
-  activated() {
+  activated () {
   },
   methods: {
-    search() {
+    search () {
     },
-    reset() {
+    reset () {
       this.params = {
         name: '',
         id: ''
       }
     },
-    changePage({currPage, pageSize}) {
+    changePage ({currPage, pageSize}) {
       this.params.currPage = currPage
       this.params.pageSize = pageSize
     }

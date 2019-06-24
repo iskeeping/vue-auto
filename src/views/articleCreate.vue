@@ -36,7 +36,7 @@
 import mainContainer from '@/components/mainContainer'
 
 export default {
-  data() {
+  data () {
     return {
       params: {
         name: '',
@@ -47,18 +47,18 @@ export default {
   components: {
     mainContainer
   },
-  created() {
+  created () {
   },
   methods: {
-    save() {
+    save () {
     },
-    showImg(item) {
+    showImg (item) {
       this.item = item
     },
-    delImg(index) {
+    delImg (index) {
       this.index = index
     },
-    addImg($event) {
+    addImg ($event) {
       this.$event = $event
     }
   }

@@ -18,10 +18,10 @@ export default {
     return {}
   },
   components: {},
-  created() {
+  created () {
   },
   computed: {},
-  mounted() {
+  mounted () {
   },
   methods: {}
 }

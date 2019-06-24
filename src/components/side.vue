@@ -25,7 +25,7 @@ import * as el from 'element-ui'
 
 export default {
   name: 'side',
-  data() {
+  data () {
     return {
       menu: [
         {
@@ -41,7 +41,7 @@ export default {
           ]
         }
       ]
-    };
+    }
   },
   components: {
     'el-menu': el.Menu,
@@ -49,14 +49,14 @@ export default {
     'el-menu-item-group': el.MenuItemGroup,
     'el-menu-item': el.MenuItem
   },
-  created() {
+  created () {
   },
   computed: {
-    onRoutes() {
+    onRoutes () {
       return this.$route.path.replace('/', '')
     }
   },
-  mounted() {
+  mounted () {
   },
   methods: {}
 }

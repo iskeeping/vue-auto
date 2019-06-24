@@ -6,13 +6,13 @@
 <script>
 export default {
   name: 'mainContainer',
-  data() {
+  data () {
     return {}
   },
-  created() {
+  created () {
   },
   computed: {},
-  mounted() {
+  mounted () {
   },
   methods: {}
 }

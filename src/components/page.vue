@@ -17,7 +17,7 @@
 <script>
 export default {
   name: 'page',
-  data() {
+  data () {
     return {
       inputPage: '',
       pageSize: 10
@@ -33,26 +33,26 @@ export default {
       value: 1
     }
   },
-  created() {
+  created () {
   },
-  mounted() {
+  mounted () {
 
   },
   methods: {
-    getTotalPage() {
+    getTotalPage () {
       return Math.ceil(this.totalSize / this.pageSize)
     },
-    changePageSize() {
+    changePageSize () {
       this.$emit('changePage', {currPage: 1, pageSize: this.pageSize})
     },
-    prevPage() {
+    prevPage () {
       let currPage = this.currPage
       if (currPage > 1) {
         currPage = currPage - 1
         this.$emit('changePage', {currPage: currPage, pageSize: this.pageSize})
       }
     },
-    nextPage() {
+    nextPage () {
       let totalPage = this.getTotalPage()
       let currPage = this.currPage
       if (currPage < totalPage) {
@@ -60,7 +60,7 @@ export default {
         this.$emit('changePage', {currPage: currPage, pageSize: this.pageSize})
       }
     },
-    gotoPage() {
+    gotoPage () {
       let totalPage = this.getTotalPage()
       let currPage = this.inputPage
       if (currPage <= totalPage && currPage >= 1) {
