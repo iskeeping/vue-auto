@@ -24,10 +24,9 @@ module.exports = {
   runtimeCompiler: true,
   transpileDependencies: [],
   productionSourceMap: false,
-  crossorigin: undefined,
   integrity: false,
   configureWebpack: {},
-  chainWebpack: (config) => {
+  chainWebpack: () => {
 
   },
   css: {
@@ -37,8 +36,8 @@ module.exports = {
     loaderOptions: {
       css: {},
       postcss: {},
-      sass: {}
-    }
+      sass: {},
+    },
   },
   devServer: {
     proxy: {

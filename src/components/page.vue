@@ -15,62 +15,64 @@
   </div>
 </template>
 <script>
-  export default {
-    name: 'page',
-    data() {
-      return {
-        inputPage: '',
-        pageSize: 10
-      }
+export default {
+  name: 'page',
+  data () {
+    return {
+      inputPage: '',
+      pageSize: 10
+    }
+  },
+  props: {
+    currPage: {
+      type: Number,
+      value: 1
     },
-    props: {
-      currPage: {
-        type: Number,
-        value: 1
-      },
-      totalSize: {
-        type: Number,
-        value: 1
-      }
-    },
-    created() {
-    },
-    mounted() {
+    totalSize: {
+      type: Number,
+      value: 1
+    }
+  },
+  created () {
+  },
+  mounted () {
 
+  },
+  methods: {
+    getTotalPage () {
+      let {totalSize, pageSize} = this
+      let totalPage = Math.ceil(totalSize / pageSize)
+      return totalPage
     },
-    methods: {
-      getTotalPage() {
-        let {totalSize, pageSize} = this
-        let totalPage = Math.ceil(totalSize / pageSize)
-        return totalPage
-      },
-      changePageSize() {
-        this.$emit('changePage', {currPage: 1, pageSize: this.pageSize})
-      },
-      prevPage() {
-        if (this.currPage > 1) {
-          let currPage = this.currPage - 1
-          this.$emit('changePage', {currPage: currPage, pageSize: this.pageSize})
-        }
-      },
-      nextPage() {
-        let totalPage = this.getTotalPage()
-        if (this.currPage < totalPage) {
-          let currPage = this.currPage + 1
-          this.$emit('changePage', {currPage: currPage, pageSize: this.pageSize})
-        }
-      },
-      gotoPage() {
-        let totalPage = this.getTotalPage()
-        if (this.inputPage <= totalPage && this.inputPage >= 1) {
-          let currPage = this.inputPage
-          this.$emit('changePage', {currPage: currPage, pageSize: this.pageSize})
-        } else {
-          //没有这一页数据
-        }
+    changePageSize () {
+      this.$emit('changePage', {currPage: 1, pageSize: this.pageSize})
+    },
+    prevPage () {
+      if (this.currPage > 1) {
+        let currPage = this.currPage - 1
+
+        this.$emit('changePage', {currPage: currPage, pageSize: this.pageSize})
+      }
+    },
+    nextPage () {
+      let totalPage = this.getTotalPage()
+      let currPage = this.currPage
+      if (currPage < totalPage) {
+        currPage = currPage + 1
+        this.$emit('changePage', {currPage: currPage, pageSize: this.pageSize})
+      }
+    },
+    gotoPage () {
+      let totalPage = this.getTotalPage()
+      let currPage = this.inputPage
+      if (currPage <= totalPage && currPage >= 1) {
+        this.$emit('changePage', {currPage: currPage, pageSize: this.pageSize})
+      } else {
+        //没有这一页数据
       }
     }
   }
+}
 </script>
 <style lang="scss" scoped>
   .page {

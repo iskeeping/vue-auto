@@ -12,19 +12,19 @@
   </div>
 </template>
 <script>
-  export default {
-    name: 'top',
-    data() {
-      return {};
-    },
-    components: {},
-    created() {
-    },
-    computed: {},
-    mounted() {
-    },
-    methods: {}
-  }
+export default {
+  name: 'top',
+  data: function () {
+    return {}
+  },
+  components: {},
+  created() {
+  },
+  computed: {},
+  mounted() {
+  },
+  methods: {}
+}
 </script>
 <style lang="scss" scoped>
   .top {

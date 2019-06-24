@@ -21,46 +21,45 @@
   </div>
 </template>
 <script>
-  import * as el from 'element-ui'
+import * as el from 'element-ui'
 
-  console.log(el)
-  export default {
-    name: 'side',
-    data() {
-      return {
-        menu: [
-          {
-            id: '1',
-            icon: '',
-            title: '内容管理',
-            children: [
-              {
-                url: '/articleList',
-                id: '11',
-                title: '文章列表管理'
-              }
-            ]
-          }
-        ]
-      };
-    },
-    components: {
-      'el-menu': el.Menu,
-      'el-submenu': el.Submenu,
-      'el-menu-item-group': el.MenuItemGroup,
-      'el-menu-item': el.MenuItem
-    },
-    created() {
-    },
-    computed: {
-      onRoutes() {
-        return this.$route.path.replace('/', '')
-      }
-    },
-    mounted() {
-    },
-    methods: {}
-  }
+export default {
+  name: 'side',
+  data() {
+    return {
+      menu: [
+        {
+          id: '1',
+          icon: '',
+          title: '内容管理',
+          children: [
+            {
+              url: '/articleList',
+              id: '11',
+              title: '文章列表管理'
+            }
+          ]
+        }
+      ]
+    };
+  },
+  components: {
+    'el-menu': el.Menu,
+    'el-submenu': el.Submenu,
+    'el-menu-item-group': el.MenuItemGroup,
+    'el-menu-item': el.MenuItem
+  },
+  created() {
+  },
+  computed: {
+    onRoutes() {
+      return this.$route.path.replace('/', '')
+    }
+  },
+  mounted() {
+  },
+  methods: {}
+}
 </script>
 <style lang="scss" scoped>
   .logo {

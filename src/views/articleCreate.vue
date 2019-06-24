@@ -33,33 +33,36 @@
   </mainContainer>
 </template>
 <script>
-  import mainContainer from '@/components/mainContainer'
+import mainContainer from '@/components/mainContainer'
 
-  export default {
-    data() {
-      return {
-        params: {
-          name: '',
-          imgListData: [{}]
-        }
-      }
-    },
-    components: {
-      mainContainer
-    },
-    created() {
-    },
-    methods: {
-      save() {
-      },
-      showImg(item) {
-      },
-      delImg(index) {
-      },
-      addImg($event) {
+export default {
+  data() {
+    return {
+      params: {
+        name: '',
+        imgListData: [{}]
       }
     }
+  },
+  components: {
+    mainContainer
+  },
+  created() {
+  },
+  methods: {
+    save() {
+    },
+    showImg(item) {
+      this.item = item
+    },
+    delImg(index) {
+      this.index = index
+    },
+    addImg($event) {
+      this.$event = $event
+    }
   }
+}
 </script>
 
 <style lang="scss" scoped>

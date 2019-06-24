@@ -47,51 +47,50 @@
 </template>
 
 <script>
-  import mainContainer from '@/components/mainContainer'
-  import page from '@/components/page'
+import mainContainer from '@/components/mainContainer'
+import page from '@/components/page'
 
-  export default {
-    data() {
-      return {
+export default {
+  data() {
+    return {
 
-        params: {
-          name: '',
-          id: '',
-          currPage: 1,
-          totalSize: 30,
-          pageSize: 10
-        },
-        listData: [
-          {
-            id: 1,
-            name: '你好',
-            num: 20
-          }
-        ]
-      }
-    },
-    components: {
-      mainContainer,
-      page
-    },
-    activated() {
-    },
-    methods: {
-      search() {
+      params: {
+        name: '',
+        id: '',
+        currPage: 1,
+        totalSize: 30,
+        pageSize: 10
       },
-      reset() {
-        this.params = {
-          name: '',
-          id: ''
+      listData: [
+        {
+          id: 1,
+          name: '你好',
+          num: 20
         }
-      },
-      changePage({currPage, pageSize}) {
-        debugger
-        this.params.currPage = currPage
-        this.params.pageSize = pageSize
+      ]
+    }
+  },
+  components: {
+    mainContainer,
+    page
+  },
+  activated() {
+  },
+  methods: {
+    search() {
+    },
+    reset() {
+      this.params = {
+        name: '',
+        id: ''
       }
+    },
+    changePage({currPage, pageSize}) {
+      this.params.currPage = currPage
+      this.params.pageSize = pageSize
     }
   }
+}
 
 </script>
 

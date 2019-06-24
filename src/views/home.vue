@@ -25,16 +25,16 @@
 </template>
 
 <script>
-  import side from '@/components/side'
-  import top from '@/components/top'
+import side from '@/components/side'
+import top from '@/components/top'
 
-  export default {
-    name: 'app',
-    components: {
-      side,
-      top
-    }
+export default {
+  name: 'app',
+  components: {
+    side,
+    top
   }
+}
 </script>
 <style lang="scss">
   .home {

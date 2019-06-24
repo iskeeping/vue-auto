@@ -4,18 +4,18 @@
   </div>
 </template>
 <script>
-  export default {
-    name: 'mainContainer',
-    data() {
-      return {}
-    },
-    created() {
-    },
-    computed: {},
-    mounted() {
-    },
-    methods: {}
-  }
+export default {
+  name: 'mainContainer',
+  data() {
+    return {}
+  },
+  created() {
+  },
+  computed: {},
+  mounted() {
+  },
+  methods: {}
+}
 </script>
 <style lang="scss" scoped>
   .mainContainer {
