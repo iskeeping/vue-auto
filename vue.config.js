@@ -26,9 +26,9 @@ module.exports = {
   productionSourceMap: false,
   integrity: false,
   configureWebpack: {},
-  chainWebpack: () => {
-
-  },
+  // chainWebpack: () => {
+  //
+  // },
   css: {
     modules: false,
     // extract:
@@ -36,8 +36,8 @@ module.exports = {
     loaderOptions: {
       css: {},
       postcss: {},
-      sass: {},
-    },
+      sass: {}
+    }
   },
   devServer: {
     proxy: {

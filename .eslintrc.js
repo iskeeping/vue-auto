@@ -13,8 +13,6 @@ module.exports = {
     '@vue/standard'
   ],
   rules: {
-    'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-alert': 0,//禁止使用alert confirm prompt
     'no-array-constructor': 2,//禁止使用数组构造器
     'no-bitwise': 0,//禁止使用按位运算符
