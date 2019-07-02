@@ -13,7 +13,7 @@ let request = (
 ) => {
   let linkDataStr = qs.stringify(linkData)
   axios({
-    url: url + linkDataStr ? ('?' + 'linkDataStr') : '',
+    url: url + `?${linkDataStr}`,
     method: method,
     data: data,
     headers: {

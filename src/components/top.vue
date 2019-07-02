@@ -6,8 +6,8 @@
     <el-dropdown>
       <span class="username">18279959396 欢迎您！<span class="iconfont icon-xiala userheader"></span></span>
       <el-dropdown-menu slot="dropdown">
-        <el-dropdown-item @click.native="gorevise">修改密码</el-dropdown-item>
-        <el-dropdown-item @click.native="signout">退出登录</el-dropdown-item>
+        <el-dropdown-item @click.native="updatePassword">修改密码</el-dropdown-item>
+        <el-dropdown-item @click.native="logout">退出登录</el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
   </div>
@@ -33,7 +33,9 @@ export default {
   methods: {
     getCurrRoute () {
       this.currRoute = this.$route
-    }
+    },
+    updatePassword () {},
+    logout () {}
   }
 }
 </script>
