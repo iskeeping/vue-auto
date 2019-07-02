@@ -26,6 +26,7 @@ import SimpleMDE from 'simplemde'
 import 'simplemde/dist/simplemde.min.css'
 
 export default {
+  name: 'articleCreate',
   data () {
     return {
       params: {
