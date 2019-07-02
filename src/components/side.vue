@@ -2,7 +2,7 @@
   <div class="side">
     <div class="logo">
       <img src="" alt="" style="display:none;">
-      <span>CMS中台</span>
+      <span>内容管理系统</span>
     </div>
     <el-menu mode="vertical" :default-active="onRoutes"
              active-text-color="#1489cd" text-color="#ffffff"
@@ -21,8 +21,6 @@
   </div>
 </template>
 <script>
-import * as el from 'element-ui'
-
 export default {
   name: 'side',
   data () {
@@ -31,24 +29,19 @@ export default {
         {
           id: '1',
           icon: '',
-          title: '内容管理',
+          title: '文章管理',
           children: [
             {
               url: '/articleList',
               id: '11',
-              title: '文章列表管理'
+              title: '文章列表'
             }
           ]
         }
       ]
     }
   },
-  components: {
-    'el-menu': el.Menu,
-    'el-submenu': el.Submenu,
-    'el-menu-item-group': el.MenuItemGroup,
-    'el-menu-item': el.MenuItem
-  },
+  components: {},
   created () {
   },
   computed: {
@@ -69,6 +62,7 @@ export default {
     padding-left: 20px;
     color: #fff;
     cursor: pointer;
+    border-bottom: 1px solid #65696d;
 
     img {
       width: 38px;

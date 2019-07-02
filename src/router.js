@@ -4,7 +4,8 @@ import home from './views/home.vue'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
+  mode: 'hash',
   routes: [
     {
       path: '/',
@@ -13,12 +14,12 @@ export default new Router({
     },
     {
       path: '/articleList',
-      name: '内容管理',
+      name: '',
       component: home,
       children: [
         {
           path: '/articleList',
-          name: '',
+          name: '文章列表',
           component: () => import(/* webpackChunkName: "about" */ './views/articleList.vue'),
           meta: {
             keepAlive: true // 需要被缓存
@@ -26,7 +27,7 @@ export default new Router({
         },
         {
           path: '/articleCreate',
-          name: '',
+          name: '文章新建',
           component: () => import(/* webpackChunkName: "about" */ './views/articleCreate.vue'),
           meta: {
             keepAlive: false
@@ -36,3 +37,5 @@ export default new Router({
     }
   ]
 })
+
+export default router

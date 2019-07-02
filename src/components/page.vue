@@ -1,17 +1,17 @@
 <template>
   <div class="page">
-    <select v-model="pageSize" v-on:change="changePageSize">
+    <select v-model="pageSize" @change="changePageSize">
       <option :value="10" selected>10条</option>
       <option :value="20">20条</option>
       <option :value="30">30条</option>
     </select>
-    <span v-on:click="prevPage" class="el-icon-arrow-left"></span>
+    <span @click="prevPage" class="el-icon-arrow-left"></span>
     <a>{{currPage}}/{{getTotalPage()}}</a>
-    <span v-on:click="nextPage" class="el-icon-arrow-right"></span>
+    <span @click="nextPage" class="el-icon-arrow-right"></span>
     到第
     <input min="1" type="number" v-model="inputPage"/>
     页
-    <a v-on:click="gotoPage" class="gotoPage">Go</a>
+    <a @click="gotoPage" class="gotoPage">Go</a>
   </div>
 </template>
 <script>
@@ -96,7 +96,7 @@ export default {
     input {
       display: inline-block;
       width: 30px;
-      height: 33px;
+      height: 30px;
       border: 1px solid #e4e4e4;
       outline: none;
       margin: 0px 10px;
@@ -118,9 +118,9 @@ export default {
       display: inline-block;
       width: auto;
       padding: 0px 8px;
-      height: 32px;
+      height: 30px;
       background: #00c1de;
-      line-height: 32px;
+      line-height: 30px;
       text-align: center;
       color: #fff;
       border-radius: 3px;

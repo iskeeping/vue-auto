@@ -1,6 +1,7 @@
 <template>
   <div class="top">
-    <div>
+    <div class="name">
+      {{currRoute.name}}
     </div>
     <el-dropdown>
       <span class="username">18279959396 欢迎您！<span class="iconfont icon-xiala userheader"></span></span>
@@ -12,18 +13,28 @@
   </div>
 </template>
 <script>
+
 export default {
   name: 'top',
   data: function () {
-    return {}
+    return {
+      currRoute: {}
+    }
   },
   components: {},
+  watch: {
+    $route () {
+      this.getCurrRoute()
+    }
+  },
   created () {
+    this.getCurrRoute()
   },
-  computed: {},
-  mounted () {
-  },
-  methods: {}
+  methods: {
+    getCurrRoute () {
+      this.currRoute = this.$route
+    }
+  }
 }
 </script>
 <style lang="scss" scoped>
@@ -32,6 +43,11 @@ export default {
     align-items: center;
     justify-content: space-between;
     height: 100%;
+
+    .name {
+      font-size: 14px;
+      color: #606266;
+    }
 
     .username {
       font-size: 12px;

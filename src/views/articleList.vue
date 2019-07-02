@@ -2,23 +2,21 @@
   <mainContainer>
     <div class="form-con">
       <el-form ref="form"
-               :model="params" label-width="80px"
+               :model="params" label-width="100px"
                label-position="left" size="small">
-        <el-row :gutter="20">
-          <el-col :span="6">
-            <el-form-item label="页面名称">
-              <el-input placeholder="请输入页面名称" type="text" :min="0" v-model="params.name"></el-input>
-            </el-form-item>
-          </el-col>
-          <el-col :span="6">
-            <el-form-item label="页面ID">
-              <el-input placeholder="请输入页面ID" type="number" :min="0" v-model="params.id"></el-input>
-            </el-form-item>
-          </el-col>
-        </el-row>
-        <div>
-          <el-button type="primary" size="small" v-on:click="search">查询</el-button>
-          <el-button size="small" v-on:click="reset">重置</el-button>
+        <el-form-item label="页面名称：">
+          <div class="input-itm">
+            <el-input placeholder="请输入页面名称" type="text" :min="0" v-model="params.name"></el-input>
+          </div>
+        </el-form-item>
+        <el-form-item label="页面ID：">
+          <div class="input-itm">
+            <el-input placeholder="请输入页面ID" type="number" :min="0" v-model="params.id"></el-input>
+          </div>
+        </el-form-item>
+        <div class="btns">
+          <el-button type="primary" size="small" @click="search">查询</el-button>
+          <el-button size="small" @click="reset">重置</el-button>
         </div>
       </el-form>
     </div>
@@ -39,7 +37,7 @@
       <div>
         <el-button size="small" @click="$router.push('articleCreate')">新增</el-button>
       </div>
-      <page v-on:changePage="changePage" :totalSize="params.totalSize" :pageSize="params.pageSize"
+      <page @changePage="changePage" :totalSize="params.totalSize" :pageSize="params.pageSize"
             :currPage="params.currPage"/>
     </div>
 
@@ -79,10 +77,14 @@ export default {
     search () {
     },
     reset () {
-      this.params = {
-        name: '',
-        id: ''
-      }
+      this.params = Object.assign(
+        {},
+        this.params,
+        {
+          name: '',
+          id: ''
+        }
+      )
     },
     changePage ({currPage, pageSize}) {
       this.params.currPage = currPage
@@ -99,6 +101,10 @@ export default {
     background: #fff;
     padding: 20px;
     box-sizing: border-box;
+
+    .input-itm {
+      width: 200px;
+    }
   }
 
   .table-con {
