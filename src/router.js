@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import home from './views/home.vue'
+import home from './home.vue'
 
 Vue.use(Router)
 
@@ -9,8 +9,14 @@ const router = new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: home
+      component: home,
+      children: [
+        {
+          path: '/',
+          name: '首页',
+          component: () => import(/* webpackChunkName: "about" */ './views/index.vue')
+        }
+      ]
     },
     {
       path: '/articleList',

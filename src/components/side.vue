@@ -9,13 +9,12 @@
              background-color="#545c64" unique-opened router>
       <el-submenu v-for="items in menu" :index="items.id" :key="items.id">
         <template slot="title">
-          <i :class="items.icon" style="color:#ffffff"></i><span>{{items.title}}</span>
+          <i :class="items.icon" style="color:#ffffff"></i>
+          <span slot="title">{{items.title}}</span>
         </template>
-        <el-menu-item-group>
-          <el-menu-item v-for="item in items.children" :index="item.url" :key="item.id">
-            {{item.title}}
-          </el-menu-item>
-        </el-menu-item-group>
+        <el-menu-item v-for="item in items.children" :index="item.url" :key="item.id">
+          {{item.title}}
+        </el-menu-item>
       </el-submenu>
     </el-menu>
   </div>
@@ -55,40 +54,41 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-  .logo {
-    height: 60px;
-    display: flex;
-    align-items: center;
-    padding-left: 20px;
-    color: #fff;
-    cursor: pointer;
-    border-bottom: 1px solid #65696d;
-
-    img {
-      width: 38px;
-      height: 17px;
-    }
-
-    span {
-      color: #1489CD;
-      font-size: 14px;
-    }
-
-  }
-
   .side {
     height: 100%;
     width: 100%;
     background: rgb(84, 92, 100);
-  }
 
-  .el-menu {
-    border: none;
-  }
+    .logo {
+      height: 60px;
+      display: flex;
+      align-items: center;
+      padding-left: 20px;
+      color: #fff;
+      cursor: pointer;
+      border-bottom: 1px solid #65696d;
 
-  .el-menu-item.is-active {
-    background: #00c1de !important;
-    color: #fff !important;
+      img {
+        width: 38px;
+        height: 17px;
+      }
+
+      span {
+        color: #1489CD;
+        font-size: 14px;
+      }
+
+    }
+
+
+    .el-menu {
+      border: none;
+    }
+
+    .el-menu-item.is-active {
+      background: #00c1de !important;
+      color: #fff !important;
+    }
   }
 </style>
 

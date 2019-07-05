@@ -11,12 +11,14 @@
       </el-select>
     </div>
     <span @click="prevPage" class="el-icon-arrow-left"></span>
-    <a>{{currPage}}/{{getTotalPage()}}</a>
+    <span>{{currPage}}/{{getTotalPage()}}</span>
     <span @click="nextPage" class="el-icon-arrow-right"></span>
-    到第
-    <input min="1" type="number" v-model="inputPage"/>
-    页
-    <a @click="gotoPage" class="gotoPage">Go</a>
+    <span>到第</span>
+    <div class="input">
+      <el-input size="small" min="1" type="number" v-model="inputPage"/>
+    </div>
+    <span>页</span>
+    <el-button type="primary" size="small" @click="gotoPage">Go</el-button>
   </div>
 </template>
 <script>
@@ -99,49 +101,41 @@ export default {
     color: #666;
     align-items: center;
     justify-content: flex-end;
+    font-size: 0;
+
+    * {
+      display: block;
+    }
 
     .select {
       width: 80px;
       height: 32px;
-    }
-
-    input {
-      display: inline-block;
-      width: 30px;
-      height: 30px;
-      border: 1px solid #e4e4e4;
-      outline: none;
-      margin: 0px 10px;
-      border-radius: 3px;
-      text-align: center;
-    }
-
-    span {
-      width: 10px;
-      height: 32px;
-      line-height: 32px;
-      color: #666;
-      text-align: center;
-      cursor: pointer;
       margin-right: 10px;
     }
 
-    a {
-      display: inline-block;
-      width: auto;
-      padding: 0px 8px;
-      height: 30px;
-      background: #00c1de;
-      line-height: 30px;
-      text-align: center;
-      color: #fff;
-      border-radius: 3px;
-      cursor: pointer;
+    .input {
+      width: 70px;
+      margin-right: 10px;
 
-      &.gotoPage {
-        margin-left: 10px;
+      .el-input__inner {
+        padding: 0 !important;
       }
     }
+
+    span.el-icon-arrow-left, span.el-icon-arrow-right {
+      width: 10px;
+      height: 32px;
+      line-height: 32px;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    span {
+      color: #666;
+      font-size: 12px;
+      margin-right: 10px;
+    }
+
   }
 </style>
 
