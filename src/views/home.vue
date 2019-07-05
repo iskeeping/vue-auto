@@ -29,7 +29,7 @@ import side from '@/components/side'
 import top from '@/components/top'
 
 export default {
-  name: 'app',
+  name: 'home',
   components: {
     side,
     top

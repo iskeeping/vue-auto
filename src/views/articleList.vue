@@ -49,6 +49,7 @@ import mainContainer from '@/components/mainContainer'
 import page from '@/components/page'
 
 export default {
+  name: 'articleList',
   data () {
     return {
       params: {
