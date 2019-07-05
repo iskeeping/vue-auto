@@ -6,9 +6,7 @@ const store = new Vuex.Store({
   state: {
     currRoute: {}
   },
-  mutations: {
-  },
-  actions: {
-  }
+  mutations: {},
+  actions: {}
 })
 export default store

@@ -1,10 +1,15 @@
 <template>
   <div class="page">
-    <select v-model="pageSize" @change="changePageSize">
-      <option :value="10" selected>10条</option>
-      <option :value="20">20条</option>
-      <option :value="30">30条</option>
-    </select>
+    <div class="select">
+      <el-select v-model="pageSize" placeholder="请选择" @change="changePageSize" size="small">
+        <el-option
+          v-for="item in options"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value">
+        </el-option>
+      </el-select>
+    </div>
     <span @click="prevPage" class="el-icon-arrow-left"></span>
     <a>{{currPage}}/{{getTotalPage()}}</a>
     <span @click="nextPage" class="el-icon-arrow-right"></span>
@@ -20,7 +25,21 @@ export default {
   data () {
     return {
       inputPage: '',
-      pageSize: 10
+      pageSize: 10,
+      options: [
+        {
+          value: 10,
+          label: '10条'
+        },
+        {
+          value: 20,
+          label: '20条'
+        },
+        {
+          value: 30,
+          label: '30条'
+        }
+      ]
     }
   },
   props: {
@@ -81,16 +100,9 @@ export default {
     align-items: center;
     justify-content: flex-end;
 
-    select {
-      display: inline-block;
-      width: 70px;
+    .select {
+      width: 80px;
       height: 32px;
-      border: 1px solid #e4e4e4;
-      outline: none;
-      margin: 0px 10px;
-      border-radius: 3px;
-      background: transparent;
-      color: #666;
     }
 
     input {
