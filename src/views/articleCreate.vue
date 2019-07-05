@@ -6,7 +6,7 @@
                label-position="left" size="small">
         <el-form-item label="页面名称：">
           <div class="input-itm">
-            <el-input style="width:95%" placeholder="请输入页面名称" type="text" :min="0"
+            <el-input placeholder="请输入页面名称" type="text" :min="0"
                       v-model="params.name"></el-input>
           </div>
         </el-form-item>
@@ -54,7 +54,11 @@ export default {
         spellChecker: false
       })
       simplemde.codemirror.on('change', function () {
-        console.log(simplemde.value())
+        let showdown = require('showdown')
+        let converter = new showdown.Converter()
+        let text = simplemde.value()
+        let html = converter.makeHtml(text)
+
       })
     }
   }
@@ -69,7 +73,7 @@ export default {
     box-sizing: border-box;
 
     .input-itm {
-      width: 200px;
+      width: 178px;
     }
   }
 </style>

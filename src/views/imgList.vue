@@ -35,7 +35,7 @@
 
     <div class="btn-con">
       <div>
-        <el-button size="small" @click="$router.push('articleCreate')">新增</el-button>
+        <el-button size="small" @click="$router.push('imgUpload')">新增</el-button>
       </div>
       <page @changePage="changePage" :totalSize="params.totalSize" :pageSize="params.pageSize"
             :currPage="params.currPage"/>
@@ -49,7 +49,7 @@ import mainContainer from '@/components/mainContainer'
 import page from '@/components/page'
 
 export default {
-  name: 'articleList',
+  name: 'imgList',
   data () {
     return {
       params: {

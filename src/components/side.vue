@@ -4,7 +4,7 @@
       <img src="" alt="" style="display:none;">
       <span>内容管理系统</span>
     </div>
-    <el-menu mode="vertical" :default-active="onRoutes"
+    <el-menu mode="vertical" :default-active="defaultActive"
              active-text-color="#1489cd" text-color="#ffffff"
              background-color="#545c64" unique-opened router>
       <el-submenu v-for="items in menu" :index="items.id" :key="items.id">
@@ -24,16 +24,22 @@ export default {
   name: 'side',
   data () {
     return {
+      defaultActive: '/',
       menu: [
         {
           id: '1',
           icon: '',
-          title: '文章管理',
+          title: '内容管理',
           children: [
             {
               url: '/articleList',
               id: '11',
               title: '文章列表'
+            },
+            {
+              url: '/imgList',
+              id: '12',
+              title: '图片列表'
             }
           ]
         }
@@ -44,8 +50,8 @@ export default {
   created () {
   },
   computed: {
-    onRoutes () {
-      return this.$route.path.replace('/', '')
+    select (index) {
+      return index
     }
   },
   mounted () {
