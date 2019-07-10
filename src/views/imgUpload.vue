@@ -30,8 +30,6 @@
 </template>
 <script>
 import mainContainer from '@/components/mainContainer'
-import SimpleMDE from 'simplemde'
-import 'simplemde/dist/simplemde.min.css'
 
 export default {
   name: 'imgUpload',

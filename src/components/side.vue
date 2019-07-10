@@ -20,11 +20,11 @@
   </div>
 </template>
 <script>
+
 export default {
   name: 'side',
   data () {
     return {
-      defaultActive: '/',
       menu: [
         {
           id: '1',
@@ -46,13 +46,13 @@ export default {
       ]
     }
   },
+  computed: {
+    defaultActive () {
+      return this.$route.path
+    }
+  },
   components: {},
   created () {
-  },
-  computed: {
-    select (index) {
-      return index
-    }
   },
   mounted () {
   },
@@ -63,7 +63,7 @@ export default {
   .side {
     height: 100%;
     width: 100%;
-    background: rgb(84, 92, 100);
+    background: rgba(84, 92, 100, 1);
 
     .logo {
       height: 60px;
@@ -73,6 +73,7 @@ export default {
       color: #fff;
       cursor: pointer;
       border-bottom: 1px solid #65696d;
+      background: rgba(69, 74, 78, 1);
 
       img {
         width: 38px;
