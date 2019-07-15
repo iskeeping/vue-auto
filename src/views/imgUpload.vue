@@ -33,7 +33,7 @@ import mainContainer from '@/components/mainContainer'
 
 export default {
   name: 'imgUpload',
-  data () {
+  data() {
     return {
       params: {
         name: '',
@@ -45,17 +45,17 @@ export default {
   components: {
     mainContainer
   },
-  created () {
+  created() {
   },
-  mounted () {
+  mounted() {
   },
   methods: {
-    save () {
+    save() {
     },
-    handleAvatarSuccess (res, file) {
+    handleAvatarSuccess(res, file) {
       this.imageUrl = URL.createObjectURL(file.raw)
     },
-    beforeAvatarUpload (file) {
+    beforeAvatarUpload(file) {
       const isJPG = file.type === 'image/jpeg'
       const isLt2M = file.size / 1024 / 1024 < 2
 

@@ -14,7 +14,10 @@ let initRoutes = [
       {
         path: '/articleList',
         name: '文章列表',
-        component: () => import(/* webpackChunkName: "articleList" */ '@/views/articleList.vue')
+        component: () => import(/* webpackChunkName: "articleList" */ '@/views/articleList.vue'),
+        meta: {
+          keepAlive: true
+        }
       },
       {
         path: '/articleCreate',

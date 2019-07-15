@@ -20,12 +20,12 @@ let request = (
       'Content-Type': 'application/json; charset=UTF-8'
     }
   }).then(res => {
-    // res期望返回的数据结构是{code:200,data:{}/[],message: ''}
+    // res期望返回的数据结构是{code:0/-1,data:{}/[]}
     nextCallback(res)
   }).catch((err) => {
     nextCallback(
       {
-        code: -1,
+        code: 1,
         err
       }
     )

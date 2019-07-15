@@ -72,7 +72,7 @@ import {
   Message,
   Notification
 } from 'element-ui'
-import lang from 'element-ui/lib/locale/lang/en'
+import lang from 'element-ui/lib/locale/lang/zh-CN'
 import locale from 'element-ui/lib/locale'
 import '@/assets/font/iconfont.css'
 import dynamicRoutes from '@/router/dynamic'

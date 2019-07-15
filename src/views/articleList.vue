@@ -4,92 +4,113 @@
       <el-form ref="form"
                :model="params" label-width="100px"
                label-position="left" size="small">
-        <el-form-item label="页面名称：">
+        <el-form-item label="文章标题：">
           <div class="input-itm">
-            <el-input placeholder="请输入页面名称" type="text" :min="0" v-model="params.name"></el-input>
+            <el-input placeholder="请输入文章标题" type="text" :min="0" v-model="params.title"></el-input>
           </div>
         </el-form-item>
-        <el-form-item label="页面ID：">
+        <el-form-item label="作者：">
           <div class="input-itm">
-            <el-input placeholder="请输入页面ID" type="number" :min="0" v-model="params.id"></el-input>
+            <el-input placeholder="请输入作者名字" type="text" :min="0" v-model="params.author"></el-input>
           </div>
         </el-form-item>
-        <div class="btns">
+        <div class="btn-con">
           <el-button type="primary" size="small" @click="search">查询</el-button>
           <el-button size="small" @click="reset">重置</el-button>
         </div>
       </el-form>
+      <div class="add-btn">
+        <el-button size="small" @click="$router.push('articleCreate')">新增</el-button>
+      </div>
     </div>
 
     <div class="table-con">
       <el-table fit :data="listData" size="small">
-        <el-table-column prop="id" label="ID" align="center"></el-table-column>
-        <el-table-column prop="name" label="页面名称" align="center"></el-table-column>
-        <el-table-column label="适用门店个数" align="center">
+        <el-table-column prop="_id" label="ID" align="center"></el-table-column>
+        <el-table-column prop="title" label="文章标题" align="center"></el-table-column>
+        <el-table-column prop="author" label="作者" align="center"></el-table-column>
+        <el-table-column prop="createTime" label="创建时间" align="center"></el-table-column>
+        <el-table-column label="操作" align="center">
           <template slot-scope="scope">
-            {{ scope.row.num }}
+            <el-button size="small" @click="$router.push(`articleCreate?id=${scope.row._id}`)">编辑</el-button>
+            <el-button size="small" @click="$router.push(`articleCreate?id=${scope.row._id}`)">详情</el-button>
           </template>
         </el-table-column>
       </el-table>
     </div>
 
-    <div class="btn-con">
-      <div>
-        <el-button size="small" @click="$router.push('articleCreate')">新增</el-button>
-      </div>
-      <page @changePage="changePage" :totalSize="params.totalSize" :pageSize="params.pageSize"
-            :currPage="params.currPage"/>
+    <div class="page-con">
+      <el-pagination
+        @size-change="sizeChange"
+        @current-change="currentChange"
+        :current-page="params.currentPage"
+        :page="[10,20,30]"
+        :page-size="params.pageSize"
+        layout="total,sizes,prev,pager,next,jumper"
+        :total="totalSize"
+      ></el-pagination>
     </div>
-
   </mainContainer>
 </template>
 
 <script>
 import mainContainer from '@/components/mainContainer'
-import page from '@/components/page'
+import * as api from '@/common/api'
+import util from '@/common/util'
 
 export default {
   name: 'articleList',
-  data () {
+  data() {
     return {
+      totalSize: 0,
       params: {
-        name: '',
-        id: '',
-        currPage: 1,
-        totalSize: 30,
+        title: '',
+        author: '',
+        currentPage: 1,
         pageSize: 10
       },
-      listData: [
-        {
-          id: 1,
-          name: '你好',
-          num: 20
-        }
-      ]
+      listData: []
     }
   },
   components: {
-    mainContainer,
-    page
+    mainContainer
   },
-  activated () {
+  activated() {
+    this.articleGetList()
   },
   methods: {
-    search () {
+    search() {
+      this.articleGetList()
     },
-    reset () {
+    reset() {
       this.params = Object.assign(
         {},
         this.params,
         {
-          name: '',
-          id: ''
+          title: ''
         }
       )
     },
-    changePage ({currPage, pageSize}) {
-      this.params.currPage = currPage
+    sizeChange(pageSize) {
       this.params.pageSize = pageSize
+      this.articleGetList()
+    },
+    currentChange(currentPage) {
+      this.params.currentPage = currentPage
+      this.articleGetList()
+    },
+    articleGetList() {
+      api.articleGetList({linkData: this.params}).then((res) => {
+        if (res.data.code === 0) {
+          this.totalSize = res.data.totalSize
+          res.data.data.map((item) => {
+            const d = util.getYMDHMS(item.createTime)
+            item.createTime = [d.year, '.', d.month, '.', d.date, ' ', d.hour, ':', d.minute, ':', d.second].join('')
+          })
+          this.listData = res.data.data
+        }
+      }).catch()
+
     }
   }
 }
@@ -102,10 +123,13 @@ export default {
     background: #fff;
     padding: 20px;
     box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
 
     .input-itm {
       width: 178px;
     }
+
   }
 
   .table-con {
@@ -116,11 +140,11 @@ export default {
     margin-top: 20px;
   }
 
-  .btn-con {
+  .page-con {
+    display: flex;
+    justify-content: flex-end;
     background: #fff;
     padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
   }
 
 </style>

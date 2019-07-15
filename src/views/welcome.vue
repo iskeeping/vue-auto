@@ -9,7 +9,7 @@ import mainContainer from '@/components/mainContainer'
 
 export default {
   name: 'articleList',
-  data () {
+  data() {
     return {
       params: {
         name: '',
@@ -30,12 +30,12 @@ export default {
   components: {
     mainContainer
   },
-  activated () {
+  activated() {
   },
   methods: {
-    search () {
+    search() {
     },
-    reset () {
+    reset() {
       this.params = Object.assign(
         {},
         this.params,
@@ -45,7 +45,7 @@ export default {
         }
       )
     },
-    changePage ({currPage, pageSize}) {
+    changePage({currPage, pageSize}) {
       this.params.currPage = currPage
       this.params.pageSize = pageSize
     }

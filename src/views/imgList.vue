@@ -19,6 +19,9 @@
           <el-button size="small" @click="reset">重置</el-button>
         </div>
       </el-form>
+      <div class="add-btn">
+        <el-button size="small" @click="$router.push('imgUpload')">新增</el-button>
+      </div>
     </div>
 
     <div class="table-con">
@@ -33,12 +36,16 @@
       </el-table>
     </div>
 
-    <div class="btn-con">
-      <div>
-        <el-button size="small" @click="$router.push('imgUpload')">新增</el-button>
-      </div>
-      <page @changePage="changePage" :totalSize="params.totalSize" :pageSize="params.pageSize"
-            :currPage="params.currPage"/>
+    <div class="page-con">
+      <el-pagination
+        @size-change="sizeChange"
+        @current-change="currentChange"
+        :current-page="params.currentPage"
+        :page="[10,20,30]"
+        :page-size="params.pageSize"
+        layout="total,sizes,prev,pager,next,jumper"
+        :total="totalSize"
+      ></el-pagination>
     </div>
 
   </mainContainer>
@@ -46,17 +53,16 @@
 
 <script>
 import mainContainer from '@/components/mainContainer'
-import page from '@/components/page'
 
 export default {
   name: 'imgList',
-  data () {
+  data() {
     return {
+      totalSize: 30,
       params: {
         name: '',
         id: '',
-        currPage: 1,
-        totalSize: 30,
+        currentPage: 1,
         pageSize: 10
       },
       listData: [
@@ -69,15 +75,14 @@ export default {
     }
   },
   components: {
-    mainContainer,
-    page
+    mainContainer
   },
-  activated () {
+  activated() {
   },
   methods: {
-    search () {
+    search() {
     },
-    reset () {
+    reset() {
       this.params = Object.assign(
         {},
         this.params,
@@ -87,9 +92,13 @@ export default {
         }
       )
     },
-    changePage ({currPage, pageSize}) {
-      this.params.currPage = currPage
+    sizeChange(pageSize) {
       this.params.pageSize = pageSize
+      this.articleGetList()
+    },
+    currentChange(currentPage) {
+      this.params.currentPage = currentPage
+      this.articleGetList()
     }
   }
 }
@@ -102,6 +111,8 @@ export default {
     background: #fff;
     padding: 20px;
     box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
 
     .input-itm {
       width: 178px;
@@ -116,11 +127,11 @@ export default {
     margin-top: 20px;
   }
 
-  .btn-con {
+  .page-con {
+    display: flex;
+    justify-content: flex-end;
     background: #fff;
     padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
   }
 
 </style>

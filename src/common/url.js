@@ -1,6 +1,12 @@
-let base = './'
-let login = base + 'login'
+let base = './api/'
+let articleGetList = base + 'article/getList'
+let articleCreateOne = base + 'article/createOne'
+let articleUpdateOne = base + 'article/updateOne'
+let articleGetOne = base + 'article/getOne'
 
 export {
-  login
+  articleGetList,
+  articleCreateOne,
+  articleUpdateOne,
+  articleGetOne
 }
