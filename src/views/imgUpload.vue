@@ -4,20 +4,20 @@
       <el-form ref="form"
                :model="params" label-width="100px"
                label-position="left" size="small">
-        <el-form-item label="页面名称：">
+        <el-form-item label="图片名称：">
           <div class="input-itm">
-            <el-input placeholder="请输入页面名称" type="text" :min="0"
+            <el-input placeholder="请输入图片名称" type="text" :min="0"
                       v-model="params.name"></el-input>
           </div>
         </el-form-item>
-        <el-form-item label="页面内容：">
+        <el-form-item label="图片：">
           <el-upload
             class="avatar-uploader"
-            action="https://jsonplaceholder.typicode.com/posts/"
+            :action="url.imgUploadOne"
             :show-file-list="false"
-            :on-success="handleAvatarSuccess"
-            :before-upload="beforeAvatarUpload">
-            <img v-if="params.imageUrl" :src="params.imageUrl" class="avatar">
+            :on-success="uploadImgSuccess"
+            :before-upload="beforeUploadImg">
+            <img v-if="params.url" :src="params.url" class="avatar">
             <i v-else class="el-icon-plus avatar-uploader-icon"></i>
           </el-upload>
         </el-form-item>
@@ -30,6 +30,8 @@
 </template>
 <script>
 import mainContainer from '@/components/mainContainer'
+import * as url from '@/common/url'
+import * as api from '@/common/api'
 
 export default {
   name: 'imgUpload',
@@ -37,9 +39,9 @@ export default {
     return {
       params: {
         name: '',
-        imgListData: [{}],
-        imageUrl: ''
-      }
+        url: ''
+      },
+      url
     }
   },
   components: {
@@ -48,24 +50,60 @@ export default {
   created() {
   },
   mounted() {
+    this.imgGetOne()
   },
   methods: {
     save() {
+      if (this.$route.query.id) {
+        this.imgUpdateOne()
+      } else {
+        this.imgCreateOne()
+      }
     },
-    handleAvatarSuccess(res, file) {
-      this.imageUrl = URL.createObjectURL(file.raw)
+    uploadImgSuccess(res) {
+      if (res.code === 0) {
+        // this.params.url = URL.createObjectURL(file.raw)
+        this.params.url = res.data.url
+      }
     },
-    beforeAvatarUpload(file) {
+    beforeUploadImg(file) {
       const isJPG = file.type === 'image/jpeg'
+      const isPNG = file.type === 'image/png'
       const isLt2M = file.size / 1024 / 1024 < 2
-
-      if (!isJPG) {
-        this.$message.error('上传头像图片只能是 JPG 格式!')
+      if (!(isJPG || isPNG)) {
+        this.$message.error('上传头像图片只能是 JPG PNG 格式!')
       }
       if (!isLt2M) {
         this.$message.error('上传头像图片大小不能超过 2MB!')
       }
-      return isJPG && isLt2M
+      return (isPNG || isJPG) && isLt2M
+    },
+    imgCreateOne() {
+      api.imgCreateOne({data: this.params}).then((res) => {
+        if (res.data.code === 0) {
+          this.$router.go(-1)
+        }
+      }).catch(() => {
+      })
+    },
+    imgGetOne() {
+      if (!this.$route.query.id) {
+        return
+      }
+      api.imgGetOne({linkData: {_id: this.$route.query.id}}).then((res) => {
+        if (res.data.code === 0) {
+          this.params = res.data.data
+        }
+      }).catch(() => {
+      })
+    },
+    imgUpdateOne() {
+      api.imgUpdateOne({linkData: {_id: this.$route.query.id}, data: this.params}).then((res) => {
+        if (res.data.code === 0) {
+          this.$router.go(-1)
+        }
+      }).catch(() => {
+      })
     }
   }
 }

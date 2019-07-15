@@ -16,13 +16,17 @@ let initRoutes = [
         name: '文章列表',
         component: () => import(/* webpackChunkName: "articleList" */ '@/views/articleList.vue'),
         meta: {
-          keepAlive: true
+          keepAlive: true,
+          path: '/articleList'
         }
       },
       {
         path: '/articleCreate',
         name: '文章新建',
-        component: () => import(/* webpackChunkName: "articleCreate" */ '@/views/articleCreate.vue')
+        component: () => import(/* webpackChunkName: "articleCreate" */ '@/views/articleCreate.vue'),
+        meta: {
+          path: '/articleList'
+        }
       }
     ]
   }

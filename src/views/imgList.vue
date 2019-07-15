@@ -4,14 +4,9 @@
       <el-form ref="form"
                :model="params" label-width="100px"
                label-position="left" size="small">
-        <el-form-item label="页面名称：">
+        <el-form-item label="图片名称：">
           <div class="input-itm">
-            <el-input placeholder="请输入页面名称" type="text" :min="0" v-model="params.name"></el-input>
-          </div>
-        </el-form-item>
-        <el-form-item label="页面ID：">
-          <div class="input-itm">
-            <el-input placeholder="请输入页面ID" type="number" :min="0" v-model="params.id"></el-input>
+            <el-input placeholder="请输入图片名称" type="text" :min="0" v-model="params.name"></el-input>
           </div>
         </el-form-item>
         <div class="btns">
@@ -26,11 +21,17 @@
 
     <div class="table-con">
       <el-table fit :data="listData" size="small">
-        <el-table-column prop="id" label="ID" align="center"></el-table-column>
-        <el-table-column prop="name" label="页面名称" align="center"></el-table-column>
-        <el-table-column label="适用门店个数" align="center">
+        <el-table-column prop="_id" label="ID" align="center"></el-table-column>
+        <el-table-column prop="name" label="图片名称" align="center"></el-table-column>
+        <el-table-column label="图片" align="center">
           <template slot-scope="scope">
-            {{ scope.row.num }}
+            <img :src="scope.row.url" style="height: 50px;"/>
+          </template>
+        </el-table-column>
+        <el-table-column label="操作" align="center">
+          <template slot-scope="scope">
+            <el-button size="small" @click="$router.push(`imgUpload?id=${scope.row._id}`)">编辑</el-button>
+            <el-button size="small" @click="$router.push(`imgUpload?id=${scope.row._id}`)">详情</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -53,31 +54,26 @@
 
 <script>
 import mainContainer from '@/components/mainContainer'
+import * as api from '@/common/api'
 
 export default {
   name: 'imgList',
   data() {
     return {
-      totalSize: 30,
+      totalSize: 0,
       params: {
         name: '',
-        id: '',
         currentPage: 1,
         pageSize: 10
       },
-      listData: [
-        {
-          id: 1,
-          name: '你好',
-          num: 20
-        }
-      ]
+      listData: []
     }
   },
   components: {
     mainContainer
   },
   activated() {
+    this.imgGetList()
   },
   methods: {
     search() {
@@ -94,12 +90,21 @@ export default {
     },
     sizeChange(pageSize) {
       this.params.pageSize = pageSize
-      this.articleGetList()
+      this.imgGetList()
     },
     currentChange(currentPage) {
       this.params.currentPage = currentPage
-      this.articleGetList()
-    }
+      this.imgGetList()
+    },
+    imgGetList() {
+      api.imgGetList({linkData: this.params}).then((res) => {
+        if (res.data.code === 0) {
+          this.listData = res.data.data
+          this.totalSize = res.data.totalSize
+        }
+      }).catch(() => {
+      })
+    },
   }
 }
 

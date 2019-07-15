@@ -23,7 +23,7 @@
 
 export default {
   name: 'side',
-  data () {
+  data() {
     return {
       menu: [
         {
@@ -47,14 +47,14 @@ export default {
     }
   },
   computed: {
-    defaultActive () {
-      return this.$route.path
+    defaultActive() {
+      return this.$route.meta.path
     }
   },
   components: {},
-  created () {
+  created() {
   },
-  mounted () {
+  mounted() {
   },
   methods: {}
 }

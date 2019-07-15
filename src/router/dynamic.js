@@ -9,12 +9,19 @@ let dynamicRoutes = [
         {
           path: '/imgList',
           name: '图片列表',
-          component: () => import(/* webpackChunkName: "imgList" */ '@/views/imgList.vue')
+          component: () => import(/* webpackChunkName: "imgList" */ '@/views/imgList.vue'),
+          meta: {
+            keepAlive: true,
+            path: '/imgList'
+          }
         },
         {
           path: '/imgUpload',
           name: '图片上传',
-          component: () => import(/* webpackChunkName: "imgUpload" */ '@/views/imgUpload.vue')
+          component: () => import(/* webpackChunkName: "imgUpload" */ '@/views/imgUpload.vue'),
+          meta: {
+            path: '/imgList'
+          }
         }
       ]
     }
