@@ -1,7 +1,8 @@
 <template>
   <div class="top">
     <div class="name">
-      {{currRoute.name}}
+      <i :class="[isCollapse?'el-icon-s-unfold':'el-icon-s-fold']" @click="updateSideStatus"></i>
+      <span>{{currRoute.name}}</span>
     </div>
     <el-dropdown>
       <span class="username">18279959396 欢迎您！<span class="iconfont icon-xiala userheader"></span></span>
@@ -13,6 +14,7 @@
   </div>
 </template>
 <script>
+import storeTypes from '@/storeTypes'
 
 export default {
   name: 'top',
@@ -21,21 +23,31 @@ export default {
       currRoute: {}
     }
   },
+  computed: {
+    isCollapse() {
+      return this.$store.state.sideStatus
+    }
+  },
   components: {},
   watch: {
-    $route () {
+    $route() {
       this.getCurrRoute()
     }
   },
-  created () {
+  created() {
     this.getCurrRoute()
   },
   methods: {
-    getCurrRoute () {
+    getCurrRoute() {
       this.currRoute = this.$route
     },
-    updatePassword () {},
-    logout () {}
+    updatePassword() {
+    },
+    logout() {
+    },
+    updateSideStatus() {
+      this.$store.dispatch(storeTypes.updateSideStatus, {sideStatus: !this.$store.state.sideStatus})
+    }
   }
 }
 </script>
@@ -49,6 +61,16 @@ export default {
     .name {
       font-size: 14px;
       color: #606266;
+      display: flex;
+      align-items: center;
+
+      span {
+        margin-left: 10px;
+      }
+
+      i {
+        font-size: 18px;
+      }
     }
 
     .username {

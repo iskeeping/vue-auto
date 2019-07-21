@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <el-container>
-      <el-aside width="200px">
+      <el-aside :class="[isCollapse?'active':'','home-aside']">
         <side></side>
       </el-aside>
       <el-container>
@@ -33,6 +33,11 @@ export default {
   components: {
     side,
     top
+  },
+  computed: {
+    isCollapse() {
+      return this.$store.state.sideStatus
+    }
   }
 }
 </script>
@@ -41,6 +46,14 @@ export default {
     width: 100%;
     height: 100%;
     display: flex;
+
+    .home-aside {
+      width: 200px !important;
+
+      &.active {
+        width: 64px !important;
+      }
+    }
   }
 
   .el-main {

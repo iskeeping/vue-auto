@@ -83,7 +83,6 @@ export default {
         if (res.data.code === 0) {
           this.$router.go(-1)
         }
-      }).catch(() => {
       })
     },
     imgGetOne() {
@@ -94,7 +93,6 @@ export default {
         if (res.data.code === 0) {
           this.params = res.data.data
         }
-      }).catch(() => {
       })
     },
     imgUpdateOne() {
@@ -102,7 +100,6 @@ export default {
         if (res.data.code === 0) {
           this.$router.go(-1)
         }
-      }).catch(() => {
       })
     }
   }

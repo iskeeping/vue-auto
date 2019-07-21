@@ -1,5 +1,5 @@
-import img1 from './assets/logo.png'
+import logo from '@/assets/image/logo.jpg'
 
-export {
-  img1
+export default {
+  logo
 }

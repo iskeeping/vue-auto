@@ -16,6 +16,34 @@
                       v-model="params.author"></el-input>
           </div>
         </el-form-item>
+        <el-form-item label="所属栏目：">
+          <div class="input-itm">
+            <el-cascader
+              v-model="columnIds"
+              :options="columnListData"
+              size="small"
+              value="_id"
+              label="name"
+            >
+              <!--<template slot-scope="{ node, data }">
+                <span>{{ data.name }}</span>
+                <span v-if="!node.isLeaf"></span>
+              </template>-->
+            </el-cascader>
+          </div>
+        </el-form-item>
+        <el-form-item label="文章标签：">
+          <div class="input-itm">
+            <el-select v-model="params.tagIds" multiple filterable placeholder="请选择文章标签">
+              <el-option
+                v-for="item in tagListData"
+                :key="item._id"
+                :label="item.name"
+                :value="item._id">
+              </el-option>
+            </el-select>
+          </div>
+        </el-form-item>
         <el-form-item label="文章内容：">
           <textarea id="simpleMDE" style="width:100%" placeholder="请用markdown编辑文章内容"></textarea>
         </el-form-item>
@@ -31,6 +59,7 @@ import mainContainer from '@/components/mainContainer'
 import SimpleMDE from 'simplemde'
 import 'simplemde/dist/simplemde.min.css'
 import * as api from '@/common/api'
+import util from '@/common/util'
 
 export default {
   name: 'articleCreate',
@@ -39,9 +68,19 @@ export default {
       params: {
         title: '',
         author: '',
-        content: ''
+        columnId: '',
+        content: '',
+        tagIds: []
       },
-      simplemde: null
+      columnIds: [],
+      simplemde: null,
+      columnListData: [],
+      tagListData: []
+    }
+  },
+  watch: {
+    columnIds() {
+      this.params.columnId = this.columnIds[this.columnIds.length - 1]
     }
   },
   components: {
@@ -51,7 +90,13 @@ export default {
   },
   mounted() {
     this.simpleMDE()
-    this.articleGetOne()
+    this.columnGetList().then((data) => {
+      this.articleGetOne(data).then(() => {
+      }).catch(() => {
+      })
+    }).catch(() => {
+    })
+    this.tagGetList()
   },
   methods: {
     save() {
@@ -61,31 +106,79 @@ export default {
         this.articleCreateOne()
       }
     },
-    articleGetOne() {
-      if (!this.$route.query.id) {
-        return
-      }
-      api.articleGetOne({linkData: {_id: this.$route.query.id}}).then((res) => {
-        if (res.data.code === 0) {
-          this.params = res.data.data
-          this.simplemde.value(this.params.content)
-
+    articleGetOne(data) {
+      return new Promise((resolve, reject) => {
+        if (!this.$route.query.id) {
+          return
         }
-      }).catch()
+        api.articleGetOne({linkData: {_id: this.$route.query.id}}).then((res) => {
+          if (res.data.code === 0) {
+            let {
+              columnId
+            } = res.data.data
+            let columnIds = []
+            let columns = util.findParents(data, columnId)
+            columns.map((item) => {
+              columnIds.push(item._id)
+            })
+            this.params = res.data.data
+            this.columnIds = columnIds
+            this.simplemde.value(this.params.content)
+            resolve()
+          }
+          // eslint-disable-next-line prefer-promise-reject-errors
+          reject()
+        })
+      })
     },
     articleCreateOne() {
       api.articleCreateOne({data: this.params}).then((res) => {
         if (res.data.code === 0) {
           this.$router.go(-1)
         }
-      }).catch()
+      })
     },
     articleUpdateOne() {
       api.articleUpdateOne({data: this.params, linkData: {_id: this.$route.query.id}}).then((res) => {
         if (res.data.code === 0) {
           this.$router.go(-1)
         }
-      }).catch()
+      })
+    },
+    columnGetList() {
+      return new Promise((resolve, reject) => {
+        api.columnGetList({linkData: this.params}).then((res) => {
+          if (res.data.code === 0) {
+            res.data.data.map((item) => {
+              const d = util.getYMDHMS(item.createTime)
+              item.createTime = [d.year, '.', d.month, '.', d.date, ' ', d.hour, ':', d.minute, ':', d.second].join('')
+              if (typeof item.parentId === 'undefined') {
+                item.parentId = '0'
+              }
+              item.value = item._id
+              item.label = item.name
+            })
+            let listData = JSON.parse(JSON.stringify(res.data.data))
+            this.columnListData = util.createTree(res.data.data, '0')
+            resolve(listData)
+          }
+          // eslint-disable-next-line prefer-promise-reject-errors
+          reject()
+        })
+      })
+    },
+    tagGetList() {
+      api.tagGetList({linkData: this.params}).then((res) => {
+        if (res.data.code === 0) {
+          this.totalSize = res.data.totalSize
+          res.data.data.map((item) => {
+            const d = util.getYMDHMS(item.createTime)
+            item.createTime = [d.year, '.', d.month, '.', d.date, ' ', d.hour, ':', d.minute, ':', d.second].join('')
+          })
+          this.tagListData = res.data.data
+        }
+      })
+
     },
     simpleMDE() {
       let simplemde = new SimpleMDE({

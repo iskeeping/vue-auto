@@ -30,7 +30,7 @@
         </el-table-column>
         <el-table-column label="操作" align="center">
           <template slot-scope="scope">
-            <el-button size="small" @click="$router.push(`imgUpload?id=${scope.row._id}`)">编辑</el-button>
+            <el-button type="primary" size="small" @click="$router.push(`imgUpload?id=${scope.row._id}`)">编辑</el-button>
             <el-button size="small" @click="$router.push(`imgUpload?id=${scope.row._id}`)">详情</el-button>
           </template>
         </el-table-column>
@@ -42,7 +42,7 @@
         @size-change="sizeChange"
         @current-change="currentChange"
         :current-page="params.currentPage"
-        :page="[10,20,30]"
+        :page-sizes="[10,20,30]"
         :page-size="params.pageSize"
         layout="total,sizes,prev,pager,next,jumper"
         :total="totalSize"
@@ -102,7 +102,6 @@ export default {
           this.listData = res.data.data
           this.totalSize = res.data.totalSize
         }
-      }).catch(() => {
       })
     }
   }

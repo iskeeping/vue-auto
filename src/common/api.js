@@ -136,6 +136,475 @@ let imgUpdateOne = function ({data = {}, linkData = {}}) {
   })
 }
 
+let columnCreateOne = function ({data = {}}) {
+  return new Promise((resolve) => {
+    request(
+      Object.assign(
+        {
+          method: 'post',
+          url: url.columnCreateOne,
+          nextCallback: function (res) {
+            resolve(res)
+          }
+        },
+        {
+          data
+        }))
+  })
+}
+
+let columnGetList = function ({linkData = {}}) {
+  return new Promise((resolve) => {
+    request(
+      Object.assign(
+        {
+          url: url.columnGetList,
+          nextCallback: function (res) {
+            resolve(res)
+          }
+        },
+        {
+          linkData
+        }))
+  })
+}
+
+let columnGetOne = function ({linkData = {}}) {
+  return new Promise((resolve) => {
+    request(
+      Object.assign(
+        {
+          url: url.columnGetOne,
+          nextCallback: function (res) {
+            resolve(res)
+          }
+        },
+        {
+          linkData
+        }))
+  })
+}
+
+let columnUpdateOne = function ({data = {}, linkData = {}}) {
+  return new Promise((resolve) => {
+    request(
+      Object.assign(
+        {
+          method: 'post',
+          url: url.columnUpdateOne,
+          nextCallback: function (res) {
+            resolve(res)
+          }
+        },
+        {
+          linkData,
+          data
+        }))
+  })
+}
+
+let tagCreateOne = function ({data = {}}) {
+  return new Promise((resolve) => {
+    request(
+      Object.assign(
+        {
+          method: 'post',
+          url: url.tagCreateOne,
+          nextCallback: function (res) {
+            resolve(res)
+          }
+        },
+        {
+          data
+        }))
+  })
+}
+
+let tagGetList = function ({linkData = {}}) {
+  return new Promise((resolve) => {
+    request(
+      Object.assign(
+        {
+          url: url.tagGetList,
+          nextCallback: function (res) {
+            resolve(res)
+          }
+        },
+        {
+          linkData
+        }))
+  })
+}
+
+let tagGetOne = function ({linkData = {}}) {
+  return new Promise((resolve) => {
+    request(
+      Object.assign(
+        {
+          url: url.tagGetOne,
+          nextCallback: function (res) {
+            resolve(res)
+          }
+        },
+        {
+          linkData
+        }))
+  })
+}
+
+let tagUpdateOne = function ({data = {}, linkData = {}}) {
+  return new Promise((resolve) => {
+    request(
+      Object.assign(
+        {
+          method: 'post',
+          url: url.tagUpdateOne,
+          nextCallback: function (res) {
+            resolve(res)
+          }
+        },
+        {
+          linkData,
+          data
+        }))
+  })
+}
+
+let commentCreateOne = function ({data = {}}) {
+  return new Promise((resolve) => {
+    request(
+      Object.assign(
+        {
+          method: 'post',
+          url: url.commentCreateOne,
+          nextCallback: function (res) {
+            resolve(res)
+          }
+        },
+        {
+          data
+        }))
+  })
+}
+
+let commentGetList = function ({linkData = {}}) {
+  return new Promise((resolve) => {
+    request(
+      Object.assign(
+        {
+          url: url.commentGetList,
+          nextCallback: function (res) {
+            resolve(res)
+          }
+        },
+        {
+          linkData
+        }))
+  })
+}
+
+let commentGetOne = function ({linkData = {}}) {
+  return new Promise((resolve) => {
+    request(
+      Object.assign(
+        {
+          url: url.commentGetOne,
+          nextCallback: function (res) {
+            resolve(res)
+          }
+        },
+        {
+          linkData
+        }))
+  })
+}
+
+let commentUpdateOne = function ({data = {}, linkData = {}}) {
+  return new Promise((resolve) => {
+    request(
+      Object.assign(
+        {
+          method: 'post',
+          url: url.commentUpdateOne,
+          nextCallback: function (res) {
+            resolve(res)
+          }
+        },
+        {
+          linkData,
+          data
+        }))
+  })
+}
+
+let logCreateOne = function ({data = {}}) {
+  return new Promise((resolve) => {
+    request(
+      Object.assign(
+        {
+          method: 'post',
+          url: url.logCreateOne,
+          nextCallback: function (res) {
+            resolve(res)
+          }
+        },
+        {
+          data
+        }))
+  })
+}
+
+let logGetList = function ({linkData = {}}) {
+  return new Promise((resolve) => {
+    request(
+      Object.assign(
+        {
+          url: url.logGetList,
+          nextCallback: function (res) {
+            resolve(res)
+          }
+        },
+        {
+          linkData
+        }))
+  })
+}
+
+let logGetOne = function ({linkData = {}}) {
+  return new Promise((resolve) => {
+    request(
+      Object.assign(
+        {
+          url: url.logGetOne,
+          nextCallback: function (res) {
+            resolve(res)
+          }
+        },
+        {
+          linkData
+        }))
+  })
+}
+
+let logUpdateOne = function ({data = {}, linkData = {}}) {
+  return new Promise((resolve) => {
+    request(
+      Object.assign(
+        {
+          method: 'post',
+          url: url.logUpdateOne,
+          nextCallback: function (res) {
+            resolve(res)
+          }
+        },
+        {
+          linkData,
+          data
+        }))
+  })
+}
+
+let informationCreateOne = function ({data = {}}) {
+  return new Promise((resolve) => {
+    request(
+      Object.assign(
+        {
+          method: 'post',
+          url: url.informationCreateOne,
+          nextCallback: function (res) {
+            resolve(res)
+          }
+        },
+        {
+          data
+        }))
+  })
+}
+
+let informationGetList = function ({linkData = {}}) {
+  return new Promise((resolve) => {
+    request(
+      Object.assign(
+        {
+          url: url.informationGetList,
+          nextCallback: function (res) {
+            resolve(res)
+          }
+        },
+        {
+          linkData
+        }))
+  })
+}
+
+let informationGetOne = function ({linkData = {}}) {
+  return new Promise((resolve) => {
+    request(
+      Object.assign(
+        {
+          url: url.informationGetOne,
+          nextCallback: function (res) {
+            resolve(res)
+          }
+        },
+        {
+          linkData
+        }))
+  })
+}
+
+let informationUpdateOne = function ({data = {}, linkData = {}}) {
+  return new Promise((resolve) => {
+    request(
+      Object.assign(
+        {
+          method: 'post',
+          url: url.informationUpdateOne,
+          nextCallback: function (res) {
+            resolve(res)
+          }
+        },
+        {
+          linkData,
+          data
+        }))
+  })
+}
+
+let noticeCreateOne = function ({data = {}}) {
+  return new Promise((resolve) => {
+    request(
+      Object.assign(
+        {
+          method: 'post',
+          url: url.noticeCreateOne,
+          nextCallback: function (res) {
+            resolve(res)
+          }
+        },
+        {
+          data
+        }))
+  })
+}
+
+let noticeGetList = function ({linkData = {}}) {
+  return new Promise((resolve) => {
+    request(
+      Object.assign(
+        {
+          url: url.noticeGetList,
+          nextCallback: function (res) {
+            resolve(res)
+          }
+        },
+        {
+          linkData
+        }))
+  })
+}
+
+let noticeGetOne = function ({linkData = {}}) {
+  return new Promise((resolve) => {
+    request(
+      Object.assign(
+        {
+          url: url.noticeGetOne,
+          nextCallback: function (res) {
+            resolve(res)
+          }
+        },
+        {
+          linkData
+        }))
+  })
+}
+
+let noticeUpdateOne = function ({data = {}, linkData = {}}) {
+  return new Promise((resolve) => {
+    request(
+      Object.assign(
+        {
+          method: 'post',
+          url: url.noticeUpdateOne,
+          nextCallback: function (res) {
+            resolve(res)
+          }
+        },
+        {
+          linkData,
+          data
+        }))
+  })
+}
+
+let userCreateOne = function ({data = {}}) {
+  return new Promise((resolve) => {
+    request(
+      Object.assign(
+        {
+          method: 'post',
+          url: url.userCreateOne,
+          nextCallback: function (res) {
+            resolve(res)
+          }
+        },
+        {
+          data
+        }))
+  })
+}
+
+let userGetList = function ({linkData = {}}) {
+  return new Promise((resolve) => {
+    request(
+      Object.assign(
+        {
+          url: url.userGetList,
+          nextCallback: function (res) {
+            resolve(res)
+          }
+        },
+        {
+          linkData
+        }))
+  })
+}
+
+let userGetOne = function ({linkData = {}}) {
+  return new Promise((resolve) => {
+    request(
+      Object.assign(
+        {
+          url: url.userGetOne,
+          nextCallback: function (res) {
+            resolve(res)
+          }
+        },
+        {
+          linkData
+        }))
+  })
+}
+
+let userUpdateOne = function ({data = {}, linkData = {}}) {
+  return new Promise((resolve) => {
+    request(
+      Object.assign(
+        {
+          method: 'post',
+          url: url.userUpdateOne,
+          nextCallback: function (res) {
+            resolve(res)
+          }
+        },
+        {
+          linkData,
+          data
+        }))
+  })
+}
+
 export {
   articleGetList,
   articleCreateOne,
@@ -144,5 +613,33 @@ export {
   imgCreateOne,
   imgGetList,
   imgGetOne,
-  imgUpdateOne
+  imgUpdateOne,
+  columnCreateOne,
+  columnGetList,
+  columnGetOne,
+  columnUpdateOne,
+  tagCreateOne,
+  tagGetList,
+  tagGetOne,
+  tagUpdateOne,
+  commentCreateOne,
+  commentGetList,
+  commentGetOne,
+  commentUpdateOne,
+  logCreateOne,
+  logGetList,
+  logGetOne,
+  logUpdateOne,
+  informationCreateOne,
+  informationGetList,
+  informationGetOne,
+  informationUpdateOne,
+  noticeCreateOne,
+  noticeGetList,
+  noticeGetOne,
+  noticeUpdateOne,
+  userCreateOne,
+  userGetList,
+  userGetOne,
+  userUpdateOne
 }

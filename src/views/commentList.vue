@@ -4,14 +4,14 @@
       <el-form ref="form"
                :model="params" label-width="100px"
                label-position="left" size="small">
-        <el-form-item label="文章标题：">
+        <el-form-item label="留言人：">
           <div class="input-itm">
-            <el-input placeholder="请输入文章标题" type="text" :min="0" v-model="params.title"></el-input>
+            <el-input placeholder="请输入留言人" type="text" :min="0" v-model="params.name"></el-input>
           </div>
         </el-form-item>
-        <el-form-item label="作者：">
+        <el-form-item label="被留言人：">
           <div class="input-itm">
-            <el-input placeholder="请输入作者名字" type="text" :min="0" v-model="params.author"></el-input>
+            <el-input placeholder="请输入被留言人" type="text" :min="0" v-model="params.pname"></el-input>
           </div>
         </el-form-item>
         <div class="btn-con">
@@ -20,34 +20,23 @@
         </div>
       </el-form>
       <div class="add-btn">
-        <el-button size="small" @click="$router.push('articleCreate')">新增</el-button>
+        <!--<el-button size="small" @click="$router.push('columnCreate')">新增</el-button>-->
       </div>
     </div>
 
     <div class="table-con">
       <el-table fit :data="listData" size="small">
         <el-table-column prop="_id" label="ID" align="center"></el-table-column>
-        <el-table-column prop="title" label="文章标题" align="center"></el-table-column>
-        <el-table-column prop="author" label="作者" align="center"></el-table-column>
-        <el-table-column label="所属栏目" align="center">
-          <template slot-scope="scope">
-            {{scope.row.column.name}}
-          </template>
-        </el-table-column>
-        <el-table-column label="文章标签" align="center">
-          <template slot-scope="scope">
-            <el-button type="text" size="small" v-for="(item,index) in scope.row.tags" :key="index">
-              {{item.name}}
-            </el-button>
-          </template>
-        </el-table-column>
+        <el-table-column prop="content" label="留言内容" align="center"></el-table-column>
+        <el-table-column prop="name" label="被留言人" align="center"></el-table-column>
+        <el-table-column prop="name" label="留言人" align="center"></el-table-column>
+        <el-table-column prop="status" label="状态" align="center"></el-table-column>
         <el-table-column prop="createTime" label="创建时间" align="center"></el-table-column>
         <el-table-column label="操作" align="center">
           <template slot-scope="scope">
-            <div class="btn-con">
-              <i class="el-icon-edit-outline" @click="$router.push(`articleCreate?id=${scope.row._id}`)"></i>
-              <i class="el-icon-delete"></i>
-            </div>
+            <el-button type="primary" size="small" @click="$router.push(`columnCreate?id=${scope.row._id}`)">编辑
+            </el-button>
+            <el-button size="small" @click="$router.push(`columnCreate?id=${scope.row._id}`)">详情</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -73,13 +62,13 @@ import * as api from '@/common/api'
 import util from '@/common/util'
 
 export default {
-  name: 'articleList',
+  name: 'commentList',
   data() {
     return {
       totalSize: 0,
       params: {
-        title: '',
-        author: '',
+        pname: '',
+        name: '',
         currentPage: 1,
         pageSize: 10
       },
@@ -89,32 +78,33 @@ export default {
   components: {
     mainContainer
   },
-  activated() {
-    this.articleGetList()
+  mounted() {
+    this.commentGetList()
   },
   methods: {
     search() {
-      this.articleGetList()
+      this.commentGetList()
     },
     reset() {
       this.params = Object.assign(
         {},
         this.params,
         {
-          title: ''
+          pname: '',
+          name: ''
         }
       )
     },
     sizeChange(pageSize) {
       this.params.pageSize = pageSize
-      this.articleGetList()
+      this.commentGetList()
     },
     currentChange(currentPage) {
       this.params.currentPage = currentPage
-      this.articleGetList()
+      this.commentGetList()
     },
-    articleGetList() {
-      api.articleGetList({linkData: this.params}).then((res) => {
+    commentGetList() {
+      api.commentGetList({linkData: this.params}).then((res) => {
         if (res.data.code === 0) {
           this.totalSize = res.data.totalSize
           res.data.data.map((item) => {
@@ -130,7 +120,6 @@ export default {
 }
 
 </script>
-
 
 <style lang="scss" scoped>
   .form-con {
@@ -160,15 +149,6 @@ export default {
     justify-content: flex-end;
     background: #fff;
     padding: 10px 20px;
-  }
-
-  .btn-con {
-    color: #1489CD;
-    font-size: 18px;
-
-    i {
-      margin: 0 5px;
-    }
   }
 
 </style>

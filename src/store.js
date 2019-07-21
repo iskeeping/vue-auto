@@ -1,12 +1,22 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import storeTypes from '@/storeTypes'
 
 Vue.use(Vuex)
 const store = new Vuex.Store({
   state: {
-    currRoute: {}
+    sideStatus: false
   },
-  mutations: {},
-  actions: {}
+  mutations: {
+    [storeTypes.updateSideStatus](state, payload) {
+      state.sideStatus = payload.sideStatus
+    }
+  },
+  actions: {
+    [storeTypes.updateSideStatus](context, payload) {
+      context.commit(storeTypes.updateSideStatus, payload)
+
+    }
+  }
 })
 export default store
