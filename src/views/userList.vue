@@ -15,7 +15,7 @@
         </div>
       </el-form>
       <div class="add-btn">
-<!--        <el-button size="small" @click="$router.push('userCreate')">新增</el-button>-->
+        <!--        <el-button size="small" @click="$router.push('userCreate')">新增</el-button>-->
       </div>
     </div>
 
@@ -28,9 +28,10 @@
         <el-table-column prop="createTime" label="创建时间" align="center"></el-table-column>
         <el-table-column label="操作" align="center">
           <template slot-scope="scope">
-            <el-button type="primary" size="small" @click="$router.push(`columnCreate?id=${scope.row._id}`)">编辑
-            </el-button>
-            <el-button size="small" @click="$router.push(`columnCreate?id=${scope.row._id}`)">详情</el-button>
+            <div class="btn-con">
+              <i class="el-icon-edit-outline" @click="$router.push(`columnCreate?id=${scope.row._id}`)"></i>
+              <i class="el-icon-delete"></i>
+            </div>
           </template>
         </el-table-column>
       </el-table>
@@ -141,6 +142,15 @@ export default {
     justify-content: flex-end;
     background: #fff;
     padding: 10px 20px;
+  }
+
+  .btn-con {
+    color: #1489CD;
+    font-size: 18px;
+
+    i {
+      margin: 0 5px;
+    }
   }
 
 </style>

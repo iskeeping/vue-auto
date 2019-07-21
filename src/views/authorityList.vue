@@ -1,5 +1,8 @@
 <template>
   <mainContainer>
+    <div class="btn-con">
+      <i class="el-icon-circle-plus-outline" @click="() => append()"></i>
+    </div>
     <div class="tree-con">
       <el-tree
         :data="listData"
@@ -10,12 +13,8 @@
       <span class="custom-tree-node" slot-scope="{ node, data }">
         <span class="tree-name">{{ data.name }}</span>
         <span>
-          <el-button
-            type="text"
-            size="small"
-            @click="() => append(node,data)">
-            新增
-          </el-button>
+          <i class="el-icon-circle-plus-outline" @click="() => append(data)"></i>
+          <i class="el-icon-remove-outline"></i>
           <!--<el-button
             type="text"
             size="small"
@@ -86,6 +85,19 @@ export default {
 
 </script>
 
+<style lang="scss" scoped>
+  .btn-con {
+    padding: 0 20px 10px;
+    color: #1489CD;
+    font-size: 24px;
+    margin-top: -10px;
+
+    i {
+      margin-left: 10px;
+    }
+  }
+</style>
+
 <style lang="scss">
 
   .tree-con {
@@ -101,6 +113,13 @@ export default {
       .tree-name {
         font-size: 14px;
       }
+
+      i {
+        color: #1489CD;
+        font-size: 18px;
+        margin: 0 5px;
+      }
+
     }
   }
 </style>
