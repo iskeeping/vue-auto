@@ -6,7 +6,7 @@
                label-position="left" size="small">
         <el-form-item label="内容：">
           <div class="input-itm">
-            <el-input placeholder="请输入内容" type="text" :min="0" v-model="params.title"></el-input>
+            <el-input placeholder="请输入内容" type="text" v-model="params.title"></el-input>
           </div>
         </el-form-item>
         <div class="btn-con">

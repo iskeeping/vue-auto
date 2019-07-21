@@ -45,6 +45,16 @@ let userCreateOne = base + 'user/createOne'
 let userGetList = base + 'user/getList'
 let userGetOne = base + 'user/getOne'
 let userUpdateOne = base + 'user/updateOne'
+//菜单管理
+let menuCreateOne = base + 'menu/createOne'
+let menuGetList = base + 'menu/getList'
+let menuGetOne = base + 'menu/getOne'
+let menuUpdateOne = base + 'menu/updateOne'
+//权限管理
+let authorityCreateOne = base + 'authority/createOne'
+let authorityGetList = base + 'authority/getList'
+let authorityGetOne = base + 'authority/getOne'
+let authorityUpdateOne = base + 'authority/updateOne'
 
 export {
   articleGetList,
@@ -83,5 +93,13 @@ export {
   userCreateOne,
   userGetList,
   userGetOne,
-  userUpdateOne
+  userUpdateOne,
+  menuCreateOne,
+  menuGetList,
+  menuGetOne,
+  menuUpdateOne,
+  authorityCreateOne,
+  authorityGetList,
+  authorityGetOne,
+  authorityUpdateOne
 }

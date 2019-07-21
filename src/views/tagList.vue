@@ -6,7 +6,7 @@
                label-position="left" size="small">
         <el-form-item label="标签名称：">
           <div class="input-itm">
-            <el-input placeholder="请输入标签名称" type="text" :min="0" v-model="params.name"></el-input>
+            <el-input placeholder="请输入标签名称" type="text" v-model="params.name"></el-input>
           </div>
         </el-form-item>
         <div class="btn-con">
@@ -14,9 +14,10 @@
           <el-button size="small" @click="reset">重置</el-button>
         </div>
       </el-form>
-      <div class="add-btn">
-        <el-button size="small" @click="$router.push('tagCreate')">新增</el-button>
-      </div>
+    </div>
+
+    <div class="table-btn-con">
+      <i class="el-icon-circle-plus-outline" @click="$router.push('tagCreate')"></i>
     </div>
 
     <div class="table-con">
@@ -128,12 +129,22 @@ export default {
 
   }
 
+  .table-btn-con {
+    padding: 10px 15px 0;
+    color: #1489CD;
+    font-size: 24px;
+
+    i {
+      margin: 0 5px;
+    }
+  }
+
   .table-con {
     padding: 0 20px;
     background: #fff;
     width: 100%;
     box-sizing: border-box;
-    margin-top: 20px;
+    margin-top: 10px;
   }
 
   .page-con {

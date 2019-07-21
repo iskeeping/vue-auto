@@ -81,7 +81,7 @@ let initRoutes = [
       },
       {
         path: '/userCreate',
-        name: '角色新建',
+        name: '用户新建',
         component: () => import(/* webpackChunkName: "userCreate" */ '@/views/userCreate.vue'),
         meta: {
           path: '/userList'
@@ -114,11 +114,27 @@ let initRoutes = [
         }
       },
       {
+        path: '/authorityCreate',
+        name: '权限新建',
+        component: () => import(/* webpackChunkName: "menuCreate" */ '@/views/authorityCreate.vue'),
+        meta: {
+          path: '/authorityList'
+        }
+      },
+      {
         path: '/menuList',
         name: '菜单管理',
         component: () => import(/* webpackChunkName: "menuList" */ '@/views/menuList.vue'),
         meta: {
           keepAlive: true,
+          path: '/menuList'
+        }
+      },
+      {
+        path: '/menuCreate',
+        name: '菜单新建',
+        component: () => import(/* webpackChunkName: "menuCreate" */ '@/views/menuCreate.vue'),
+        meta: {
           path: '/menuList'
         }
       },

@@ -6,7 +6,7 @@
                label-position="left" size="small">
         <el-form-item label="图片名称：">
           <div class="input-itm">
-            <el-input placeholder="请输入图片名称" type="text" :min="0"
+            <el-input placeholder="请输入图片名称" type="text"
                       v-model="params.name"></el-input>
           </div>
         </el-form-item>

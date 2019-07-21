@@ -6,17 +6,17 @@
                label-position="left" size="small">
         <el-form-item label="标题：">
           <div class="input-itm">
-            <el-input placeholder="请输入标题" type="text" :min="0" v-model="params.title"></el-input>
+            <el-input placeholder="请输入标题" type="text" v-model="params.title"></el-input>
           </div>
         </el-form-item>
         <el-form-item label="公告详情：">
           <div class="input-itm">
-            <el-input placeholder="请输入公告详情" type="text" :min="0" v-model="params.content"></el-input>
+            <el-input placeholder="请输入公告详情" type="text" v-model="params.content"></el-input>
           </div>
         </el-form-item>
         <el-form-item label="发布者：">
           <div class="input-itm">
-            <el-input placeholder="请输入发布者" type="text" :min="0" v-model="params.author"></el-input>
+            <el-input placeholder="请输入发布者" type="text" v-model="params.author"></el-input>
           </div>
         </el-form-item>
         <div class="btn-con">
@@ -24,9 +24,10 @@
           <el-button size="small" @click="reset">重置</el-button>
         </div>
       </el-form>
-      <div class="add-btn">
-        <el-button size="small" @click="$router.push('columnCreate')">新增</el-button>
-      </div>
+    </div>
+
+    <div class="table-btn-con">
+      <i class="el-icon-circle-plus-outline" @click="$router.push('noticeCreate')"></i>
     </div>
 
     <div class="table-con">
@@ -132,7 +133,6 @@ export default {
     padding: 20px;
     box-sizing: border-box;
     display: flex;
-    justify-content: space-between;
 
     .input-itm {
       width: 178px;
@@ -140,12 +140,22 @@ export default {
 
   }
 
+  .table-btn-con {
+    padding: 10px 15px 0;
+    color: #1489CD;
+    font-size: 24px;
+
+    i {
+      margin: 0 5px;
+    }
+  }
+
   .table-con {
     padding: 0 20px;
     background: #fff;
     width: 100%;
     box-sizing: border-box;
-    margin-top: 20px;
+    margin-top: 10px;
   }
 
   .page-con {

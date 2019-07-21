@@ -6,13 +6,13 @@
                label-position="left" size="small">
         <el-form-item label="栏目名称：">
           <div class="input-itm">
-            <el-input placeholder="请输入栏目名称" type="text" :min="0"
+            <el-input placeholder="请输入栏目名称" type="text"
                       v-model="params.name"></el-input>
           </div>
         </el-form-item>
         <el-form-item label="备注：">
           <div class="input-itm">
-            <el-input placeholder="请输入备注" type="text" :min="0"
+            <el-input placeholder="请输入备注" type="text"
                       v-model="params.remark"></el-input>
           </div>
         </el-form-item>

@@ -1,8 +1,5 @@
 <template>
   <mainContainer>
-    <div class="btn-con">
-      <i class="el-icon-circle-plus-outline" @click="() => append()"></i>
-    </div>
     <div class="tree-con">
       <el-tree
         :data="listData"
@@ -13,14 +10,13 @@
       <span class="custom-tree-node" slot-scope="{ node, data }">
         <span class="tree-name">{{ data.name }}</span>
         <span>
-          <i class="el-icon-circle-plus-outline" @click="() => append(data)"></i>
-          <i class="el-icon-remove-outline"></i>
-          <!--<el-button
-            type="text"
-            size="small"
-            @click="() => remove(node, data)">
-            删除
-          </el-button>-->
+          <template v-if="data.type==='menu'||data.type==='function'">
+            <i class="el-icon-circle-plus-outline" @click="append('add',data)"></i>
+          </template>
+          <template v-if="data.type==='function'">
+            <i class="el-icon-edit-outline" @click="() => append('edit',data)"></i>
+            <i class="el-icon-delete"></i>
+          </template>
         </span>
       </span>
       </el-tree>
@@ -44,38 +40,66 @@ export default {
     mainContainer
   },
   activated() {
-    this.columnGetList()
+    this.menuGetList().then((arr) => {
+      this.addMenu(arr)
+      this.authorityGetList(arr)
+    }).catch(() => {
+    })
   },
   methods: {
-    search() {
-      this.columnGetList()
+    append(type, data) {
+      if (type === 'add') {
+        this.$router.push('/authorityCreate?parentId=' + data._id)
+      } else if (type === 'edit') {
+        this.$router.push('/authorityCreate?id=' + data._id)
+      }
     },
-    reset() {
-      this.params = Object.assign(
-        {},
-        this.params,
-        {
-          title: ''
+    remove(data) {
+
+    },
+    menuGetList() {
+      return new Promise((resolve, reject) => {
+        api.menuGetList({linkData: this.params}).then((res) => {
+          if (res.data.code === 0) {
+            this.totalSize = res.data.totalSize
+            res.data.data.map((item) => {
+              const d = util.getYMDHMS(item.createTime)
+              item.createTime = [d.year, '.', d.month, '.', d.date, ' ', d.hour, ':', d.minute, ':', d.second].join('')
+              if (typeof item.parentId === 'undefined') {
+                item.parentId = '0'
+              }
+            })
+            resolve(res.data.data)
+          }
+          // eslint-disable-next-line prefer-promise-reject-errors
+          reject()
+        })
+      })
+    },
+    addMenu(arr) {
+      arr.map((item) => {
+        let children = util.findChildren(arr, item._id)
+        if (children.length === 0) {
+          item.type = 'menu'
         }
-      )
+      })
     },
-    sizeChange(pageSize) {
-      this.params.pageSize = pageSize
-      this.columnGetList()
+    addFunction(arr) {
+      arr.map((item) => {
+        item.type = 'function'
+      })
     },
-    currentChange(currentPage) {
-      this.params.currentPage = currentPage
-      this.columnGetList()
-    },
-    columnGetList() {
-      api.columnGetList({linkData: this.params}).then((res) => {
+    authorityGetList(arr) {
+      api.authorityGetList({linkData: this.params}).then((res) => {
         if (res.data.code === 0) {
           this.totalSize = res.data.totalSize
           res.data.data.map((item) => {
             const d = util.getYMDHMS(item.createTime)
             item.createTime = [d.year, '.', d.month, '.', d.date, ' ', d.hour, ':', d.minute, ':', d.second].join('')
           })
-          this.listData = res.data.data
+          this.addFunction(res.data.data)
+          let listData = res.data.data.concat(arr)
+          this.listData = util.createTree(listData, '0')
         }
       })
 
@@ -87,13 +111,13 @@ export default {
 
 <style lang="scss" scoped>
   .btn-con {
-    padding: 0 20px 10px;
+    padding: 0 15px 10px;
     color: #1489CD;
     font-size: 24px;
     margin-top: -10px;
 
     i {
-      margin-left: 10px;
+      margin: 0 5px;
     }
   }
 </style>
@@ -102,7 +126,7 @@ export default {
 
   .tree-con {
     background: #fff;
-    padding: 15px 20px;
+    padding: 20px 20px;
 
     .custom-tree-node {
       flex: 1;

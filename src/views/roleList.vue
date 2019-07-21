@@ -6,7 +6,7 @@
                label-position="left" size="small">
         <el-form-item label="栏目名称：">
           <div class="input-itm">
-            <el-input placeholder="请输入栏目名称" type="text" :min="0" v-model="params.title"></el-input>
+            <el-input placeholder="请输入栏目名称" type="text" v-model="params.title"></el-input>
           </div>
         </el-form-item>
         <div class="btn-con">
@@ -14,9 +14,10 @@
           <el-button size="small" @click="reset">重置</el-button>
         </div>
       </el-form>
-      <div class="add-btn">
-        <el-button size="small" @click="$router.push('columnCreate')">新增</el-button>
-      </div>
+    </div>
+
+    <div class="table-btn-con">
+      <i class="el-icon-circle-plus-outline" @click="$router.push('roleCreate')"></i>
     </div>
 
     <div class="table-con">
@@ -27,9 +28,10 @@
         <el-table-column prop="createTime" label="创建时间" align="center"></el-table-column>
         <el-table-column label="操作" align="center">
           <template slot-scope="scope">
-            <el-button type="primary" size="small" @click="$router.push(`columnCreate?id=${scope.row._id}`)">编辑
-            </el-button>
-            <el-button size="small" @click="$router.push(`columnCreate?id=${scope.row._id}`)">详情</el-button>
+            <div class="btn-con">
+              <i class="el-icon-edit-outline" @click="$router.push(`roleCreate?id=${scope.row._id}`)"></i>
+              <i class="el-icon-delete"></i>
+            </div>
           </template>
         </el-table-column>
       </el-table>
@@ -127,12 +129,22 @@ export default {
 
   }
 
+  .table-btn-con {
+    padding: 10px 15px 0;
+    color: #1489CD;
+    font-size: 24px;
+
+    i {
+      margin: 0 5px;
+    }
+  }
+
   .table-con {
     padding: 0 20px;
     background: #fff;
     width: 100%;
     box-sizing: border-box;
-    margin-top: 20px;
+    margin-top: 10px;
   }
 
   .page-con {
@@ -142,4 +154,12 @@ export default {
     padding: 10px 20px;
   }
 
+  .btn-con {
+    color: #1489CD;
+    font-size: 18px;
+
+    i {
+      margin: 0 5px;
+    }
+  }
 </style>

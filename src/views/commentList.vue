@@ -6,12 +6,12 @@
                label-position="left" size="small">
         <el-form-item label="留言人：">
           <div class="input-itm">
-            <el-input placeholder="请输入留言人" type="text" :min="0" v-model="params.name"></el-input>
+            <el-input placeholder="请输入留言人" type="text" v-model="params.name"></el-input>
           </div>
         </el-form-item>
         <el-form-item label="被留言人：">
           <div class="input-itm">
-            <el-input placeholder="请输入被留言人" type="text" :min="0" v-model="params.pname"></el-input>
+            <el-input placeholder="请输入被留言人" type="text" v-model="params.pname"></el-input>
           </div>
         </el-form-item>
         <div class="btn-con">

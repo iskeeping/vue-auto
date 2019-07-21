@@ -4,10 +4,22 @@
       <el-form ref="form"
                :model="params" label-width="100px"
                label-position="left" size="small">
-        <el-form-item label="栏目名称：">
+        <el-form-item label="菜单名称：">
           <div class="input-itm">
-            <el-input placeholder="请输入栏目名称" type="text"
+            <el-input placeholder="请输入菜单名称" type="text"
                       v-model="params.name"></el-input>
+          </div>
+        </el-form-item>
+        <el-form-item label="路径：">
+          <div class="input-itm">
+            <el-input placeholder="请输入路径" type="text"
+                      v-model="params.path"></el-input>
+          </div>
+        </el-form-item>
+        <el-form-item label="icon名称：">
+          <div class="input-itm">
+            <el-input placeholder="请输入icon名称" type="text"
+                      v-model="params.icon"></el-input>
           </div>
         </el-form-item>
         <el-form-item label="备注：">
@@ -25,12 +37,11 @@
 </template>
 <script>
 import mainContainer from '@/components/mainContainer'
-import SimpleMDE from 'simplemde'
 import 'simplemde/dist/simplemde.min.css'
 import * as api from '@/common/api'
 
 export default {
-  name: 'columnCreate',
+  name: 'menuCreate',
   data() {
     return {
       params: {
@@ -45,37 +56,47 @@ export default {
   created() {
   },
   mounted() {
-    this.columnGetOne()
+    this.menuGetOne()
   },
   methods: {
     save() {
       if (this.$route.query.id) {
-        this.columnUpdateOne()
-      } else {
-        this.columnCreateOne()
+        this.menuUpdateOne()
+      }
+      if (this.$route.query.parentId) {
+        this.menuCreateOne()
       }
     },
-    columnGetOne() {
+    menuGetOne() {
       if (!this.$route.query.id) {
         return
       }
-      api.columnGetOne({linkData: {_id: this.$route.query.id}}).then((res) => {
+      api.menuGetOne({linkData: {_id: this.$route.query.id}}).then((res) => {
         if (res.data.code === 0) {
           this.params = res.data.data
-          this.simplemde.value(this.params.content)
-
         }
       })
     },
-    columnCreateOne() {
-      api.columnCreateOne({data: this.params}).then((res) => {
+    menuCreateOne() {
+      let {
+        name,
+        remark
+      } = this.params
+      let parentId = this.$route.query.parentId
+      api.menuCreateOne({
+        data: {
+          name,
+          remark,
+          parentId
+        }
+      }).then((res) => {
         if (res.data.code === 0) {
           this.$router.go(-1)
         }
       })
     },
-    columnUpdateOne() {
-      api.columnUpdateOne({data: this.params, linkData: {_id: this.$route.query.id}}).then((res) => {
+    menuUpdateOne() {
+      api.menuUpdateOne({data: this.params, linkData: {_id: this.$route.query.id}}).then((res) => {
         if (res.data.code === 0) {
           this.$router.go(-1)
         }

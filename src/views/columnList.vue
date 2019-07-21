@@ -1,7 +1,7 @@
 <template>
   <mainContainer>
     <div class="btn-con">
-      <i class="el-icon-circle-plus-outline" @click="() => append()"></i>
+      <i class="el-icon-circle-plus-outline" @click="append('add')"></i>
     </div>
     <div class="tree-con">
       <el-tree
@@ -13,14 +13,9 @@
       <span class="custom-tree-node" slot-scope="{ node, data }">
         <span class="tree-name">{{ data.name }}</span>
         <span>
-          <i class="el-icon-circle-plus-outline" @click="() => append(data)"></i>
-          <i class="el-icon-remove-outline"></i>
-          <!--<el-button
-            type="text"
-            size="small"
-            @click="() => remove(node, data)">
-            删除
-          </el-button>-->
+          <i class="el-icon-circle-plus-outline" @click="append('add',data)"></i>
+          <i class="el-icon-edit-outline" @click="() => append('edit',data)"></i>
+          <i class="el-icon-delete"></i>
         </span>
       </span>
       </el-tree>
@@ -50,8 +45,13 @@ export default {
     this.columnGetList()
   },
   methods: {
-    append(data) {
-      this.$router.push('/columnCreate?parentId=' + (data ? data._id : '0'))
+    append(type, data) {
+      if (type === 'add') {
+        this.$router.push('/columnCreate?parentId=' + (data ? data._id : '0'))
+      } else if (type === 'edit') {
+        this.$router.push('/columnCreate?id=' + data._id)
+      }
+
     },
     remove(data) {
 
@@ -84,7 +84,7 @@ export default {
     margin-top: -10px;
 
     i {
-      margin-left: 10px;
+      margin: 0 5px;
     }
   }
 </style>

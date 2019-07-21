@@ -1,7 +1,7 @@
 <template>
   <mainContainer>
     <div class="btn-con">
-      <i class="el-icon-circle-plus-outline" @click="() => append()"></i>
+      <i class="el-icon-circle-plus-outline" @click="() => append('add')"></i>
     </div>
     <div class="tree-con">
       <el-tree
@@ -13,14 +13,9 @@
       <span class="custom-tree-node" slot-scope="{ node, data }">
         <span class="tree-name">{{ data.name }}</span>
         <span>
-          <i class="el-icon-circle-plus-outline" @click="() => append(data)"></i>
-          <i class="el-icon-remove-outline"></i>
-          <!--<el-button
-            type="text"
-            size="small"
-            @click="() => remove(node, data)">
-            删除
-          </el-button>-->
+          <i class="el-icon-circle-plus-outline" @click="append('add',data)"></i>
+          <i class="el-icon-edit-outline" @click="() => append('edit',data)"></i>
+          <i class="el-icon-delete"></i>
         </span>
       </span>
       </el-tree>
@@ -34,7 +29,7 @@ import * as api from '@/common/api'
 import util from '@/common/util'
 
 export default {
-  name: 'authorityList',
+  name: 'menuList',
   data() {
     return {
       listData: []
@@ -44,38 +39,31 @@ export default {
     mainContainer
   },
   activated() {
-    this.columnGetList()
+    this.menuGetList()
   },
   methods: {
-    search() {
-      this.columnGetList()
+    append(type, data) {
+      if (type === 'add') {
+        this.$router.push('/menuCreate?parentId=' + (data ? data._id : '0'))
+      } else if (type === 'edit') {
+        this.$router.push('/menuCreate?id=' + data._id)
+      }
     },
-    reset() {
-      this.params = Object.assign(
-        {},
-        this.params,
-        {
-          title: ''
-        }
-      )
+    remove(data) {
+
     },
-    sizeChange(pageSize) {
-      this.params.pageSize = pageSize
-      this.columnGetList()
-    },
-    currentChange(currentPage) {
-      this.params.currentPage = currentPage
-      this.columnGetList()
-    },
-    columnGetList() {
-      api.columnGetList({linkData: this.params}).then((res) => {
+    menuGetList() {
+      api.menuGetList({linkData: this.params}).then((res) => {
         if (res.data.code === 0) {
           this.totalSize = res.data.totalSize
           res.data.data.map((item) => {
             const d = util.getYMDHMS(item.createTime)
             item.createTime = [d.year, '.', d.month, '.', d.date, ' ', d.hour, ':', d.minute, ':', d.second].join('')
+            if (typeof item.parentId === 'undefined') {
+              item.parentId = '0'
+            }
           })
-          this.listData = res.data.data
+          this.listData = util.createTree(res.data.data, '0')
         }
       })
 
@@ -87,13 +75,13 @@ export default {
 
 <style lang="scss" scoped>
   .btn-con {
-    padding: 0 20px 10px;
+    padding: 0 15px 10px;
     color: #1489CD;
     font-size: 24px;
     margin-top: -10px;
 
     i {
-      margin-left: 10px;
+      margin: 0 5px;
     }
   }
 </style>

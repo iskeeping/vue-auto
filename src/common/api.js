@@ -605,6 +605,140 @@ let userUpdateOne = function ({data = {}, linkData = {}}) {
   })
 }
 
+let menuCreateOne = function ({data = {}}) {
+  return new Promise((resolve) => {
+    request(
+      Object.assign(
+        {
+          method: 'post',
+          url: url.menuCreateOne,
+          nextCallback: function (res) {
+            resolve(res)
+          }
+        },
+        {
+          data
+        }))
+  })
+}
+
+let menuGetList = function ({linkData = {}}) {
+  return new Promise((resolve) => {
+    request(
+      Object.assign(
+        {
+          url: url.menuGetList,
+          nextCallback: function (res) {
+            resolve(res)
+          }
+        },
+        {
+          linkData
+        }))
+  })
+}
+
+let menuGetOne = function ({linkData = {}}) {
+  return new Promise((resolve) => {
+    request(
+      Object.assign(
+        {
+          url: url.menuGetOne,
+          nextCallback: function (res) {
+            resolve(res)
+          }
+        },
+        {
+          linkData
+        }))
+  })
+}
+
+let menuUpdateOne = function ({data = {}, linkData = {}}) {
+  return new Promise((resolve) => {
+    request(
+      Object.assign(
+        {
+          method: 'post',
+          url: url.menuUpdateOne,
+          nextCallback: function (res) {
+            resolve(res)
+          }
+        },
+        {
+          linkData,
+          data
+        }))
+  })
+}
+
+let authorityCreateOne = function ({data = {}}) {
+  return new Promise((resolve) => {
+    request(
+      Object.assign(
+        {
+          method: 'post',
+          url: url.authorityCreateOne,
+          nextCallback: function (res) {
+            resolve(res)
+          }
+        },
+        {
+          data
+        }))
+  })
+}
+
+let authorityGetList = function ({linkData = {}}) {
+  return new Promise((resolve) => {
+    request(
+      Object.assign(
+        {
+          url: url.authorityGetList,
+          nextCallback: function (res) {
+            resolve(res)
+          }
+        },
+        {
+          linkData
+        }))
+  })
+}
+
+let authorityGetOne = function ({linkData = {}}) {
+  return new Promise((resolve) => {
+    request(
+      Object.assign(
+        {
+          url: url.authorityGetOne,
+          nextCallback: function (res) {
+            resolve(res)
+          }
+        },
+        {
+          linkData
+        }))
+  })
+}
+
+let authorityUpdateOne = function ({data = {}, linkData = {}}) {
+  return new Promise((resolve) => {
+    request(
+      Object.assign(
+        {
+          method: 'post',
+          url: url.authorityUpdateOne,
+          nextCallback: function (res) {
+            resolve(res)
+          }
+        },
+        {
+          linkData,
+          data
+        }))
+  })
+}
+
 export {
   articleGetList,
   articleCreateOne,
@@ -641,5 +775,13 @@ export {
   userCreateOne,
   userGetList,
   userGetOne,
-  userUpdateOne
+  userUpdateOne,
+  menuCreateOne,
+  menuGetList,
+  menuGetOne,
+  menuUpdateOne,
+  authorityCreateOne,
+  authorityGetList,
+  authorityGetOne,
+  authorityUpdateOne
 }
