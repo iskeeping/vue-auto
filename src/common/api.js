@@ -153,6 +153,23 @@ let columnCreateOne = function ({data = {}}) {
   })
 }
 
+let columnCreateRootOne = function ({data = {}}) {
+  return new Promise((resolve) => {
+    request(
+      Object.assign(
+        {
+          method: 'post',
+          url: url.columnCreateRootOne,
+          nextCallback: function (res) {
+            resolve(res)
+          }
+        },
+        {
+          data
+        }))
+  })
+}
+
 let columnGetList = function ({linkData = {}}) {
   return new Promise((resolve) => {
     request(
@@ -605,6 +622,23 @@ let userUpdateOne = function ({data = {}, linkData = {}}) {
   })
 }
 
+let userLogin = function ({data = {}}) {
+  return new Promise((resolve) => {
+    request(
+      Object.assign(
+        {
+          method: 'post',
+          url: url.userLogin,
+          nextCallback: function (res) {
+            resolve(res)
+          }
+        },
+        {
+          data
+        }))
+  })
+}
+
 let menuCreateOne = function ({data = {}}) {
   return new Promise((resolve) => {
     request(
@@ -612,6 +646,23 @@ let menuCreateOne = function ({data = {}}) {
         {
           method: 'post',
           url: url.menuCreateOne,
+          nextCallback: function (res) {
+            resolve(res)
+          }
+        },
+        {
+          data
+        }))
+  })
+}
+
+let menuCreateRootOne = function ({data = {}}) {
+  return new Promise((resolve) => {
+    request(
+      Object.assign(
+        {
+          method: 'post',
+          url: url.menuCreateRootOne,
           nextCallback: function (res) {
             resolve(res)
           }
@@ -739,6 +790,73 @@ let authorityUpdateOne = function ({data = {}, linkData = {}}) {
   })
 }
 
+let roleCreateOne = function ({data = {}}) {
+  return new Promise((resolve) => {
+    request(
+      Object.assign(
+        {
+          method: 'post',
+          url: url.roleCreateOne,
+          nextCallback: function (res) {
+            resolve(res)
+          }
+        },
+        {
+          data
+        }))
+  })
+}
+
+let roleGetList = function ({linkData = {}}) {
+  return new Promise((resolve) => {
+    request(
+      Object.assign(
+        {
+          url: url.roleGetList,
+          nextCallback: function (res) {
+            resolve(res)
+          }
+        },
+        {
+          linkData
+        }))
+  })
+}
+
+let roleGetOne = function ({linkData = {}}) {
+  return new Promise((resolve) => {
+    request(
+      Object.assign(
+        {
+          url: url.roleGetOne,
+          nextCallback: function (res) {
+            resolve(res)
+          }
+        },
+        {
+          linkData
+        }))
+  })
+}
+
+let roleUpdateOne = function ({data = {}, linkData = {}}) {
+  return new Promise((resolve) => {
+    request(
+      Object.assign(
+        {
+          method: 'post',
+          url: url.roleUpdateOne,
+          nextCallback: function (res) {
+            resolve(res)
+          }
+        },
+        {
+          linkData,
+          data
+        }))
+  })
+}
+
 export {
   articleGetList,
   articleCreateOne,
@@ -749,6 +867,7 @@ export {
   imgGetOne,
   imgUpdateOne,
   columnCreateOne,
+  columnCreateRootOne,
   columnGetList,
   columnGetOne,
   columnUpdateOne,
@@ -776,12 +895,18 @@ export {
   userGetList,
   userGetOne,
   userUpdateOne,
+  userLogin,
   menuCreateOne,
+  menuCreateRootOne,
   menuGetList,
   menuGetOne,
   menuUpdateOne,
   authorityCreateOne,
   authorityGetList,
   authorityGetOne,
-  authorityUpdateOne
+  authorityUpdateOne,
+  roleCreateOne,
+  roleGetList,
+  roleGetOne,
+  roleUpdateOne
 }

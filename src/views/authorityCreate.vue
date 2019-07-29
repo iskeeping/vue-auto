@@ -22,6 +22,12 @@
                       v-model="params.icon"></el-input>
           </div>
         </el-form-item>
+        <el-form-item label="序号：">
+          <div class="input-itm">
+            <el-input placeholder="请输入序号" type="number"
+                      v-model="params.number"></el-input>
+          </div>
+        </el-form-item>
         <el-form-item label="备注：">
           <div class="input-itm">
             <el-input placeholder="请输入备注" type="text"
@@ -46,7 +52,8 @@ export default {
     return {
       params: {
         name: '',
-        remark: ''
+        remark: '',
+        number: ''
       }
     }
   },

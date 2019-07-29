@@ -4,16 +4,32 @@
       <el-form ref="form"
                :model="params" label-width="100px"
                label-position="left" size="small">
-        <el-form-item label="栏目名称：">
+        <el-form-item label="角色名称：">
           <div class="input-itm">
-            <el-input placeholder="请输入栏目名称" type="text"
+            <el-input placeholder="请输入角色名称" type="text"
                       v-model="params.name"></el-input>
           </div>
         </el-form-item>
-        <el-form-item label="备注：">
+        <el-form-item label="角色描述：">
           <div class="input-itm">
-            <el-input placeholder="请输入备注" type="text"
-                      v-model="params.remark"></el-input>
+            <el-input placeholder="请输入角色描述" type="text"
+                      v-model="params.description"></el-input>
+          </div>
+        </el-form-item>
+        <el-form-item label="角色权限：">
+          <div class="tree-con">
+            <el-tree
+              ref="tree"
+              show-checkbox
+              :data="listData"
+              node-key="_id"
+              default-expand-all
+              :expand-on-click-node="false"
+            >
+              <span class="custom-tree-node" slot-scope="{ node, data }">
+                <span class="tree-name">{{ data.name }}</span>
+              </span>
+            </el-tree>
           </div>
         </el-form-item>
         <div class="btns">
@@ -25,18 +41,20 @@
 </template>
 <script>
 import mainContainer from '@/components/mainContainer'
-import SimpleMDE from 'simplemde'
-import 'simplemde/dist/simplemde.min.css'
 import * as api from '@/common/api'
+import util from '@/common/util'
 
 export default {
-  name: 'columnCreate',
+  name: 'roleCreate',
   data() {
     return {
       params: {
         name: '',
-        remark: ''
-      }
+        description: '',
+        authorityList: []
+      },
+      listData: [],
+      rootId: '0'
     }
   },
   components: {
@@ -45,41 +63,103 @@ export default {
   created() {
   },
   mounted() {
-    this.columnGetOne()
+    this.menuGetList().then((arr) => {
+      this.addMenu(arr)
+      this.authorityGetList(arr)
+    }).catch(() => {
+    })
+    if (this.$route.query.id) {
+      this.roleGetOne()
+    }
   },
   methods: {
     save() {
+      let arr = []
+      let res = this.$refs.tree.getCheckedNodes()
+      res.map(item => {
+        arr.push({id: item._id, type: item.type})
+      })
+      this.params.authorityList = arr
+      let {
+        name,
+        description,
+        authorityList
+      } = this.params
       if (this.$route.query.id) {
-        this.columnUpdateOne()
+        this.roleUpdateOne()
       } else {
-        this.columnCreateOne()
+        this.roleCreateOne()
       }
     },
-    columnGetOne() {
-      if (!this.$route.query.id) {
-        return
-      }
-      api.columnGetOne({linkData: {_id: this.$route.query.id}}).then((res) => {
+    roleGetOne() {
+      api.roleGetOne({linkData: {_id: this.$route.query.id}}).then((res) => {
         if (res.data.code === 0) {
           this.params = res.data.data
-          this.simplemde.value(this.params.content)
+          let authorityList = []
+          this.params.authorityList.map(item => {
+            authorityList.push(item.id)
+          })
+          this.$refs.tree.setCheckedKeys(authorityList)
+        }
+      })
+    },
+    roleCreateOne() {
+      api.roleCreateOne({data: this.params}).then((res) => {
+        if (res.data.code === 0) {
+          this.$router.go(-1)
+        }
+      })
+    },
+    roleUpdateOne() {
+      api.roleUpdateOne({data: this.params, linkData: {_id: this.$route.query.id}}).then((res) => {
+        if (res.data.code === 0) {
+          this.$router.go(-1)
+        }
+      })
+    },
+    menuGetList() {
+      return new Promise((resolve, reject) => {
+        api.menuGetList({linkData: this.params}).then((res) => {
+          if (res.data.code === 0) {
+            this.totalSize = res.data.totalSize
+            res.data.data.map((item) => {
+              const d = util.getYMDHMS(item.createTime)
+              item.createTime = [d.year, '.', d.month, '.', d.date, ' ', d.hour, ':', d.minute, ':', d.second].join('')
+            })
+            resolve(res.data.data)
+          }
+          // eslint-disable-next-line prefer-promise-reject-errors
+          reject()
+        })
+      })
+    },
+    addMenu(arr) {
+      arr.map((item) => {
+        let children = util.findChildren(arr, item._id)
+        if (children.length === 0) {
+          item.type = 'menu'
+        }
+      })
+    },
+    addFunction(arr) {
+      arr.map((item) => {
+        item.type = 'function'
+      })
+    },
+    authorityGetList(arr) {
+      api.authorityGetList({linkData: this.params}).then((res) => {
+        if (res.data.code === 0) {
+          this.totalSize = res.data.totalSize
+          res.data.data.map((item) => {
+            const d = util.getYMDHMS(item.createTime)
+            item.createTime = [d.year, '.', d.month, '.', d.date, ' ', d.hour, ':', d.minute, ':', d.second].join('')
+          })
+          this.addFunction(res.data.data)
+          let listData = res.data.data.concat(arr)
+          this.listData = util.createTree(listData, this.rootId)
+        }
+      })
 
-        }
-      })
-    },
-    columnCreateOne() {
-      api.columnCreateOne({data: this.params}).then((res) => {
-        if (res.data.code === 0) {
-          this.$router.go(-1)
-        }
-      })
-    },
-    columnUpdateOne() {
-      api.columnUpdateOne({data: this.params, linkData: {_id: this.$route.query.id}}).then((res) => {
-        if (res.data.code === 0) {
-          this.$router.go(-1)
-        }
-      })
     }
   }
 }
@@ -94,6 +174,24 @@ export default {
 
     .input-itm {
       width: 178px;
+    }
+  }
+
+  .tree-con {
+    background: #fff;
+    border: 1px solid #DCDFE6;
+    padding: 5px 0;
+    border-radius: 4px;
+
+    .custom-tree-node {
+      flex: 1;
+      display: flex;
+      align-items: center;
+
+      .tree-name {
+        font-size: 14px;
+      }
+
     }
   }
 </style>

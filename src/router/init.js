@@ -1,177 +1,188 @@
 import home from '@/home.vue'
+import routerPath from '@/router/routerPath'
 
 let initRoutes = [
   {
-    path: '/',
+    path: routerPath.loginPath,
+    name: '登录',
+    component: () => import(/* webpackChunkName: "login" */ '@/views/login.vue')
+  },
+  {
+    path: routerPath.homePath,
     // name: '内容管理系统',
     component: home,
     children: [
       {
-        path: '/',
+        path: '',
         name: '首页',
         component: () => import(/* webpackChunkName: "welcome" */ '@/views/welcome.vue')
       },
       {
-        path: '/articleList',
+        path: 'articleList',
         name: '文章管理',
         component: () => import(/* webpackChunkName: "articleList" */ '@/views/articleList.vue'),
         meta: {
           keepAlive: true,
-          path: '/articleList'
+          path: routerPath.articleListPath
         }
       },
       {
-        path: '/articleCreate',
+        path: 'articleCreate',
         name: '文章新建',
         component: () => import(/* webpackChunkName: "articleCreate" */ '@/views/articleCreate.vue'),
         meta: {
-          path: '/articleList'
+          path: routerPath.articleListPath
         }
       },
       {
-        path: '/columnList',
+        path: 'columnList',
         name: '栏目管理',
         component: () => import(/* webpackChunkName: "columnList" */ '@/views/columnList.vue'),
         meta: {
           keepAlive: true,
-          path: '/columnList'
+          path: routerPath.columnListPath
         }
       },
       {
-        path: '/columnCreate',
+        path: 'columnCreate',
         name: '栏目新建',
         component: () => import(/* webpackChunkName: "columnCreate" */ '@/views/columnCreate.vue'),
         meta: {
-          path: '/columnList'
+          path: routerPath.columnListPath
         }
       },
       {
-        path: '/tagList',
+        path: 'tagList',
         name: '标签管理',
         component: () => import(/* webpackChunkName: "tagList" */ '@/views/tagList.vue'),
         meta: {
           keepAlive: true,
-          path: '/tagList'
+          path: routerPath.tagListPath
         }
       },
       {
-        path: '/tagCreate',
+        path: 'tagCreate',
         name: '标签新建',
         component: () => import(/* webpackChunkName: "tagCreate" */ '@/views/tagCreate.vue'),
         meta: {
-          path: '/tagList'
+          path: routerPath.tagListPath
         }
       },
       {
-        path: '/commentList',
+        path: 'commentList',
         name: '留言管理',
         component: () => import(/* webpackChunkName: "commentList" */ '@/views/commentList.vue'),
         meta: {
-          path: '/commentList'
+          path: routerPath.commentListPath
         }
       },
       {
-        path: '/userList',
+        path: 'userList',
         name: '用户管理',
         component: () => import(/* webpackChunkName: "userList" */ '@/views/userList.vue'),
         meta: {
           keepAlive: true,
-          path: '/userList'
+          path: routerPath.userListPath
         }
       },
       {
-        path: '/userCreate',
+        path: 'userCreate',
         name: '用户新建',
         component: () => import(/* webpackChunkName: "userCreate" */ '@/views/userCreate.vue'),
         meta: {
-          path: '/userList'
+          path: routerPath.userListPath
         }
       },
       {
-        path: '/roleList',
+        path: 'roleList',
         name: '角色管理',
         component: () => import(/* webpackChunkName: "roleList" */ '@/views/roleList.vue'),
         meta: {
           keepAlive: true,
-          path: '/roleList'
+          path: routerPath.roleListPath
         }
       },
       {
-        path: '/roleCreate',
+        path: 'roleCreate',
         name: '角色新建',
         component: () => import(/* webpackChunkName: "roleCreate" */ '@/views/roleCreate.vue'),
         meta: {
-          path: '/roleList'
+          path: routerPath.roleListPath
         }
       },
       {
-        path: '/authorityList',
+        path: 'authorityList',
         name: '权限管理',
         component: () => import(/* webpackChunkName: "authorityList" */ '@/views/authorityList.vue'),
         meta: {
           keepAlive: true,
-          path: '/authorityList'
+          path: routerPath.authorityListPath
         }
       },
       {
-        path: '/authorityCreate',
+        path: 'authorityCreate',
         name: '权限新建',
         component: () => import(/* webpackChunkName: "menuCreate" */ '@/views/authorityCreate.vue'),
         meta: {
-          path: '/authorityList'
+          path: routerPath.authorityListPath
         }
       },
       {
-        path: '/menuList',
+        path: 'menuList',
         name: '菜单管理',
         component: () => import(/* webpackChunkName: "menuList" */ '@/views/menuList.vue'),
         meta: {
           keepAlive: true,
-          path: '/menuList'
+          path: routerPath.menuListPath
         }
       },
       {
-        path: '/menuCreate',
+        path: 'menuCreate',
         name: '菜单新建',
         component: () => import(/* webpackChunkName: "menuCreate" */ '@/views/menuCreate.vue'),
         meta: {
-          path: '/menuList'
+          path: routerPath.menuListPath
         }
       },
       {
-        path: '/logList',
+        path: 'logList',
         name: '日志管理',
         component: () => import(/* webpackChunkName: "logList" */ '@/views/logList.vue'),
         meta: {
-          path: '/logList'
+          path: routerPath.logListPath
         }
       },
       {
-        path: '/informationList',
+        path: 'informationList',
         name: '消息管理',
         component: () => import(/* webpackChunkName: "informationList" */ '@/views/informationList.vue'),
         meta: {
-          path: '/informationList'
+          path: routerPath.informationListPath
         }
       },
       {
-        path: '/noticeList',
+        path: 'noticeList',
         name: '公告管理',
         component: () => import(/* webpackChunkName: "noticeList" */ '@/views/noticeList.vue'),
         meta: {
           keepAlive: true,
-          path: '/noticeList'
+          path: routerPath.noticeListPath
         }
       },
       {
-        path: '/noticeCreate',
+        path: 'noticeCreate',
         name: '公告新建',
         component: () => import(/* webpackChunkName: "noticeCreate" */ '@/views/noticeCreate.vue'),
         meta: {
-          path: '/noticeList'
+          path: routerPath.noticeListPath
         }
       }
     ]
+  },
+  {
+    path: '*',
+    name: '文件找不到',
+    component: () => import(/* webpackChunkName: "notFoundComponent" */ '@/views/notFoundComponent.vue')
   }
 ]
 

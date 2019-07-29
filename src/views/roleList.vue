@@ -4,9 +4,9 @@
       <el-form ref="form"
                :model="params" label-width="100px"
                label-position="left" size="small">
-        <el-form-item label="栏目名称：">
+        <el-form-item label="角色名称：">
           <div class="input-itm">
-            <el-input placeholder="请输入栏目名称" type="text" v-model="params.title"></el-input>
+            <el-input placeholder="请输入角色名称" type="text" v-model="params.title"></el-input>
           </div>
         </el-form-item>
         <div class="btn-con">
@@ -23,8 +23,8 @@
     <div class="table-con">
       <el-table fit :data="listData" size="small">
         <el-table-column prop="_id" label="ID" align="center"></el-table-column>
-        <el-table-column prop="name" label="栏目名称" align="center"></el-table-column>
-        <el-table-column prop="remark" label="备注" align="center"></el-table-column>
+        <el-table-column prop="name" label="角色名称" align="center"></el-table-column>
+        <el-table-column prop="description" label="角色描述" align="center"></el-table-column>
         <el-table-column prop="createTime" label="创建时间" align="center"></el-table-column>
         <el-table-column label="操作" align="center">
           <template slot-scope="scope">
@@ -73,11 +73,11 @@ export default {
     mainContainer
   },
   activated() {
-    this.columnGetList()
+    this.roleGetList()
   },
   methods: {
     search() {
-      this.columnGetList()
+      this.roleGetList()
     },
     reset() {
       this.params = Object.assign(
@@ -90,14 +90,14 @@ export default {
     },
     sizeChange(pageSize) {
       this.params.pageSize = pageSize
-      this.columnGetList()
+      this.roleGetList()
     },
     currentChange(currentPage) {
       this.params.currentPage = currentPage
-      this.columnGetList()
+      this.roleGetList()
     },
-    columnGetList() {
-      api.columnGetList({linkData: this.params}).then((res) => {
+    roleGetList() {
+      api.roleGetList({linkData: this.params}).then((res) => {
         if (res.data.code === 0) {
           this.totalSize = res.data.totalSize
           res.data.data.map((item) => {

@@ -25,10 +25,6 @@
               value="_id"
               label="name"
             >
-              <!--<template slot-scope="{ node, data }">
-                <span>{{ data.name }}</span>
-                <span v-if="!node.isLeaf"></span>
-              </template>-->
             </el-cascader>
           </div>
         </el-form-item>
@@ -60,6 +56,7 @@ import SimpleMDE from 'simplemde'
 import 'simplemde/dist/simplemde.min.css'
 import * as api from '@/common/api'
 import util from '@/common/util'
+import routerPath from '@/router/routerPath'
 
 export default {
   name: 'articleCreate',
@@ -75,7 +72,9 @@ export default {
       columnIds: [],
       simplemde: null,
       columnListData: [],
-      tagListData: []
+      tagListData: [],
+      routerPath,
+      rootId: '0'
     }
   },
   watch: {
@@ -159,7 +158,7 @@ export default {
               item.label = item.name
             })
             let listData = JSON.parse(JSON.stringify(res.data.data))
-            this.columnListData = util.createTree(res.data.data, '0')
+            this.columnListData = util.createTree(res.data.data, this.rootId)
             resolve(listData)
           }
           // eslint-disable-next-line prefer-promise-reject-errors

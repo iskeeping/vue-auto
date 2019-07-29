@@ -4,9 +4,9 @@
       <el-form ref="form"
                :model="params" label-width="100px"
                label-position="left" size="small">
-        <el-form-item label="用户名称：">
+        <el-form-item label="手机号：">
           <div class="input-itm">
-            <el-input placeholder="请输入用户名称" type="text" v-model="params.name"></el-input>
+            <el-input placeholder="请输入手机号" type="text" v-model="params.phone"></el-input>
           </div>
         </el-form-item>
         <div class="btn-con">
@@ -19,17 +19,21 @@
       </div>
     </div>
 
+    <div class="table-btn-con">
+      <i class="el-icon-circle-plus-outline" @click="$router.push('userCreate')"></i>
+    </div>
+
     <div class="table-con">
       <el-table fit :data="listData" size="small">
         <el-table-column prop="_id" label="ID" align="center"></el-table-column>
-        <el-table-column prop="name" label="用户名称" align="center"></el-table-column>
-        <el-table-column prop="phone" label="用户手机号" align="center"></el-table-column>
-        <el-table-column prop="pwd" label="用户密码" align="center"></el-table-column>
+        <el-table-column prop="name" label="名称" align="center"></el-table-column>
+        <el-table-column prop="phone" label="手机号" align="center"></el-table-column>
+        <el-table-column prop="password" label="密码" align="center"></el-table-column>
         <el-table-column prop="createTime" label="创建时间" align="center"></el-table-column>
         <el-table-column label="操作" align="center">
           <template slot-scope="scope">
             <div class="btn-con">
-              <i class="el-icon-edit-outline" @click="$router.push(`columnCreate?id=${scope.row._id}`)"></i>
+              <i class="el-icon-edit-outline" @click="$router.push(`userCreate?id=${scope.row._id}`)"></i>
               <i class="el-icon-delete"></i>
             </div>
           </template>
@@ -129,12 +133,22 @@ export default {
 
   }
 
+  .table-btn-con {
+    padding: 10px 15px 0;
+    color: #1489CD;
+    font-size: 24px;
+
+    i {
+      margin: 0 5px;
+    }
+  }
+
   .table-con {
     padding: 0 20px;
     background: #fff;
     width: 100%;
     box-sizing: border-box;
-    margin-top: 20px;
+    margin-top: 10px;
   }
 
   .page-con {

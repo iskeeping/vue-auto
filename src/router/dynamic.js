@@ -1,40 +1,28 @@
 const home = () => import(/* webpackChunkName: "home" */ '@/home.vue')
+import routerPath from '@/router/routerPath'
 
 let dynamicRoutes = [
   [
     {
-      path: '/',
+      path: '/admin',
       component: home,
       children: [
         {
-          path: '/imgList',
+          path: 'imgList',
           name: '图片列表',
           component: () => import(/* webpackChunkName: "imgList" */ '@/views/imgList.vue'),
           meta: {
             keepAlive: true,
-            path: '/imgList'
+            path: routerPath.imgListPath
           }
         },
         {
-          path: '/imgUpload',
+          path: 'imgUpload',
           name: '图片上传',
           component: () => import(/* webpackChunkName: "imgUpload" */ '@/views/imgUpload.vue'),
           meta: {
-            path: '/imgList'
+            path: routerPath.imgListPath
           }
-        }
-      ]
-    }
-  ],
-  [
-    {
-      path: '/',
-      component: home,
-      children: [
-        {
-          path: '/*',
-          name: '文件找不到',
-          component: () => import(/* webpackChunkName: "notFoundComponent" */ '@/views/notFoundComponent.vue')
         }
       ]
     }

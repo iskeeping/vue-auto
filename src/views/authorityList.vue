@@ -10,7 +10,7 @@
       <span class="custom-tree-node" slot-scope="{ node, data }">
         <span class="tree-name">{{ data.name }}</span>
         <span>
-          <template v-if="data.type==='menu'||data.type==='function'">
+          <template v-if="data.type==='menu'">
             <i class="el-icon-circle-plus-outline" @click="append('add',data)"></i>
           </template>
           <template v-if="data.type==='function'">
@@ -28,12 +28,15 @@
 import mainContainer from '@/components/mainContainer'
 import * as api from '@/common/api'
 import util from '@/common/util'
+import routerPath from '@/router/routerPath'
 
 export default {
   name: 'authorityList',
   data() {
     return {
-      listData: []
+      rootId: '0',
+      listData: [],
+      routerPath
     }
   },
   components: {
@@ -49,9 +52,9 @@ export default {
   methods: {
     append(type, data) {
       if (type === 'add') {
-        this.$router.push('/authorityCreate?parentId=' + data._id)
+        this.$router.push(`${routerPath.authorityCreatePath}?parentId=${data._id}`)
       } else if (type === 'edit') {
-        this.$router.push('/authorityCreate?id=' + data._id)
+        this.$router.push(`${routerPath.authorityCreatePath}?id=${data._id}`)
       }
     },
     remove(data) {
@@ -65,9 +68,6 @@ export default {
             res.data.data.map((item) => {
               const d = util.getYMDHMS(item.createTime)
               item.createTime = [d.year, '.', d.month, '.', d.date, ' ', d.hour, ':', d.minute, ':', d.second].join('')
-              if (typeof item.parentId === 'undefined') {
-                item.parentId = '0'
-              }
             })
             resolve(res.data.data)
           }
@@ -99,7 +99,7 @@ export default {
           })
           this.addFunction(res.data.data)
           let listData = res.data.data.concat(arr)
-          this.listData = util.createTree(listData, '0')
+          this.listData = util.createTree(listData, this.rootId)
         }
       })
 

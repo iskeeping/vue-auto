@@ -16,13 +16,13 @@
         :collapse="isCollapse"
         style="border-color:#545c64"
       >
-        <el-submenu v-for="items in menu" :index="items.id" :key="items.id">
+        <el-submenu v-for="items in menu" :index="items._id" :key="items._id">
           <template slot="title">
             <i :class="items.icon" style="color:#ffffff"></i>
-            <span slot="title">{{items.title}}</span>
+            <span slot="title">{{items.name}}</span>
           </template>
-          <el-menu-item v-for="item in items.children" :index="item.url" :key="item.id">
-            {{item.title}}
+          <el-menu-item v-for="item in items.children" :index="item.url" :key="item._id">
+            {{item.name}}
           </el-menu-item>
         </el-submenu>
       </el-menu>
@@ -31,95 +31,17 @@
 </template>
 <script>
 import img from '@/common/img'
+import * as api from '@/common/api'
+import util from '@/common/util'
+import routerPath from '@/router/routerPath'
 
 export default {
   name: 'side',
   data() {
     return {
-      menu: [
-        {
-          id: '1',
-          icon: 'el-icon-s-home',
-          title: '内容管理',
-          children: [
-            {
-              url: '/articleList',
-              id: '11',
-              title: '文章管理'
-            },
-            {
-              url: '/imgList',
-              id: '12',
-              title: '图片管理'
-            },
-            {
-              url: '/tagList',
-              id: '13',
-              title: '标签管理'
-            },
-            {
-              url: '/columnList',
-              id: '14',
-              title: '栏目管理'
-            },
-            {
-              url: '/commentList',
-              id: '15',
-              title: '留言管理'
-            }
-          ]
-        },
-        {
-          id: '2',
-          icon: 'el-icon-user-solid',
-          title: '用户管理',
-          children: [
-            {
-              url: '/userList',
-              id: '21',
-              title: '用户管理'
-            },
-            {
-              url: '/roleList',
-              id: '22',
-              title: '角色管理'
-            },
-            {
-              url: '/authorityList',
-              id: '23',
-              title: '权限管理'
-            },
-            {
-              url: '/menuList',
-              id: '24',
-              title: '菜单管理'
-            },
-          ]
-        },
-        {
-          id: '3',
-          icon: 'el-icon-setting',
-          title: '系统管理',
-          children: [
-            {
-              url: '/logList',
-              id: '31',
-              title: '日志管理'
-            },
-            {
-              url: '/informationList',
-              id: '32',
-              title: '消息管理'
-            },
-            {
-              url: '/noticeList',
-              id: '33',
-              title: '公告管理'
-            }
-          ]
-        }
-      ],
-      img: img
+      menu: [],
+      img,
+      routerPath
     }
   },
   computed: {
@@ -134,8 +56,26 @@ export default {
   created() {
   },
   mounted() {
+    this.menuGetList()
   },
-  methods: {}
+  methods: {
+    menuGetList() {
+      api.menuGetList({linkData: this.params}).then((res) => {
+        if (res.data.code === 0) {
+          this.totalSize = res.data.totalSize
+          res.data.data.map((item) => {
+            const d = util.getYMDHMS(item.createTime)
+            item.createTime = [d.year, '.', d.month, '.', d.date, ' ', d.hour, ':', d.minute, ':', d.second].join('')
+            if (typeof item.parentId === 'undefined') {
+              item.parentId = '0'
+            }
+          })
+          this.menu = util.createTree(res.data.data, '0')
+        }
+      })
+
+    }
+  }
 }
 </script>
 <style lang="scss" scoped>

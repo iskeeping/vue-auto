@@ -15,7 +15,6 @@
         </div>
       </el-form>
       <div class="add-btn">
-        <!--<el-button size="small" @click="$router.push('columnCreate')">新增</el-button>-->
       </div>
     </div>
 

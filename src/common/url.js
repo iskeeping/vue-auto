@@ -12,6 +12,7 @@ let imgGetOne = base + 'img/getOne'
 let imgUpdateOne = base + 'img/updateOne'
 //栏目管理
 let columnCreateOne = base + 'column/createOne'
+let columnCreateRootOne = base + 'column/createRootOne'
 let columnGetList = base + 'column/getList'
 let columnGetOne = base + 'column/getOne'
 let columnUpdateOne = base + 'column/updateOne'
@@ -45,8 +46,10 @@ let userCreateOne = base + 'user/createOne'
 let userGetList = base + 'user/getList'
 let userGetOne = base + 'user/getOne'
 let userUpdateOne = base + 'user/updateOne'
+let userLogin = base + 'user/login'
 //菜单管理
 let menuCreateOne = base + 'menu/createOne'
+let menuCreateRootOne = base + 'menu/createRootOne'
 let menuGetList = base + 'menu/getList'
 let menuGetOne = base + 'menu/getOne'
 let menuUpdateOne = base + 'menu/updateOne'
@@ -55,6 +58,11 @@ let authorityCreateOne = base + 'authority/createOne'
 let authorityGetList = base + 'authority/getList'
 let authorityGetOne = base + 'authority/getOne'
 let authorityUpdateOne = base + 'authority/updateOne'
+//角色管理
+let roleCreateOne = base + 'role/createOne'
+let roleGetList = base + 'role/getList'
+let roleGetOne = base + 'role/getOne'
+let roleUpdateOne = base + 'role/updateOne'
 
 export {
   articleGetList,
@@ -67,6 +75,7 @@ export {
   imgGetOne,
   imgUpdateOne,
   columnCreateOne,
+  columnCreateRootOne,
   columnGetList,
   columnGetOne,
   columnUpdateOne,
@@ -94,12 +103,18 @@ export {
   userGetList,
   userGetOne,
   userUpdateOne,
+  userLogin,
   menuCreateOne,
+  menuCreateRootOne,
   menuGetList,
   menuGetOne,
   menuUpdateOne,
   authorityCreateOne,
   authorityGetList,
   authorityGetOne,
-  authorityUpdateOne
+  authorityUpdateOne,
+  roleCreateOne,
+  roleGetList,
+  roleGetOne,
+  roleUpdateOne
 }

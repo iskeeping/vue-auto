@@ -1,7 +1,7 @@
 <template>
   <mainContainer>
     <div class="btn-con">
-      <i class="el-icon-circle-plus-outline" @click="() => append('add')"></i>
+      <i class="el-icon-circle-plus-outline" @click="() => append('addRoot')"></i>
     </div>
     <div class="tree-con">
       <el-tree
@@ -13,7 +13,7 @@
       <span class="custom-tree-node" slot-scope="{ node, data }">
         <span class="tree-name">{{ data.name }}</span>
         <span>
-          <i class="el-icon-circle-plus-outline" @click="append('add',data)"></i>
+          <i class="el-icon-circle-plus-outline" @click="append('add',data)" v-if="data.parentId==rootId"></i>
           <i class="el-icon-edit-outline" @click="() => append('edit',data)"></i>
           <i class="el-icon-delete"></i>
         </span>
@@ -27,12 +27,15 @@
 import mainContainer from '@/components/mainContainer'
 import * as api from '@/common/api'
 import util from '@/common/util'
+import routerPath from '@/router/routerPath'
 
 export default {
   name: 'menuList',
   data() {
     return {
-      listData: []
+      rootId: '0',
+      listData: [],
+      routerPath
     }
   },
   components: {
@@ -43,10 +46,12 @@ export default {
   },
   methods: {
     append(type, data) {
-      if (type === 'add') {
-        this.$router.push('/menuCreate?parentId=' + (data ? data._id : '0'))
+      if (type === 'addRoot') {
+        this.$router.push(`${routerPath.menuCreatePath}`)
+      } else if (type === 'add') {
+        this.$router.push(`${routerPath.menuCreatePath}?parentId=${data._id}`)
       } else if (type === 'edit') {
-        this.$router.push('/menuCreate?id=' + data._id)
+        this.$router.push(`${routerPath.menuCreatePath}?id=${data._id}`)
       }
     },
     remove(data) {
@@ -59,11 +64,8 @@ export default {
           res.data.data.map((item) => {
             const d = util.getYMDHMS(item.createTime)
             item.createTime = [d.year, '.', d.month, '.', d.date, ' ', d.hour, ':', d.minute, ':', d.second].join('')
-            if (typeof item.parentId === 'undefined') {
-              item.parentId = '0'
-            }
           })
-          this.listData = util.createTree(res.data.data, '0')
+          this.listData = util.createTree(res.data.data, this.rootId)
         }
       })
 
@@ -78,7 +80,6 @@ export default {
     padding: 0 15px 10px;
     color: #1489CD;
     font-size: 24px;
-    margin-top: -10px;
 
     i {
       margin: 0 5px;

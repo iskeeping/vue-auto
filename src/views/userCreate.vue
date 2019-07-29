@@ -4,16 +4,16 @@
       <el-form ref="form"
                :model="params" label-width="100px"
                label-position="left" size="small">
-        <el-form-item label="标签名称：">
+        <el-form-item label="手机号码：">
           <div class="input-itm">
-            <el-input placeholder="请输入标签名称" type="text"
-                      v-model="params.name"></el-input>
+            <el-input placeholder="请输入手机号码" type="text"
+                      v-model="params.phone"></el-input>
           </div>
         </el-form-item>
-        <el-form-item label="备注：">
+        <el-form-item label="密码：">
           <div class="input-itm">
-            <el-input placeholder="请输入备注" type="text"
-                      v-model="params.remark"></el-input>
+            <el-input placeholder="请输入密码" type="text"
+                      v-model="params.password"></el-input>
           </div>
         </el-form-item>
         <div class="btns">
@@ -25,8 +25,6 @@
 </template>
 <script>
 import mainContainer from '@/components/mainContainer'
-import SimpleMDE from 'simplemde'
-import 'simplemde/dist/simplemde.min.css'
 import * as api from '@/common/api'
 
 export default {
@@ -45,37 +43,35 @@ export default {
   created() {
   },
   mounted() {
-    this.tagGetOne()
+    this.userGetOne()
   },
   methods: {
     save() {
       if (this.$route.query.id) {
-        this.tagUpdateOne()
+        this.userUpdateOne()
       } else {
-        this.tagCreateOne()
+        this.userCreateOne()
       }
     },
-    tagGetOne() {
+    userGetOne() {
       if (!this.$route.query.id) {
         return
       }
-      api.tagGetOne({linkData: {_id: this.$route.query.id}}).then((res) => {
+      api.userGetOne({linkData: {_id: this.$route.query.id}}).then((res) => {
         if (res.data.code === 0) {
           this.params = res.data.data
-          this.simplemde.value(this.params.content)
-
         }
       })
     },
-    tagCreateOne() {
-      api.tagCreateOne({data: this.params}).then((res) => {
+    userCreateOne() {
+      api.userCreateOne({data: this.params}).then((res) => {
         if (res.data.code === 0) {
           this.$router.go(-1)
         }
       })
     },
-    tagUpdateOne() {
-      api.tagUpdateOne({data: this.params, linkData: {_id: this.$route.query.id}}).then((res) => {
+    userUpdateOne() {
+      api.userUpdateOne({data: this.params, linkData: {_id: this.$route.query.id}}).then((res) => {
         if (res.data.code === 0) {
           this.$router.go(-1)
         }

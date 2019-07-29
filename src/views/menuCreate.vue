@@ -13,13 +13,19 @@
         <el-form-item label="路径：">
           <div class="input-itm">
             <el-input placeholder="请输入路径" type="text"
-                      v-model="params.path"></el-input>
+                      v-model="params.url"></el-input>
           </div>
         </el-form-item>
         <el-form-item label="icon名称：">
           <div class="input-itm">
             <el-input placeholder="请输入icon名称" type="text"
                       v-model="params.icon"></el-input>
+          </div>
+        </el-form-item>
+        <el-form-item label="序号：">
+          <div class="input-itm">
+            <el-input placeholder="请输入序号" type="number"
+                      v-model="params.number"></el-input>
           </div>
         </el-form-item>
         <el-form-item label="备注：">
@@ -46,7 +52,9 @@ export default {
     return {
       params: {
         name: '',
-        remark: ''
+        remark: '',
+        url: '',
+        icon: ''
       }
     }
   },
@@ -62,9 +70,10 @@ export default {
     save() {
       if (this.$route.query.id) {
         this.menuUpdateOne()
-      }
-      if (this.$route.query.parentId) {
+      } else if (this.$route.query.parentId) {
         this.menuCreateOne()
+      } else {
+        this.menuCreateRootOne()
       }
     },
     menuGetOne() {
@@ -88,6 +97,22 @@ export default {
           name,
           remark,
           parentId
+        }
+      }).then((res) => {
+        if (res.data.code === 0) {
+          this.$router.go(-1)
+        }
+      })
+    },
+    menuCreateRootOne() {
+      let {
+        name,
+        remark
+      } = this.params
+      api.menuCreateRootOne({
+        data: {
+          name,
+          remark
         }
       }).then((res) => {
         if (res.data.code === 0) {

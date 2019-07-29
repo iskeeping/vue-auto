@@ -1,7 +1,7 @@
 <template>
   <mainContainer>
     <div class="btn-con">
-      <i class="el-icon-circle-plus-outline" @click="append('add')"></i>
+      <i class="el-icon-circle-plus-outline" @click="append('addRoot')"></i>
     </div>
     <div class="tree-con">
       <el-tree
@@ -27,15 +27,18 @@
 import mainContainer from '@/components/mainContainer'
 import * as api from '@/common/api'
 import util from '@/common/util'
+import routerPath from '@/router/routerPath'
 
 export default {
   name: 'columnList',
   data() {
     return {
+      rootId: '0',
       params: {
         name: ''
       },
-      listData: []
+      listData: [],
+      routerPath
     }
   },
   components: {
@@ -46,10 +49,12 @@ export default {
   },
   methods: {
     append(type, data) {
-      if (type === 'add') {
-        this.$router.push('/columnCreate?parentId=' + (data ? data._id : '0'))
+      if (type === 'addRoot') {
+        this.$router.push(`${routerPath.columnCreatePath}`)
+      } else if (type === 'add') {
+        this.$router.push(`${routerPath.columnCreatePath}?parentId=${data._id}`)
       } else if (type === 'edit') {
-        this.$router.push('/columnCreate?id=' + data._id)
+        this.$router.push(`${routerPath.columnCreatePath}?id=${data._id}`)
       }
 
     },
@@ -81,7 +86,6 @@ export default {
     padding: 0 20px 10px;
     color: #1489CD;
     font-size: 24px;
-    margin-top: -10px;
 
     i {
       margin: 0 5px;

@@ -22,7 +22,7 @@
     </div>
 
     <div class="table-btn-con">
-      <i class="el-icon-circle-plus-outline" @click="$router.push('articleCreate')"></i>
+      <i class="el-icon-circle-plus-outline" @click="$router.push(routerPath.articleCreatePath)"></i>
     </div>
 
     <div class="table-con">
@@ -46,7 +46,8 @@
         <el-table-column label="操作" align="center">
           <template slot-scope="scope">
             <div class="btn-con">
-              <i class="el-icon-edit-outline" @click="$router.push(`articleCreate?id=${scope.row._id}`)"></i>
+              <i class="el-icon-edit-outline"
+                 @click="$router.push(`${routerPath.articleCreatePath}?id=${scope.row._id}`)"></i>
               <i class="el-icon-delete"></i>
             </div>
           </template>
@@ -72,6 +73,7 @@
 import mainContainer from '@/components/mainContainer'
 import * as api from '@/common/api'
 import util from '@/common/util'
+import routerPath from '@/router/routerPath'
 
 export default {
   name: 'articleList',
@@ -84,7 +86,8 @@ export default {
         currentPage: 1,
         pageSize: 10
       },
-      listData: []
+      listData: [],
+      routerPath
     }
   },
   components: {

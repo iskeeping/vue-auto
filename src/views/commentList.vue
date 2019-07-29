@@ -20,7 +20,7 @@
         </div>
       </el-form>
       <div class="add-btn">
-        <!--<el-button size="small" @click="$router.push('columnCreate')">新增</el-button>-->
+        <!--<el-button size="small" @click="$router.push(`${routerPath.commentCreatePath}}`)">新增</el-button>-->
       </div>
     </div>
 
@@ -35,7 +35,8 @@
         <el-table-column label="操作" align="center">
           <template slot-scope="scope">
             <div class="btn-con">
-              <i class="el-icon-edit-outline" @click="$router.push(`commentCreate?id=${scope.row._id}`)"></i>
+              <i class="el-icon-edit-outline"
+                 @click="$router.push(`${routerPath.commentCreatePath}?id=${scope.row._id}`)"></i>
               <i class="el-icon-delete"></i>
             </div>
           </template>
@@ -61,6 +62,7 @@
 import mainContainer from '@/components/mainContainer'
 import * as api from '@/common/api'
 import util from '@/common/util'
+import routerPath from '@/router/routerPath'
 
 export default {
   name: 'commentList',
@@ -73,7 +75,8 @@ export default {
         currentPage: 1,
         pageSize: 10
       },
-      listData: []
+      listData: [],
+      routerPath
     }
   },
   components: {

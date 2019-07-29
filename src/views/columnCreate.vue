@@ -51,9 +51,10 @@ export default {
     save() {
       if (this.$route.query.id) {
         this.columnUpdateOne()
-      }
-      if (this.$route.query.parentId) {
+      } else if (this.$route.query.parentId) {
         this.columnCreateOne()
+      } else {
+        this.columnCreateRootOne()
       }
     },
     columnGetOne() {
@@ -65,6 +66,22 @@ export default {
           this.params = res.data.data
           this.simplemde.value(this.params.content)
 
+        }
+      })
+    },
+    columnCreateRootOne() {
+      let {
+        name,
+        remark
+      } = this.params
+      api.columnCreateRootOne({
+        data: {
+          name,
+          remark
+        }
+      }).then((res) => {
+        if (res.data.code === 0) {
+          this.$router.go(-1)
         }
       })
     },
