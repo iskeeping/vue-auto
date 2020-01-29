@@ -16,6 +16,18 @@
                       v-model="params.password"></el-input>
           </div>
         </el-form-item>
+        <el-form-item label="角色：">
+          <div class="input-itm">
+            <el-select v-model="params.roleId" placeholder="请选择角色">
+              <el-option
+                v-for="item in roleListData"
+                :key="item._id"
+                :label="item.name"
+                :value="item._id">
+              </el-option>
+            </el-select>
+          </div>
+        </el-form-item>
         <div class="btns">
           <el-button type="primary" size="small" @click="save">保存</el-button>
         </div>
@@ -26,6 +38,7 @@
 <script>
 import mainContainer from '@/components/mainContainer'
 import * as api from '@/common/api'
+import util from '@/common/util'
 
 export default {
   name: 'columnCreate',
@@ -33,8 +46,10 @@ export default {
     return {
       params: {
         name: '',
-        remark: ''
-      }
+        remark: '',
+        roleId: ''
+      },
+      roleListData: []
     }
   },
   components: {
@@ -44,6 +59,7 @@ export default {
   },
   mounted() {
     this.userGetOne()
+    this.roleGetList()
   },
   methods: {
     save() {
@@ -76,6 +92,19 @@ export default {
           this.$router.go(-1)
         }
       })
+    },
+    roleGetList() {
+      api.roleGetList({linkData: this.params}).then((res) => {
+        if (res.data.code === 0) {
+          this.totalSize = res.data.totalSize
+          res.data.data.map((item) => {
+            const d = util.getYMDHMS(item.createTime)
+            item.createTime = [d.year, '.', d.month, '.', d.date, ' ', d.hour, ':', d.minute, ':', d.second].join('')
+          })
+          this.roleListData = res.data.data
+        }
+      })
+
     }
   }
 }

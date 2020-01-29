@@ -1,5 +1,6 @@
-const home = () => import(/* webpackChunkName: "home" */ '@/home.vue')
 import routerPath from '@/router/routerPath'
+
+const home = () => import(/* webpackChunkName: "home" */ '@/home.vue')
 
 let dynamicRoutes = [
   [
@@ -13,7 +14,8 @@ let dynamicRoutes = [
           component: () => import(/* webpackChunkName: "imgList" */ '@/views/imgList.vue'),
           meta: {
             keepAlive: true,
-            path: routerPath.imgListPath
+            path: routerPath.imgListPath,
+            requireAuth: true
           }
         },
         {
@@ -21,7 +23,8 @@ let dynamicRoutes = [
           name: '图片上传',
           component: () => import(/* webpackChunkName: "imgUpload" */ '@/views/imgUpload.vue'),
           meta: {
-            path: routerPath.imgListPath
+            path: routerPath.imgListPath,
+            requireAuth: true
           }
         }
       ]

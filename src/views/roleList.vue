@@ -1,21 +1,5 @@
 <template>
   <mainContainer>
-    <div class="form-con">
-      <el-form ref="form"
-               :model="params" label-width="100px"
-               label-position="left" size="small">
-        <el-form-item label="角色名称：">
-          <div class="input-itm">
-            <el-input placeholder="请输入角色名称" type="text" v-model="params.title"></el-input>
-          </div>
-        </el-form-item>
-        <div class="btn-con">
-          <el-button type="primary" size="small" @click="search">查询</el-button>
-          <el-button size="small" @click="reset">重置</el-button>
-        </div>
-      </el-form>
-    </div>
-
     <div class="table-btn-con">
       <i class="el-icon-circle-plus-outline" @click="$router.push('roleCreate')"></i>
     </div>
@@ -37,17 +21,6 @@
       </el-table>
     </div>
 
-    <div class="page-con">
-      <el-pagination
-        @size-change="sizeChange"
-        @current-change="currentChange"
-        :current-page="params.currentPage"
-        :page-sizes="[10,20,30]"
-        :page-size="params.pageSize"
-        layout="total,sizes,prev,pager,next,jumper"
-        :total="totalSize"
-      ></el-pagination>
-    </div>
   </mainContainer>
 </template>
 
@@ -60,12 +33,6 @@ export default {
   name: 'columnList',
   data() {
     return {
-      totalSize: 0,
-      params: {
-        name: '',
-        currentPage: 1,
-        pageSize: 10
-      },
       listData: []
     }
   },
@@ -76,30 +43,9 @@ export default {
     this.roleGetList()
   },
   methods: {
-    search() {
-      this.roleGetList()
-    },
-    reset() {
-      this.params = Object.assign(
-        {},
-        this.params,
-        {
-          title: ''
-        }
-      )
-    },
-    sizeChange(pageSize) {
-      this.params.pageSize = pageSize
-      this.roleGetList()
-    },
-    currentChange(currentPage) {
-      this.params.currentPage = currentPage
-      this.roleGetList()
-    },
     roleGetList() {
       api.roleGetList({linkData: this.params}).then((res) => {
         if (res.data.code === 0) {
-          this.totalSize = res.data.totalSize
           res.data.data.map((item) => {
             const d = util.getYMDHMS(item.createTime)
             item.createTime = [d.year, '.', d.month, '.', d.date, ' ', d.hour, ':', d.minute, ':', d.second].join('')
@@ -130,7 +76,7 @@ export default {
   }
 
   .table-btn-con {
-    padding: 10px 15px 0;
+    padding: 0 15px;
     color: #1489CD;
     font-size: 24px;
 

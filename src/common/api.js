@@ -639,6 +639,23 @@ let userLogin = function ({data = {}}) {
   })
 }
 
+let userLogout = function ({data = {}}) {
+  return new Promise((resolve) => {
+    request(
+      Object.assign(
+        {
+          method: 'post',
+          url: url.userLogout,
+          nextCallback: function (res) {
+            resolve(res)
+          }
+        },
+        {
+          data
+        }))
+  })
+}
+
 let menuCreateOne = function ({data = {}}) {
   return new Promise((resolve) => {
     request(
@@ -896,6 +913,7 @@ export {
   userGetOne,
   userUpdateOne,
   userLogin,
+  userLogout,
   menuCreateOne,
   menuCreateRootOne,
   menuGetList,

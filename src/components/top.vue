@@ -8,13 +8,15 @@
       <span class="username">18279959396 欢迎您！<i class="el-icon-arrow-down"></i></span>
       <el-dropdown-menu slot="dropdown">
         <el-dropdown-item @click.native="updatePassword">修改密码</el-dropdown-item>
-        <el-dropdown-item @click.native="logout">退出登录</el-dropdown-item>
+        <el-dropdown-item @click.native="userLogout">退出登录</el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
   </div>
 </template>
 <script>
 import storeTypes from '@/storeTypes'
+import routerPath from '@/router/routerPath'
+import * as api from '@/common/api'
 
 export default {
   name: 'top',
@@ -43,7 +45,14 @@ export default {
     },
     updatePassword() {
     },
-    logout() {
+    userLogout() {
+      let token = JSON.parse(localStorage.getItem('token'))
+      api.userLogout({data: {token}}).then((res) => {
+        if (res.data.code === 0) {
+          this.$router.push(routerPath.loginPath)
+          localStorage.removeItem('token')
+        }
+      })
     },
     updateSideStatus() {
       this.$store.dispatch(storeTypes.updateSideStatus, {sideStatus: !this.$store.state.sideStatus})

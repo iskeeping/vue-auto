@@ -39,6 +39,8 @@ export default {
     userLogin() {
       api.userLogin({data: this.form}).then((res) => {
         if (res.data.code === 0) {
+          localStorage.setItem('jwt-token', res.data.data)
+          console.log(routerPath.homePath)
           this.$router.push(routerPath.homePath)
         }
       })

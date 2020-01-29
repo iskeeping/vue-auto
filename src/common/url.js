@@ -47,6 +47,7 @@ let userGetList = base + 'user/getList'
 let userGetOne = base + 'user/getOne'
 let userUpdateOne = base + 'user/updateOne'
 let userLogin = base + 'user/login'
+let userLogout = base + 'user/logout'
 //菜单管理
 let menuCreateOne = base + 'menu/createOne'
 let menuCreateRootOne = base + 'menu/createRootOne'
@@ -104,6 +105,7 @@ export {
   userGetOne,
   userUpdateOne,
   userLogin,
+  userLogout,
   menuCreateOne,
   menuCreateRootOne,
   menuGetList,

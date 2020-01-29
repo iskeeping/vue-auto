@@ -5,6 +5,9 @@ let initRoutes = [
   {
     path: routerPath.loginPath,
     name: '登录',
+    meta: {
+      requireAuth: false
+    },
     component: () => import(/* webpackChunkName: "login" */ '@/views/login.vue')
   },
   {
@@ -15,7 +18,10 @@ let initRoutes = [
       {
         path: '',
         name: '首页',
-        component: () => import(/* webpackChunkName: "welcome" */ '@/views/welcome.vue')
+        component: () => import(/* webpackChunkName: "welcome" */ '@/views/welcome.vue'),
+        meta: {
+          requireAuth: true
+        }
       },
       {
         path: 'articleList',
@@ -23,7 +29,8 @@ let initRoutes = [
         component: () => import(/* webpackChunkName: "articleList" */ '@/views/articleList.vue'),
         meta: {
           keepAlive: true,
-          path: routerPath.articleListPath
+          path: routerPath.articleListPath,
+          requireAuth: true
         }
       },
       {
@@ -31,7 +38,8 @@ let initRoutes = [
         name: '文章新建',
         component: () => import(/* webpackChunkName: "articleCreate" */ '@/views/articleCreate.vue'),
         meta: {
-          path: routerPath.articleListPath
+          path: routerPath.articleListPath,
+          requireAuth: true
         }
       },
       {
@@ -40,7 +48,8 @@ let initRoutes = [
         component: () => import(/* webpackChunkName: "columnList" */ '@/views/columnList.vue'),
         meta: {
           keepAlive: true,
-          path: routerPath.columnListPath
+          path: routerPath.columnListPath,
+          requireAuth: true
         }
       },
       {
@@ -48,7 +57,8 @@ let initRoutes = [
         name: '栏目新建',
         component: () => import(/* webpackChunkName: "columnCreate" */ '@/views/columnCreate.vue'),
         meta: {
-          path: routerPath.columnListPath
+          path: routerPath.columnListPath,
+          requireAuth: true
         }
       },
       {
@@ -57,7 +67,8 @@ let initRoutes = [
         component: () => import(/* webpackChunkName: "tagList" */ '@/views/tagList.vue'),
         meta: {
           keepAlive: true,
-          path: routerPath.tagListPath
+          path: routerPath.tagListPath,
+          requireAuth: true
         }
       },
       {
@@ -65,7 +76,8 @@ let initRoutes = [
         name: '标签新建',
         component: () => import(/* webpackChunkName: "tagCreate" */ '@/views/tagCreate.vue'),
         meta: {
-          path: routerPath.tagListPath
+          path: routerPath.tagListPath,
+          requireAuth: true
         }
       },
       {
@@ -73,7 +85,8 @@ let initRoutes = [
         name: '留言管理',
         component: () => import(/* webpackChunkName: "commentList" */ '@/views/commentList.vue'),
         meta: {
-          path: routerPath.commentListPath
+          path: routerPath.commentListPath,
+          requireAuth: true
         }
       },
       {
@@ -82,7 +95,8 @@ let initRoutes = [
         component: () => import(/* webpackChunkName: "userList" */ '@/views/userList.vue'),
         meta: {
           keepAlive: true,
-          path: routerPath.userListPath
+          path: routerPath.userListPath,
+          requireAuth: true
         }
       },
       {
@@ -90,7 +104,8 @@ let initRoutes = [
         name: '用户新建',
         component: () => import(/* webpackChunkName: "userCreate" */ '@/views/userCreate.vue'),
         meta: {
-          path: routerPath.userListPath
+          path: routerPath.userListPath,
+          requireAuth: true
         }
       },
       {
@@ -99,7 +114,8 @@ let initRoutes = [
         component: () => import(/* webpackChunkName: "roleList" */ '@/views/roleList.vue'),
         meta: {
           keepAlive: true,
-          path: routerPath.roleListPath
+          path: routerPath.roleListPath,
+          requireAuth: true
         }
       },
       {
@@ -107,7 +123,8 @@ let initRoutes = [
         name: '角色新建',
         component: () => import(/* webpackChunkName: "roleCreate" */ '@/views/roleCreate.vue'),
         meta: {
-          path: routerPath.roleListPath
+          path: routerPath.roleListPath,
+          requireAuth: true
         }
       },
       {
@@ -116,7 +133,8 @@ let initRoutes = [
         component: () => import(/* webpackChunkName: "authorityList" */ '@/views/authorityList.vue'),
         meta: {
           keepAlive: true,
-          path: routerPath.authorityListPath
+          path: routerPath.authorityListPath,
+          requireAuth: true
         }
       },
       {
@@ -124,7 +142,8 @@ let initRoutes = [
         name: '权限新建',
         component: () => import(/* webpackChunkName: "menuCreate" */ '@/views/authorityCreate.vue'),
         meta: {
-          path: routerPath.authorityListPath
+          path: routerPath.authorityListPath,
+          requireAuth: true
         }
       },
       {
@@ -133,7 +152,8 @@ let initRoutes = [
         component: () => import(/* webpackChunkName: "menuList" */ '@/views/menuList.vue'),
         meta: {
           keepAlive: true,
-          path: routerPath.menuListPath
+          path: routerPath.menuListPath,
+          requireAuth: true
         }
       },
       {
@@ -141,7 +161,8 @@ let initRoutes = [
         name: '菜单新建',
         component: () => import(/* webpackChunkName: "menuCreate" */ '@/views/menuCreate.vue'),
         meta: {
-          path: routerPath.menuListPath
+          path: routerPath.menuListPath,
+          requireAuth: true
         }
       },
       {
@@ -149,7 +170,8 @@ let initRoutes = [
         name: '日志管理',
         component: () => import(/* webpackChunkName: "logList" */ '@/views/logList.vue'),
         meta: {
-          path: routerPath.logListPath
+          path: routerPath.logListPath,
+          requireAuth: true
         }
       },
       {
@@ -157,7 +179,8 @@ let initRoutes = [
         name: '消息管理',
         component: () => import(/* webpackChunkName: "informationList" */ '@/views/informationList.vue'),
         meta: {
-          path: routerPath.informationListPath
+          path: routerPath.informationListPath,
+          requireAuth: true
         }
       },
       {
@@ -166,7 +189,8 @@ let initRoutes = [
         component: () => import(/* webpackChunkName: "noticeList" */ '@/views/noticeList.vue'),
         meta: {
           keepAlive: true,
-          path: routerPath.noticeListPath
+          path: routerPath.noticeListPath,
+          requireAuth: true
         }
       },
       {
@@ -174,7 +198,8 @@ let initRoutes = [
         name: '公告新建',
         component: () => import(/* webpackChunkName: "noticeCreate" */ '@/views/noticeCreate.vue'),
         meta: {
-          path: routerPath.noticeListPath
+          path: routerPath.noticeListPath,
+          requireAuth: true
         }
       }
     ]

@@ -26,7 +26,11 @@
     <div class="table-con">
       <el-table fit :data="listData" size="small">
         <el-table-column prop="_id" label="ID" align="center"></el-table-column>
-        <el-table-column prop="name" label="名称" align="center"></el-table-column>
+        <el-table-column label="角色" align="center">
+          <template slot-scope="scope">
+            {{scope.row.role.name}}
+          </template>
+        </el-table-column>
         <el-table-column prop="phone" label="手机号" align="center"></el-table-column>
         <el-table-column prop="password" label="密码" align="center"></el-table-column>
         <el-table-column prop="createTime" label="创建时间" align="center"></el-table-column>
@@ -111,7 +115,6 @@ export default {
           this.listData = res.data.data
         }
       })
-
     }
   }
 }
