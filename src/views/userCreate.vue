@@ -73,7 +73,7 @@ export default {
       if (!this.$route.query.id) {
         return
       }
-      api.userGetOne({linkData: {_id: this.$route.query.id}}).then((res) => {
+      api.userGetOne({params: {_id: this.$route.query.id}}).then((res) => {
         if (res.data.code === 0) {
           this.params = res.data.data
         }
@@ -87,14 +87,14 @@ export default {
       })
     },
     userUpdateOne() {
-      api.userUpdateOne({data: this.params, linkData: {_id: this.$route.query.id}}).then((res) => {
+      api.userUpdateOne({data: this.params, params: {_id: this.$route.query.id}}).then((res) => {
         if (res.data.code === 0) {
           this.$router.go(-1)
         }
       })
     },
     roleGetList() {
-      api.roleGetList({linkData: this.params}).then((res) => {
+      api.roleGetList({params: this.params}).then((res) => {
         if (res.data.code === 0) {
           this.totalSize = res.data.totalSize
           res.data.data.map((item) => {

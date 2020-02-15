@@ -44,7 +44,7 @@ export default {
   },
   methods: {
     roleGetList() {
-      api.roleGetList({linkData: this.params}).then((res) => {
+      api.roleGetList({params: this.params}).then((res) => {
         if (res.data.code === 0) {
           res.data.data.map((item) => {
             const d = util.getYMDHMS(item.createTime)

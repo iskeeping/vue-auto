@@ -102,7 +102,7 @@ export default {
       this.imgGetList()
     },
     imgGetList() {
-      api.imgGetList({linkData: this.params}).then((res) => {
+      api.imgGetList({params: this.params}).then((res) => {
         if (res.data.code === 0) {
           this.listData = res.data.data
           this.totalSize = res.data.totalSize

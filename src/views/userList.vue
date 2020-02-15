@@ -105,7 +105,7 @@ export default {
       this.userGetList()
     },
     userGetList() {
-      api.userGetList({linkData: this.params}).then((res) => {
+      api.userGetList({params: this.params}).then((res) => {
         if (res.data.code === 0) {
           this.totalSize = res.data.totalSize
           res.data.data.map((item) => {

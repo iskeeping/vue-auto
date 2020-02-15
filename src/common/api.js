@@ -1,7 +1,7 @@
 import request from './request'
 import * as url from './url'
 
-let articleGetList = function ({linkData = {}}) {
+let articleGetList = function ({params = {}}) {
   return new Promise((resolve) => {
     request(
       Object.assign(
@@ -12,7 +12,7 @@ let articleGetList = function ({linkData = {}}) {
           }
         },
         {
-          linkData
+          params
         }))
   })
 }
@@ -34,7 +34,7 @@ let articleCreateOne = function ({data = {}}) {
   })
 }
 
-let articleUpdateOne = function ({linkData = {}, data = {}}) {
+let articleUpdateOne = function ({params = {}, data = {}}) {
   return new Promise((resolve) => {
     request(
       Object.assign(
@@ -47,12 +47,12 @@ let articleUpdateOne = function ({linkData = {}, data = {}}) {
         },
         {
           data,
-          linkData
+          params
         }))
   })
 }
 
-let articleGetOne = function ({linkData = {}}) {
+let articleGetOne = function ({params = {}}) {
   return new Promise((resolve) => {
     request(
       Object.assign(
@@ -64,7 +64,7 @@ let articleGetOne = function ({linkData = {}}) {
           }
         },
         {
-          linkData
+          params
         }))
   })
 }
@@ -86,7 +86,7 @@ let imgCreateOne = function ({data = {}}) {
   })
 }
 
-let imgGetList = function ({linkData = {}}) {
+let imgGetList = function ({params = {}}) {
   return new Promise((resolve) => {
     request(
       Object.assign(
@@ -97,12 +97,12 @@ let imgGetList = function ({linkData = {}}) {
           }
         },
         {
-          linkData
+          params
         }))
   })
 }
 
-let imgGetOne = function ({linkData = {}}) {
+let imgGetOne = function ({params = {}}) {
   return new Promise((resolve) => {
     request(
       Object.assign(
@@ -113,12 +113,12 @@ let imgGetOne = function ({linkData = {}}) {
           }
         },
         {
-          linkData
+          params
         }))
   })
 }
 
-let imgUpdateOne = function ({data = {}, linkData = {}}) {
+let imgUpdateOne = function ({data = {}, params = {}}) {
   return new Promise((resolve) => {
     request(
       Object.assign(
@@ -130,7 +130,7 @@ let imgUpdateOne = function ({data = {}, linkData = {}}) {
           }
         },
         {
-          linkData,
+          params,
           data
         }))
   })
@@ -170,7 +170,7 @@ let columnCreateRootOne = function ({data = {}}) {
   })
 }
 
-let columnGetList = function ({linkData = {}}) {
+let columnGetList = function ({params = {}}) {
   return new Promise((resolve) => {
     request(
       Object.assign(
@@ -181,12 +181,12 @@ let columnGetList = function ({linkData = {}}) {
           }
         },
         {
-          linkData
+          params
         }))
   })
 }
 
-let columnGetOne = function ({linkData = {}}) {
+let columnGetOne = function ({params = {}}) {
   return new Promise((resolve) => {
     request(
       Object.assign(
@@ -197,12 +197,12 @@ let columnGetOne = function ({linkData = {}}) {
           }
         },
         {
-          linkData
+          params
         }))
   })
 }
 
-let columnUpdateOne = function ({data = {}, linkData = {}}) {
+let columnUpdateOne = function ({data = {}, params = {}}) {
   return new Promise((resolve) => {
     request(
       Object.assign(
@@ -214,7 +214,7 @@ let columnUpdateOne = function ({data = {}, linkData = {}}) {
           }
         },
         {
-          linkData,
+          params,
           data
         }))
   })
@@ -237,7 +237,7 @@ let tagCreateOne = function ({data = {}}) {
   })
 }
 
-let tagGetList = function ({linkData = {}}) {
+let tagGetList = function ({params = {}}) {
   return new Promise((resolve) => {
     request(
       Object.assign(
@@ -248,12 +248,12 @@ let tagGetList = function ({linkData = {}}) {
           }
         },
         {
-          linkData
+          params
         }))
   })
 }
 
-let tagGetOne = function ({linkData = {}}) {
+let tagGetOne = function ({params = {}}) {
   return new Promise((resolve) => {
     request(
       Object.assign(
@@ -264,12 +264,12 @@ let tagGetOne = function ({linkData = {}}) {
           }
         },
         {
-          linkData
+          params
         }))
   })
 }
 
-let tagUpdateOne = function ({data = {}, linkData = {}}) {
+let tagUpdateOne = function ({data = {}, params = {}}) {
   return new Promise((resolve) => {
     request(
       Object.assign(
@@ -281,7 +281,7 @@ let tagUpdateOne = function ({data = {}, linkData = {}}) {
           }
         },
         {
-          linkData,
+          params,
           data
         }))
   })
@@ -304,7 +304,7 @@ let commentCreateOne = function ({data = {}}) {
   })
 }
 
-let commentGetList = function ({linkData = {}}) {
+let commentGetList = function ({params = {}}) {
   return new Promise((resolve) => {
     request(
       Object.assign(
@@ -315,12 +315,12 @@ let commentGetList = function ({linkData = {}}) {
           }
         },
         {
-          linkData
+          params
         }))
   })
 }
 
-let commentGetOne = function ({linkData = {}}) {
+let commentGetOne = function ({params = {}}) {
   return new Promise((resolve) => {
     request(
       Object.assign(
@@ -331,12 +331,12 @@ let commentGetOne = function ({linkData = {}}) {
           }
         },
         {
-          linkData
+          params
         }))
   })
 }
 
-let commentUpdateOne = function ({data = {}, linkData = {}}) {
+let commentUpdateOne = function ({data = {}, params = {}}) {
   return new Promise((resolve) => {
     request(
       Object.assign(
@@ -348,7 +348,7 @@ let commentUpdateOne = function ({data = {}, linkData = {}}) {
           }
         },
         {
-          linkData,
+          params,
           data
         }))
   })
@@ -371,7 +371,7 @@ let logCreateOne = function ({data = {}}) {
   })
 }
 
-let logGetList = function ({linkData = {}}) {
+let logGetList = function ({params = {}}) {
   return new Promise((resolve) => {
     request(
       Object.assign(
@@ -382,12 +382,12 @@ let logGetList = function ({linkData = {}}) {
           }
         },
         {
-          linkData
+          params
         }))
   })
 }
 
-let logGetOne = function ({linkData = {}}) {
+let logGetOne = function ({params = {}}) {
   return new Promise((resolve) => {
     request(
       Object.assign(
@@ -398,12 +398,12 @@ let logGetOne = function ({linkData = {}}) {
           }
         },
         {
-          linkData
+          params
         }))
   })
 }
 
-let logUpdateOne = function ({data = {}, linkData = {}}) {
+let logUpdateOne = function ({data = {}, params = {}}) {
   return new Promise((resolve) => {
     request(
       Object.assign(
@@ -415,7 +415,7 @@ let logUpdateOne = function ({data = {}, linkData = {}}) {
           }
         },
         {
-          linkData,
+          params,
           data
         }))
   })
@@ -438,7 +438,7 @@ let informationCreateOne = function ({data = {}}) {
   })
 }
 
-let informationGetList = function ({linkData = {}}) {
+let informationGetList = function ({params = {}}) {
   return new Promise((resolve) => {
     request(
       Object.assign(
@@ -449,12 +449,12 @@ let informationGetList = function ({linkData = {}}) {
           }
         },
         {
-          linkData
+          params
         }))
   })
 }
 
-let informationGetOne = function ({linkData = {}}) {
+let informationGetOne = function ({params = {}}) {
   return new Promise((resolve) => {
     request(
       Object.assign(
@@ -465,12 +465,12 @@ let informationGetOne = function ({linkData = {}}) {
           }
         },
         {
-          linkData
+          params
         }))
   })
 }
 
-let informationUpdateOne = function ({data = {}, linkData = {}}) {
+let informationUpdateOne = function ({data = {}, params = {}}) {
   return new Promise((resolve) => {
     request(
       Object.assign(
@@ -482,7 +482,7 @@ let informationUpdateOne = function ({data = {}, linkData = {}}) {
           }
         },
         {
-          linkData,
+          params,
           data
         }))
   })
@@ -505,7 +505,7 @@ let noticeCreateOne = function ({data = {}}) {
   })
 }
 
-let noticeGetList = function ({linkData = {}}) {
+let noticeGetList = function ({params = {}}) {
   return new Promise((resolve) => {
     request(
       Object.assign(
@@ -516,12 +516,12 @@ let noticeGetList = function ({linkData = {}}) {
           }
         },
         {
-          linkData
+          params
         }))
   })
 }
 
-let noticeGetOne = function ({linkData = {}}) {
+let noticeGetOne = function ({params = {}}) {
   return new Promise((resolve) => {
     request(
       Object.assign(
@@ -532,12 +532,12 @@ let noticeGetOne = function ({linkData = {}}) {
           }
         },
         {
-          linkData
+          params
         }))
   })
 }
 
-let noticeUpdateOne = function ({data = {}, linkData = {}}) {
+let noticeUpdateOne = function ({data = {}, params = {}}) {
   return new Promise((resolve) => {
     request(
       Object.assign(
@@ -549,7 +549,7 @@ let noticeUpdateOne = function ({data = {}, linkData = {}}) {
           }
         },
         {
-          linkData,
+          params,
           data
         }))
   })
@@ -572,7 +572,7 @@ let userCreateOne = function ({data = {}}) {
   })
 }
 
-let userGetList = function ({linkData = {}}) {
+let userGetList = function ({params = {}}) {
   return new Promise((resolve) => {
     request(
       Object.assign(
@@ -583,12 +583,12 @@ let userGetList = function ({linkData = {}}) {
           }
         },
         {
-          linkData
+          params
         }))
   })
 }
 
-let userGetOne = function ({linkData = {}}) {
+let userGetOne = function ({params = {}}) {
   return new Promise((resolve) => {
     request(
       Object.assign(
@@ -599,12 +599,12 @@ let userGetOne = function ({linkData = {}}) {
           }
         },
         {
-          linkData
+          params
         }))
   })
 }
 
-let userUpdateOne = function ({data = {}, linkData = {}}) {
+let userUpdateOne = function ({data = {}, params = {}}) {
   return new Promise((resolve) => {
     request(
       Object.assign(
@@ -616,7 +616,7 @@ let userUpdateOne = function ({data = {}, linkData = {}}) {
           }
         },
         {
-          linkData,
+          params,
           data
         }))
   })
@@ -690,7 +690,7 @@ let menuCreateRootOne = function ({data = {}}) {
   })
 }
 
-let menuGetList = function ({linkData = {}}) {
+let menuGetList = function ({params = {}}) {
   return new Promise((resolve) => {
     request(
       Object.assign(
@@ -701,12 +701,12 @@ let menuGetList = function ({linkData = {}}) {
           }
         },
         {
-          linkData
+          params
         }))
   })
 }
 
-let menuGetOne = function ({linkData = {}}) {
+let menuGetOne = function ({params = {}}) {
   return new Promise((resolve) => {
     request(
       Object.assign(
@@ -717,12 +717,12 @@ let menuGetOne = function ({linkData = {}}) {
           }
         },
         {
-          linkData
+          params
         }))
   })
 }
 
-let menuUpdateOne = function ({data = {}, linkData = {}}) {
+let menuUpdateOne = function ({data = {}, params = {}}) {
   return new Promise((resolve) => {
     request(
       Object.assign(
@@ -734,7 +734,7 @@ let menuUpdateOne = function ({data = {}, linkData = {}}) {
           }
         },
         {
-          linkData,
+          params,
           data
         }))
   })
@@ -757,7 +757,7 @@ let authorityCreateOne = function ({data = {}}) {
   })
 }
 
-let authorityGetList = function ({linkData = {}}) {
+let authorityGetList = function ({params = {}}) {
   return new Promise((resolve) => {
     request(
       Object.assign(
@@ -768,12 +768,12 @@ let authorityGetList = function ({linkData = {}}) {
           }
         },
         {
-          linkData
+          params
         }))
   })
 }
 
-let authorityGetOne = function ({linkData = {}}) {
+let authorityGetOne = function ({params = {}}) {
   return new Promise((resolve) => {
     request(
       Object.assign(
@@ -784,12 +784,12 @@ let authorityGetOne = function ({linkData = {}}) {
           }
         },
         {
-          linkData
+          params
         }))
   })
 }
 
-let authorityUpdateOne = function ({data = {}, linkData = {}}) {
+let authorityUpdateOne = function ({data = {}, params = {}}) {
   return new Promise((resolve) => {
     request(
       Object.assign(
@@ -801,7 +801,7 @@ let authorityUpdateOne = function ({data = {}, linkData = {}}) {
           }
         },
         {
-          linkData,
+          params,
           data
         }))
   })
@@ -824,7 +824,7 @@ let roleCreateOne = function ({data = {}}) {
   })
 }
 
-let roleGetList = function ({linkData = {}}) {
+let roleGetList = function ({params = {}}) {
   return new Promise((resolve) => {
     request(
       Object.assign(
@@ -835,12 +835,12 @@ let roleGetList = function ({linkData = {}}) {
           }
         },
         {
-          linkData
+          params
         }))
   })
 }
 
-let roleGetOne = function ({linkData = {}}) {
+let roleGetOne = function ({params = {}}) {
   return new Promise((resolve) => {
     request(
       Object.assign(
@@ -851,12 +851,12 @@ let roleGetOne = function ({linkData = {}}) {
           }
         },
         {
-          linkData
+          params
         }))
   })
 }
 
-let roleUpdateOne = function ({data = {}, linkData = {}}) {
+let roleUpdateOne = function ({data = {}, params = {}}) {
   return new Promise((resolve) => {
     request(
       Object.assign(
@@ -868,7 +868,7 @@ let roleUpdateOne = function ({data = {}, linkData = {}}) {
           }
         },
         {
-          linkData,
+          params,
           data
         }))
   })

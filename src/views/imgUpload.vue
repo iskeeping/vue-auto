@@ -89,14 +89,14 @@ export default {
       if (!this.$route.query.id) {
         return
       }
-      api.imgGetOne({linkData: {_id: this.$route.query.id}}).then((res) => {
+      api.imgGetOne({params: {_id: this.$route.query.id}}).then((res) => {
         if (res.data.code === 0) {
           this.params = res.data.data
         }
       })
     },
     imgUpdateOne() {
-      api.imgUpdateOne({linkData: {_id: this.$route.query.id}, data: this.params}).then((res) => {
+      api.imgUpdateOne({params: {_id: this.$route.query.id}, data: this.params}).then((res) => {
         if (res.data.code === 0) {
           this.$router.go(-1)
         }

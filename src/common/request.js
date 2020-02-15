@@ -7,16 +7,16 @@ let request = (
     url,
     method = 'get',
     data = {},
-    linkData = {},
+    params = {},
     nextCallback = function () {
     }
   }
 ) => {
-  let linkDataStr = qs.stringify(linkData)
   axios({
-    url: url + `?${linkDataStr}`,
+    url: url,
     method: method,
     data: data,
+    params: params,
     headers: {
       'Content-Type': 'application/json; charset=UTF-8',
       authorization: 'Bearer ' + localStorage.getItem('jwt-token')

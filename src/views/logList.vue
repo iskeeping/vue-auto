@@ -94,7 +94,7 @@ export default {
       this.logGetList()
     },
     logGetList() {
-      api.logGetList({linkData: this.params}).then((res) => {
+      api.logGetList({params: this.params}).then((res) => {
         if (res.data.code === 0) {
           this.totalSize = res.data.totalSize
           res.data.data.map((item) => {

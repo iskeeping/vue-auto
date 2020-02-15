@@ -110,7 +110,7 @@ export default {
         if (!this.$route.query.id) {
           return
         }
-        api.articleGetOne({linkData: {_id: this.$route.query.id}}).then((res) => {
+        api.articleGetOne({params: {_id: this.$route.query.id}}).then((res) => {
           if (res.data.code === 0) {
             let {
               columnId
@@ -138,7 +138,7 @@ export default {
       })
     },
     articleUpdateOne() {
-      api.articleUpdateOne({data: this.params, linkData: {_id: this.$route.query.id}}).then((res) => {
+      api.articleUpdateOne({data: this.params, params: {_id: this.$route.query.id}}).then((res) => {
         if (res.data.code === 0) {
           this.$router.go(-1)
         }
@@ -146,7 +146,7 @@ export default {
     },
     columnGetList() {
       return new Promise((resolve, reject) => {
-        api.columnGetList({linkData: this.params}).then((res) => {
+        api.columnGetList({params: this.params}).then((res) => {
           if (res.data.code === 0) {
             res.data.data.map((item) => {
               const d = util.getYMDHMS(item.createTime)
@@ -167,7 +167,7 @@ export default {
       })
     },
     tagGetList() {
-      api.tagGetList({linkData: this.params}).then((res) => {
+      api.tagGetList({params: this.params}).then((res) => {
         if (res.data.code === 0) {
           this.totalSize = res.data.totalSize
           res.data.data.map((item) => {

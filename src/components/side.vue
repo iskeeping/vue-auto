@@ -60,7 +60,7 @@ export default {
   },
   methods: {
     menuGetList() {
-      api.menuGetList({linkData: this.params}).then((res) => {
+      api.menuGetList({params: this.params}).then((res) => {
         if (res.data.code === 0) {
           this.totalSize = res.data.totalSize
           res.data.data.map((item) => {

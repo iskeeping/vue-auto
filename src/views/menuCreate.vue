@@ -80,7 +80,7 @@ export default {
       if (!this.$route.query.id) {
         return
       }
-      api.menuGetOne({linkData: {_id: this.$route.query.id}}).then((res) => {
+      api.menuGetOne({params: {_id: this.$route.query.id}}).then((res) => {
         if (res.data.code === 0) {
           this.params = res.data.data
         }
@@ -121,7 +121,7 @@ export default {
       })
     },
     menuUpdateOne() {
-      api.menuUpdateOne({data: this.params, linkData: {_id: this.$route.query.id}}).then((res) => {
+      api.menuUpdateOne({data: this.params, params: {_id: this.$route.query.id}}).then((res) => {
         if (res.data.code === 0) {
           this.$router.go(-1)
         }

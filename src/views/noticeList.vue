@@ -112,7 +112,7 @@ export default {
       this.noticeGetList()
     },
     noticeGetList() {
-      api.noticeGetList({linkData: this.params}).then((res) => {
+      api.noticeGetList({params: this.params}).then((res) => {
         if (res.data.code === 0) {
           this.totalSize = res.data.totalSize
           res.data.data.map((item) => {
