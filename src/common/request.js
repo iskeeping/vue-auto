@@ -1,5 +1,4 @@
 import axios from 'axios'
-import qs from 'querystring'
 import routerPath from '@/router/routerPath'
 
 let request = (
@@ -33,8 +32,10 @@ let request = (
   }).catch((err) => {
     nextCallback(
       {
-        code: 1,
-        err
+        data: {
+          code: 1,
+          err
+        }
       }
     )
   })

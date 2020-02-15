@@ -42,6 +42,8 @@ export default {
           localStorage.setItem('jwt-token', res.data.data)
           console.log(routerPath.homePath)
           this.$router.push(routerPath.homePath)
+        } else {
+          debugger
         }
       })
     }
