@@ -11,14 +11,16 @@
           </div>
         </el-form-item>
         <el-form-item label="图片：">
+          <img v-if="params.url" :src="params.url" class="avatar">
           <el-upload
             class="avatar-uploader"
             :action="url.imgUploadOne"
+            :headers="headers"
             :show-file-list="false"
             :on-success="uploadImgSuccess"
             :before-upload="beforeUploadImg">
-            <img v-if="params.url" :src="params.url" class="avatar">
-            <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+
+            <i class="el-icon-plus avatar-uploader-icon"></i>
           </el-upload>
         </el-form-item>
         <div class="btns">
@@ -41,7 +43,8 @@ export default {
         name: '',
         url: ''
       },
-      url
+      url,
+      headers: {}
     }
   },
   components: {
@@ -50,6 +53,8 @@ export default {
   created() {
   },
   mounted() {
+    let jwtToken = localStorage.getItem('jwt-token')
+    this.headers.authorization = jwtToken ? 'Bearer ' + jwtToken : ''
     this.imgGetOne()
   },
   methods: {
@@ -62,7 +67,6 @@ export default {
     },
     uploadImgSuccess(res) {
       if (res.code === 0) {
-        // this.params.url = URL.createObjectURL(file.raw)
         this.params.url = res.data.url
       }
     },
@@ -124,6 +128,10 @@ export default {
 </style>
 <style lang="scss">
   .form-con {
+    .avatar-uploader {
+      display: inline-block;
+    }
+
     .avatar-uploader .el-upload {
       border: 1px dashed #d9d9d9;
       border-radius: 6px;
@@ -148,7 +156,8 @@ export default {
     .avatar {
       width: 178px;
       height: 178px;
-      display: block;
+      display: inline-block;
+      margin-right: 18px;
     }
   }
 </style>

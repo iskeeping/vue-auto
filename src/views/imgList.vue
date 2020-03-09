@@ -26,13 +26,14 @@
         <el-table-column prop="name" label="图片名称" align="center"></el-table-column>
         <el-table-column label="图片" align="center">
           <template slot-scope="scope">
-            <img :src="scope.row.url" style="height: 50px;"/>
+            <img :src="scope.row.url" style="height: 50px;" @click="toggleImg(scope.row.url,true)"/>
           </template>
         </el-table-column>
         <el-table-column label="操作" align="center">
           <template slot-scope="scope">
             <div class="btn-con">
-              <i class="el-icon-edit-outline" @click="$router.push(`${routerPath.imgUploadPath}?id=${scope.row._id}`)"></i>
+              <i class="el-icon-edit-outline"
+                 @click="$router.push(`${routerPath.imgUploadPath}?id=${scope.row._id}`)"></i>
               <i class="el-icon-delete"></i>
             </div>
           </template>
@@ -52,6 +53,16 @@
       ></el-pagination>
     </div>
 
+    <el-dialog
+      class="img-preview-dialog"
+      :visible.sync="dialogVisible"
+      width="500px"
+      left
+    >
+      <div class="img-preview-dialog-body">
+        <img :src="imgUrl">
+      </div>
+    </el-dialog>
   </mainContainer>
 </template>
 
@@ -71,7 +82,9 @@ export default {
         pageSize: 10
       },
       listData: [],
-      routerPath
+      routerPath,
+      imgUrl: '',
+      dialogVisible: false
     }
   },
   components: {
@@ -81,6 +94,10 @@ export default {
     this.imgGetList()
   },
   methods: {
+    toggleImg(url, flag) {
+      this.imgUrl = url
+      this.dialogVisible = flag || false
+    },
     search() {
       this.imgGetList()
     },
@@ -160,6 +177,17 @@ export default {
 
     i {
       margin: 0 5px;
+    }
+  }
+
+  .img-preview-dialog {
+
+    .img-preview-dialog-body {
+      width: 100%;
+
+      img {
+        width: 100%;
+      }
     }
   }
 
