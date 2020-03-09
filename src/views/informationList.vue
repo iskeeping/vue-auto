@@ -27,6 +27,7 @@
         <el-table-column label="操作" align="center">
           <template slot-scope="scope">
             <div class="btn-con">
+              {{scope.row}}
               <i class="el-icon-delete"></i>
             </div>
           </template>
@@ -59,7 +60,7 @@ export default {
     return {
       totalSize: 0,
       params: {
-        name: '',
+        title: '',
         currentPage: 1,
         pageSize: 10
       },
@@ -94,7 +95,7 @@ export default {
       this.informationGetList()
     },
     informationGetList() {
-      api.informationGetList({params: this.params}).then((res) => {
+      api.informationGetList({params: this.params, method: 'get'}).then((res) => {
         if (res.data.code === 0) {
           this.totalSize = res.data.totalSize
           res.data.data.map((item) => {
@@ -103,6 +104,7 @@ export default {
           })
           this.listData = res.data.data
         }
+      }).catch(() => {
       })
 
     }

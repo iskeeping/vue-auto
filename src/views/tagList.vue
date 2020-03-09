@@ -29,7 +29,8 @@
         <el-table-column label="操作" align="center">
           <template slot-scope="scope">
             <div class="btn-con">
-              <i class="el-icon-edit-outline" @click="$router.push(`${routerPath.tagCreatePath}?id=${scope.row._id}`)"></i>
+              <i class="el-icon-edit-outline"
+                 @click="$router.push(`${routerPath.tagCreatePath}?id=${scope.row._id}`)"></i>
               <i class="el-icon-delete"></i>
             </div>
           </template>
@@ -99,7 +100,7 @@ export default {
       this.tagGetList()
     },
     tagGetList() {
-      api.tagGetList({linkData: this.params}).then((res) => {
+      api.tagGetList({params: this.params, method: 'get'}).then((res) => {
         if (res.data.code === 0) {
           this.totalSize = res.data.totalSize
           res.data.data.map((item) => {
@@ -108,6 +109,7 @@ export default {
           })
           this.listData = res.data.data
         }
+      }).catch(() => {
       })
 
     }

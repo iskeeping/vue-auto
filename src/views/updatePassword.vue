@@ -41,6 +41,7 @@ export default {
         if (res.data.code === 0) {
           this.$router.push(routerPath.homePath)
         }
+      }).catch(() => {
       })
     }
   }

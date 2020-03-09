@@ -56,11 +56,11 @@ export default {
   created() {
   },
   mounted() {
-    this.menuGetList()
+    this.menuGetUserList()
   },
   methods: {
-    menuGetList() {
-      api.menuGetList({params: this.params}).then((res) => {
+    menuGetUserList() {
+      api.menuGetUserList({params: this.params, method: 'get'}).then((res) => {
         if (res.data.code === 0) {
           this.totalSize = res.data.totalSize
           res.data.data.map((item) => {
@@ -72,6 +72,7 @@ export default {
           })
           this.menu = util.createTree(res.data.data, '0')
         }
+      }).catch(() => {
       })
 
     }

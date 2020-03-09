@@ -82,6 +82,7 @@ export default {
   },
   methods: {
     search() {
+      this.imgGetList()
     },
     reset() {
       this.params = Object.assign(
@@ -102,11 +103,12 @@ export default {
       this.imgGetList()
     },
     imgGetList() {
-      api.imgGetList({params: this.params}).then((res) => {
+      api.imgGetList({params: this.params, method: 'get'}).then((res) => {
         if (res.data.code === 0) {
           this.listData = res.data.data
           this.totalSize = res.data.totalSize
         }
+      }).catch(() => {
       })
     }
   }

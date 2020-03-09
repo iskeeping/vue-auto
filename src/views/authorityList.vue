@@ -43,34 +43,38 @@ export default {
     mainContainer
   },
   activated() {
-    this.menuGetList().then((arr) => {
-      this.addMenu(arr)
-      this.authorityGetList(arr)
+    this.menuGetList().then((res) => {
+      if (res.data.code === 0) {
+        let arr = res.data.data
+        this.addMenu(arr)
+        this.authorityGetList(arr)
+      }
     }).catch(() => {
     })
   },
   methods: {
     append(type, data) {
       if (type === 'add') {
-        this.$router.push(`${routerPath.authorityCreatePath}?parentId=${data._id}`)
+        this.$router.push(`${routerPath.authorityCreatePath}?parentId=${data['_id']}`)
       } else if (type === 'edit') {
-        this.$router.push(`${routerPath.authorityCreatePath}?id=${data._id}`)
+        this.$router.push(`${routerPath.authorityCreatePath}?id=${data['_id']}`)
       }
     },
-    remove(data) {
-
+    remove() {
+      // data
     },
     menuGetList() {
       return new Promise((resolve, reject) => {
-        api.menuGetList({params: this.params}).then((res) => {
+        api.menuGetList({params: this.params, method: 'get'}).then((res) => {
           if (res.data.code === 0) {
             this.totalSize = res.data.totalSize
             res.data.data.map((item) => {
               const d = util.getYMDHMS(item.createTime)
               item.createTime = [d.year, '.', d.month, '.', d.date, ' ', d.hour, ':', d.minute, ':', d.second].join('')
             })
-            resolve(res.data.data)
           }
+          resolve(res)
+        }).catch(() => {
           // eslint-disable-next-line prefer-promise-reject-errors
           reject()
         })
@@ -78,7 +82,7 @@ export default {
     },
     addMenu(arr) {
       arr.map((item) => {
-        let children = util.findChildren(arr, item._id)
+        let children = util.findChildren(arr, item['_id'])
         if (children.length === 0) {
           item.type = 'menu'
         }
@@ -90,7 +94,7 @@ export default {
       })
     },
     authorityGetList(arr) {
-      api.authorityGetList({params: this.params}).then((res) => {
+      api.authorityGetList({params: this.params, method: 'get'}).then((res) => {
         if (res.data.code === 0) {
           this.totalSize = res.data.totalSize
           res.data.data.map((item) => {
@@ -101,6 +105,7 @@ export default {
           let listData = res.data.data.concat(arr)
           this.listData = util.createTree(listData, this.rootId)
         }
+      }).catch(() => {
       })
 
     }

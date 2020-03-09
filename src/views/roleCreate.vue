@@ -63,9 +63,12 @@ export default {
   created() {
   },
   mounted() {
-    this.menuGetList().then((arr) => {
-      this.addMenu(arr)
-      this.authorityGetList(arr)
+    this.menuGetList().then((res) => {
+      if (res.data.code === 0) {
+        let arr = res.data.data
+        this.addMenu(arr)
+        this.authorityGetList(arr)
+      }
     }).catch(() => {
     })
     if (this.$route.query.id) {
@@ -77,14 +80,14 @@ export default {
       let arr = []
       let res = this.$refs.tree.getCheckedNodes()
       res.map(item => {
-        arr.push({id: item._id, type: item.type})
+        arr.push({id: item['_id'], type: item.type})
       })
       this.params.authorityList = arr
-      let {
-        name,
-        description,
-        authorityList
-      } = this.params
+      // let {
+      //   name,
+      //   description,
+      //   authorityList
+      // } = this.params
       if (this.$route.query.id) {
         this.roleUpdateOne()
       } else {
@@ -92,7 +95,7 @@ export default {
       }
     },
     roleGetOne() {
-      api.roleGetOne({linkData: {_id: this.$route.query.id}}).then((res) => {
+      api.roleGetOne({params: {_id: this.$route.query.id}, method: 'get'}).then((res) => {
         if (res.data.code === 0) {
           this.params = res.data.data
           let authorityList = []
@@ -101,6 +104,7 @@ export default {
           })
           this.$refs.tree.setCheckedKeys(authorityList)
         }
+      }).catch(() => {
       })
     },
     roleCreateOne() {
@@ -108,34 +112,37 @@ export default {
         if (res.data.code === 0) {
           this.$router.go(-1)
         }
+      }).catch(() => {
       })
     },
     roleUpdateOne() {
-      api.roleUpdateOne({data: this.params, linkData: {_id: this.$route.query.id}}).then((res) => {
+      api.roleUpdateOne({data: this.params, params: {_id: this.$route.query.id}}).then((res) => {
         if (res.data.code === 0) {
           this.$router.go(-1)
         }
+      }).catch(() => {
       })
     },
     menuGetList() {
       return new Promise((resolve, reject) => {
-        api.menuGetList({linkData: this.params}).then((res) => {
+        api.menuGetList({params: this.params, method: 'get'}).then((res) => {
           if (res.data.code === 0) {
             this.totalSize = res.data.totalSize
             res.data.data.map((item) => {
               const d = util.getYMDHMS(item.createTime)
               item.createTime = [d.year, '.', d.month, '.', d.date, ' ', d.hour, ':', d.minute, ':', d.second].join('')
             })
-            resolve(res.data.data)
           }
+          resolve(res)
+        }).catch((err) => {
           // eslint-disable-next-line prefer-promise-reject-errors
-          reject()
+          reject(err)
         })
       })
     },
     addMenu(arr) {
       arr.map((item) => {
-        let children = util.findChildren(arr, item._id)
+        let children = util.findChildren(arr, item['_id'])
         if (children.length === 0) {
           item.type = 'menu'
         }
@@ -147,7 +154,7 @@ export default {
       })
     },
     authorityGetList(arr) {
-      api.authorityGetList({linkData: this.params}).then((res) => {
+      api.authorityGetList({params: this.params, method: 'get'}).then((res) => {
         if (res.data.code === 0) {
           this.totalSize = res.data.totalSize
           res.data.data.map((item) => {
@@ -158,8 +165,8 @@ export default {
           let listData = res.data.data.concat(arr)
           this.listData = util.createTree(listData, this.rootId)
         }
+      }).catch(() => {
       })
-
     }
   }
 }

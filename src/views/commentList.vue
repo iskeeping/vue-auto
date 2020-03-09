@@ -108,7 +108,7 @@ export default {
       this.commentGetList()
     },
     commentGetList() {
-      api.commentGetList({linkData: this.params}).then((res) => {
+      api.commentGetList({params: this.params}).then((res) => {
         if (res.data.code === 0) {
           this.totalSize = res.data.totalSize
           res.data.data.map((item) => {
@@ -117,6 +117,7 @@ export default {
           })
           this.listData = res.data.data
         }
+      }).catch(() => {
       })
 
     }

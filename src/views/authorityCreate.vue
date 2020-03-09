@@ -78,10 +78,11 @@ export default {
       if (!this.$route.query.id) {
         return
       }
-      api.authorityGetOne({params: {_id: this.$route.query.id}}).then((res) => {
+      api.authorityGetOne({params: {_id: this.$route.query.id}, method: 'get'}).then((res) => {
         if (res.data.code === 0) {
           this.params = res.data.data
         }
+      }).catch(() => {
       })
     },
     authorityCreateOne() {
@@ -100,6 +101,7 @@ export default {
         if (res.data.code === 0) {
           this.$router.go(-1)
         }
+      }).catch(() => {
       })
     },
     authorityUpdateOne() {
@@ -107,6 +109,7 @@ export default {
         if (res.data.code === 0) {
           this.$router.go(-1)
         }
+      }).catch(() => {
       })
     }
   }

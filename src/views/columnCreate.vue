@@ -25,8 +25,6 @@
 </template>
 <script>
 import mainContainer from '@/components/mainContainer'
-import SimpleMDE from 'simplemde'
-import 'simplemde/dist/simplemde.min.css'
 import * as api from '@/common/api'
 
 export default {
@@ -61,12 +59,11 @@ export default {
       if (!this.$route.query.id) {
         return
       }
-      api.columnGetOne({linkData: {_id: this.$route.query.id}}).then((res) => {
+      api.columnGetOne({params: {_id: this.$route.query.id}, method: 'get'}).then((res) => {
         if (res.data.code === 0) {
           this.params = res.data.data
-          this.simplemde.value(this.params.content)
-
         }
+      }).catch(() => {
       })
     },
     columnCreateRootOne() {
@@ -83,6 +80,7 @@ export default {
         if (res.data.code === 0) {
           this.$router.go(-1)
         }
+      }).catch(() => {
       })
     },
     columnCreateOne() {
@@ -101,13 +99,15 @@ export default {
         if (res.data.code === 0) {
           this.$router.go(-1)
         }
+      }).catch(() => {
       })
     },
     columnUpdateOne() {
-      api.columnUpdateOne({data: this.params, linkData: {_id: this.$route.query.id}}).then((res) => {
+      api.columnUpdateOne({data: this.params, params: {_id: this.$route.query.id}}).then((res) => {
         if (res.data.code === 0) {
           this.$router.go(-1)
         }
+      }).catch(() => {
       })
     }
   }

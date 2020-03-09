@@ -14,6 +14,7 @@
 </template>
 
 <script>
+import storeTypes from '@/storeTypes'
 import img from '@/common/img'
 import * as api from '@/common/api'
 import routerPath from '@/router/routerPath'
@@ -39,12 +40,14 @@ export default {
     userLogin() {
       api.userLogin({data: this.form}).then((res) => {
         if (res.data.code === 0) {
-          localStorage.setItem('jwt-token', res.data.data)
-          console.log(routerPath.homePath)
+          localStorage.setItem('jwt-token', res.data.data.token)
+          this.$store.dispatch(storeTypes.setUserInfo, {phone: res.data.data.phone})
           this.$router.push(routerPath.homePath)
         } else {
-          debugger
+          // debugger
+
         }
+      }).catch(() => {
       })
     }
   }

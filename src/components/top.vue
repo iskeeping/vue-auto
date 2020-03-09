@@ -5,7 +5,7 @@
       <span>{{currRoute.name}}</span>
     </div>
     <el-dropdown>
-      <span class="username">18279959396 欢迎您！<i class="el-icon-arrow-down"></i></span>
+      <span class="username"><!--{{userInfo.phone}}--> 欢迎您！<i class="el-icon-arrow-down"></i></span>
       <el-dropdown-menu slot="dropdown">
         <el-dropdown-item @click.native="updatePassword">修改密码</el-dropdown-item>
         <el-dropdown-item @click.native="userLogout">退出登录</el-dropdown-item>
@@ -26,6 +26,9 @@ export default {
     }
   },
   computed: {
+    userInfo() {
+      return this.$store.state.userInfo
+    },
     isCollapse() {
       return this.$store.state.sideStatus
     }
@@ -46,12 +49,12 @@ export default {
     updatePassword() {
     },
     userLogout() {
-      let token = JSON.parse(localStorage.getItem('token'))
-      api.userLogout({data: {token}}).then((res) => {
+      api.userLogout({}).then((res) => {
         if (res.data.code === 0) {
           this.$router.push(routerPath.loginPath)
-          localStorage.removeItem('token')
+          localStorage.removeItem('jwt-token')
         }
+      }).catch(() => {
       })
     },
     updateSideStatus() {

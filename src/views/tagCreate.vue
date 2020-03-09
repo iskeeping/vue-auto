@@ -25,8 +25,6 @@
 </template>
 <script>
 import mainContainer from '@/components/mainContainer'
-import SimpleMDE from 'simplemde'
-import 'simplemde/dist/simplemde.min.css'
 import * as api from '@/common/api'
 
 export default {
@@ -59,12 +57,11 @@ export default {
       if (!this.$route.query.id) {
         return
       }
-      api.tagGetOne({linkData: {_id: this.$route.query.id}}).then((res) => {
+      api.tagGetOne({params: {_id: this.$route.query.id}, method: 'get'}).then((res) => {
         if (res.data.code === 0) {
           this.params = res.data.data
-          this.simplemde.value(this.params.content)
-
         }
+      }).catch(() => {
       })
     },
     tagCreateOne() {
@@ -72,13 +69,15 @@ export default {
         if (res.data.code === 0) {
           this.$router.go(-1)
         }
+      }).catch(() => {
       })
     },
     tagUpdateOne() {
-      api.tagUpdateOne({data: this.params, linkData: {_id: this.$route.query.id}}).then((res) => {
+      api.tagUpdateOne({data: this.params, params: {_id: this.$route.query.id}}).then((res) => {
         if (res.data.code === 0) {
           this.$router.go(-1)
         }
+      }).catch(() => {
       })
     }
   }

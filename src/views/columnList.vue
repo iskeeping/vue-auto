@@ -34,9 +34,7 @@ export default {
   data() {
     return {
       rootId: '0',
-      params: {
-        name: ''
-      },
+      params: {},
       listData: [],
       routerPath
     }
@@ -52,17 +50,17 @@ export default {
       if (type === 'addRoot') {
         this.$router.push(`${routerPath.columnCreatePath}`)
       } else if (type === 'add') {
-        this.$router.push(`${routerPath.columnCreatePath}?parentId=${data._id}`)
+        this.$router.push(`${routerPath.columnCreatePath}?parentId=${data['_id']}`)
       } else if (type === 'edit') {
-        this.$router.push(`${routerPath.columnCreatePath}?id=${data._id}`)
+        this.$router.push(`${routerPath.columnCreatePath}?id=${data['_id']}`)
       }
 
     },
-    remove(data) {
-
+    remove() {
+      // data
     },
     columnGetList() {
-      api.columnGetList({linkData: this.params}).then((res) => {
+      api.columnGetList({params: this.params, method: 'get'}).then((res) => {
         if (res.data.code === 0) {
           res.data.data.map((item) => {
             const d = util.getYMDHMS(item.createTime)
@@ -73,12 +71,11 @@ export default {
           })
           this.listData = util.createTree(res.data.data, '0')
         }
+      }).catch(() => {
       })
-
     }
   }
 }
-
 </script>
 
 <style lang="scss" scoped>

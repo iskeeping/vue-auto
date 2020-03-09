@@ -99,7 +99,9 @@ export default {
         {},
         this.params,
         {
-          title: ''
+          title: '',
+          content: '',
+          author: ''
         }
       )
     },
@@ -112,7 +114,7 @@ export default {
       this.noticeGetList()
     },
     noticeGetList() {
-      api.noticeGetList({params: this.params}).then((res) => {
+      api.noticeGetList({params: this.params, method: 'get'}).then((res) => {
         if (res.data.code === 0) {
           this.totalSize = res.data.totalSize
           res.data.data.map((item) => {
@@ -121,6 +123,7 @@ export default {
           })
           this.listData = res.data.data
         }
+      }).catch(() => {
       })
 
     }

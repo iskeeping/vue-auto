@@ -80,10 +80,11 @@ export default {
       if (!this.$route.query.id) {
         return
       }
-      api.menuGetOne({params: {_id: this.$route.query.id}}).then((res) => {
+      api.menuGetOne({params: {_id: this.$route.query.id}, method: 'get'}).then((res) => {
         if (res.data.code === 0) {
           this.params = res.data.data
         }
+      }).catch(() => {
       })
     },
     menuCreateOne() {
@@ -102,6 +103,7 @@ export default {
         if (res.data.code === 0) {
           this.$router.go(-1)
         }
+      }).catch(() => {
       })
     },
     menuCreateRootOne() {
@@ -118,6 +120,7 @@ export default {
         if (res.data.code === 0) {
           this.$router.go(-1)
         }
+      }).catch(() => {
       })
     },
     menuUpdateOne() {
@@ -125,6 +128,7 @@ export default {
         if (res.data.code === 0) {
           this.$router.go(-1)
         }
+      }).catch(() => {
       })
     }
   }

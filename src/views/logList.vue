@@ -6,7 +6,7 @@
                label-position="left" size="small">
         <el-form-item label="内容：">
           <div class="input-itm">
-            <el-input placeholder="请输入内容" type="text" v-model="params.title"></el-input>
+            <el-input placeholder="请输入内容" type="text" v-model="params.content"></el-input>
           </div>
         </el-form-item>
         <div class="btn-con">
@@ -26,6 +26,7 @@
         <el-table-column prop="createTime" label="创建时间" align="center"></el-table-column>
         <el-table-column label="操作" align="center">
           <template slot-scope="scope">
+            {{scope.row}}
             <div class="btn-con">
               <i class="el-icon-delete"></i>
             </div>
@@ -59,7 +60,7 @@ export default {
     return {
       totalSize: 0,
       params: {
-        name: '',
+        content: '',
         currentPage: 1,
         pageSize: 10
       },
@@ -81,7 +82,7 @@ export default {
         {},
         this.params,
         {
-          title: ''
+          content: ''
         }
       )
     },
@@ -94,7 +95,7 @@ export default {
       this.logGetList()
     },
     logGetList() {
-      api.logGetList({params: this.params}).then((res) => {
+      api.logGetList({params: this.params, method: 'get'}).then((res) => {
         if (res.data.code === 0) {
           this.totalSize = res.data.totalSize
           res.data.data.map((item) => {
@@ -103,6 +104,7 @@ export default {
           })
           this.listData = res.data.data
         }
+      }).catch(() => {
       })
 
     }

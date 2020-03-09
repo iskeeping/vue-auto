@@ -1,4 +1,5 @@
 let base = './api/'
+
 //文章管理
 let articleGetList = base + 'article/getList'
 let articleCreateOne = base + 'article/createOne'
@@ -51,6 +52,7 @@ let userLogout = base + 'user/logout'
 //菜单管理
 let menuCreateOne = base + 'menu/createOne'
 let menuCreateRootOne = base + 'menu/createRootOne'
+let menuGetUserList = base + 'menu/getUserList'
 let menuGetList = base + 'menu/getList'
 let menuGetOne = base + 'menu/getOne'
 let menuUpdateOne = base + 'menu/updateOne'
@@ -108,6 +110,7 @@ export {
   userLogout,
   menuCreateOne,
   menuCreateRootOne,
+  menuGetUserList,
   menuGetList,
   menuGetOne,
   menuUpdateOne,

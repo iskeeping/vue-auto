@@ -1,877 +1,617 @@
 import request from './request'
 import * as url from './url'
 
-let articleGetList = function ({params = {}}) {
-  return new Promise((resolve) => {
-    request(
-      Object.assign(
-        {
-          url: url.articleGetList,
-          nextCallback: function (res) {
-            resolve(res)
-          }
-        },
-        {
-          params
-        }))
-  })
+let articleGetList = function (option = {}) {
+  return request(
+    Object.assign(
+      {
+        url: url.articleGetList
+      },
+      option
+    )
+  )
 }
 
-let articleCreateOne = function ({data = {}}) {
-  return new Promise((resolve) => {
-    request(
-      Object.assign(
-        {
-          method: 'post',
-          url: url.articleCreateOne,
-          nextCallback: function (res) {
-            resolve(res)
-          }
-        },
-        {
-          data
-        }))
-  })
+let articleCreateOne = function (option = {}) {
+  return request(
+    Object.assign(
+      {
+        method: 'post',
+        url: url.articleCreateOne
+      },
+      option
+    )
+  )
 }
 
-let articleUpdateOne = function ({params = {}, data = {}}) {
-  return new Promise((resolve) => {
-    request(
-      Object.assign(
-        {
-          method: 'post',
-          url: url.articleUpdateOne,
-          nextCallback: function (res) {
-            resolve(res)
-          }
-        },
-        {
-          data,
-          params
-        }))
-  })
+let articleUpdateOne = function (option = {}) {
+  return request(
+    Object.assign(
+      {
+        method: 'post',
+        url: url.articleUpdateOne
+      },
+      option
+    )
+  )
 }
 
-let articleGetOne = function ({params = {}}) {
-  return new Promise((resolve) => {
-    request(
-      Object.assign(
-        {
-          method: 'post',
-          url: url.articleGetOne,
-          nextCallback: function (res) {
-            resolve(res)
-          }
-        },
-        {
-          params
-        }))
-  })
+let articleGetOne = function (option = {}) {
+  return request(
+    Object.assign(
+      {
+        method: 'post',
+        url: url.articleGetOne
+      },
+      option
+    )
+  )
 }
 
-let imgCreateOne = function ({data = {}}) {
-  return new Promise((resolve) => {
-    request(
-      Object.assign(
-        {
-          method: 'post',
-          url: url.imgCreateOne,
-          nextCallback: function (res) {
-            resolve(res)
-          }
-        },
-        {
-          data
-        }))
-  })
+let imgCreateOne = function (option = {}) {
+  return request(
+    Object.assign(
+      {
+        method: 'post',
+        url: url.imgCreateOne
+      },
+      option
+    )
+  )
 }
 
-let imgGetList = function ({params = {}}) {
-  return new Promise((resolve) => {
-    request(
-      Object.assign(
-        {
-          url: url.imgGetList,
-          nextCallback: function (res) {
-            resolve(res)
-          }
-        },
-        {
-          params
-        }))
-  })
+let imgGetList = function (option = {}) {
+  return request(
+    Object.assign(
+      {
+        url: url.imgGetList
+      },
+      option
+    )
+  )
 }
 
-let imgGetOne = function ({params = {}}) {
-  return new Promise((resolve) => {
-    request(
-      Object.assign(
-        {
-          url: url.imgGetOne,
-          nextCallback: function (res) {
-            resolve(res)
-          }
-        },
-        {
-          params
-        }))
-  })
+let imgGetOne = function (option = {}) {
+  return request(
+    Object.assign(
+      {
+        url: url.imgGetOne
+      },
+      option
+    )
+  )
 }
 
-let imgUpdateOne = function ({data = {}, params = {}}) {
-  return new Promise((resolve) => {
-    request(
-      Object.assign(
-        {
-          method: 'post',
-          url: url.imgUpdateOne,
-          nextCallback: function (res) {
-            resolve(res)
-          }
-        },
-        {
-          params,
-          data
-        }))
-  })
+let imgUpdateOne = function (option = {}) {
+  return request(
+    Object.assign(
+      {
+        method: 'post',
+        url: url.imgUpdateOne
+      },
+      option
+    )
+  )
 }
 
-let columnCreateOne = function ({data = {}}) {
-  return new Promise((resolve) => {
-    request(
-      Object.assign(
-        {
-          method: 'post',
-          url: url.columnCreateOne,
-          nextCallback: function (res) {
-            resolve(res)
-          }
-        },
-        {
-          data
-        }))
-  })
+let columnCreateOne = function (option = {}) {
+  return request(
+    Object.assign(
+      {
+        method: 'post',
+        url: url.columnCreateOne
+      },
+      option
+    )
+  )
 }
 
-let columnCreateRootOne = function ({data = {}}) {
-  return new Promise((resolve) => {
-    request(
-      Object.assign(
-        {
-          method: 'post',
-          url: url.columnCreateRootOne,
-          nextCallback: function (res) {
-            resolve(res)
-          }
-        },
-        {
-          data
-        }))
-  })
+let columnCreateRootOne = function (option = {}) {
+  return request(
+    Object.assign(
+      {
+        method: 'post',
+        url: url.columnCreateRootOne
+      },
+      option
+    )
+  )
 }
 
-let columnGetList = function ({params = {}}) {
-  return new Promise((resolve) => {
-    request(
-      Object.assign(
-        {
-          url: url.columnGetList,
-          nextCallback: function (res) {
-            resolve(res)
-          }
-        },
-        {
-          params
-        }))
-  })
+let columnGetList = function (option = {}) {
+  return request(
+    Object.assign(
+      {
+        url: url.columnGetList
+      },
+      option
+    )
+  )
 }
 
-let columnGetOne = function ({params = {}}) {
-  return new Promise((resolve) => {
-    request(
-      Object.assign(
-        {
-          url: url.columnGetOne,
-          nextCallback: function (res) {
-            resolve(res)
-          }
-        },
-        {
-          params
-        }))
-  })
+let columnGetOne = function (option = {}) {
+  return request(
+    Object.assign(
+      {
+        url: url.columnGetOne
+      },
+      option
+    )
+  )
 }
 
-let columnUpdateOne = function ({data = {}, params = {}}) {
-  return new Promise((resolve) => {
-    request(
-      Object.assign(
-        {
-          method: 'post',
-          url: url.columnUpdateOne,
-          nextCallback: function (res) {
-            resolve(res)
-          }
-        },
-        {
-          params,
-          data
-        }))
-  })
+let columnUpdateOne = function (option = {}) {
+  return request(
+    Object.assign(
+      {
+        method: 'post',
+        url: url.columnUpdateOne
+      },
+      option
+    )
+  )
 }
 
-let tagCreateOne = function ({data = {}}) {
-  return new Promise((resolve) => {
-    request(
-      Object.assign(
-        {
-          method: 'post',
-          url: url.tagCreateOne,
-          nextCallback: function (res) {
-            resolve(res)
-          }
-        },
-        {
-          data
-        }))
-  })
+let tagCreateOne = function (option = {}) {
+  return request(
+    Object.assign(
+      {
+        method: 'post',
+        url: url.tagCreateOne
+      },
+      option
+    )
+  )
 }
 
-let tagGetList = function ({params = {}}) {
-  return new Promise((resolve) => {
-    request(
-      Object.assign(
-        {
-          url: url.tagGetList,
-          nextCallback: function (res) {
-            resolve(res)
-          }
-        },
-        {
-          params
-        }))
-  })
+let tagGetList = function (option = {}) {
+  return request(
+    Object.assign(
+      {
+        url: url.tagGetList
+      },
+      option
+    )
+  )
 }
 
-let tagGetOne = function ({params = {}}) {
-  return new Promise((resolve) => {
-    request(
-      Object.assign(
-        {
-          url: url.tagGetOne,
-          nextCallback: function (res) {
-            resolve(res)
-          }
-        },
-        {
-          params
-        }))
-  })
+let tagGetOne = function (option = {}) {
+  return request(
+    Object.assign(
+      {
+        url: url.tagGetOne
+      },
+      option
+    )
+  )
 }
 
-let tagUpdateOne = function ({data = {}, params = {}}) {
-  return new Promise((resolve) => {
-    request(
-      Object.assign(
-        {
-          method: 'post',
-          url: url.tagUpdateOne,
-          nextCallback: function (res) {
-            resolve(res)
-          }
-        },
-        {
-          params,
-          data
-        }))
-  })
+let tagUpdateOne = function (option = {}) {
+  return request(
+    Object.assign(
+      {
+        method: 'post',
+        url: url.tagUpdateOne
+      },
+      option
+    )
+  )
 }
 
-let commentCreateOne = function ({data = {}}) {
-  return new Promise((resolve) => {
-    request(
-      Object.assign(
-        {
-          method: 'post',
-          url: url.commentCreateOne,
-          nextCallback: function (res) {
-            resolve(res)
-          }
-        },
-        {
-          data
-        }))
-  })
+let commentCreateOne = function (option = {}) {
+  return request(
+    Object.assign(
+      {
+        method: 'post',
+        url: url.commentCreateOne
+      },
+      option
+    )
+  )
 }
 
-let commentGetList = function ({params = {}}) {
-  return new Promise((resolve) => {
-    request(
-      Object.assign(
-        {
-          url: url.commentGetList,
-          nextCallback: function (res) {
-            resolve(res)
-          }
-        },
-        {
-          params
-        }))
-  })
+let commentGetList = function (option = {}) {
+  return request(
+    Object.assign(
+      {
+        url: url.commentGetList,
+        method: 'get'
+      },
+      option
+    )
+  )
 }
 
-let commentGetOne = function ({params = {}}) {
-  return new Promise((resolve) => {
-    request(
-      Object.assign(
-        {
-          url: url.commentGetOne,
-          nextCallback: function (res) {
-            resolve(res)
-          }
-        },
-        {
-          params
-        }))
-  })
+let commentGetOne = function (option = {}) {
+  return request(
+    Object.assign(
+      {
+        url: url.commentGetOne
+      },
+      option
+    )
+  )
 }
 
-let commentUpdateOne = function ({data = {}, params = {}}) {
-  return new Promise((resolve) => {
-    request(
-      Object.assign(
-        {
-          method: 'post',
-          url: url.commentUpdateOne,
-          nextCallback: function (res) {
-            resolve(res)
-          }
-        },
-        {
-          params,
-          data
-        }))
-  })
+let commentUpdateOne = function (option = {}) {
+  return request(
+    Object.assign(
+      {
+        method: 'post',
+        url: url.commentUpdateOne
+      },
+      option
+    )
+  )
 }
 
-let logCreateOne = function ({data = {}}) {
-  return new Promise((resolve) => {
-    request(
-      Object.assign(
-        {
-          method: 'post',
-          url: url.logCreateOne,
-          nextCallback: function (res) {
-            resolve(res)
-          }
-        },
-        {
-          data
-        }))
-  })
+let logCreateOne = function (option = {}) {
+  return request(
+    Object.assign(
+      {
+        method: 'post',
+        url: url.logCreateOne
+      },
+      option
+    )
+  )
 }
 
-let logGetList = function ({params = {}}) {
-  return new Promise((resolve) => {
-    request(
-      Object.assign(
-        {
-          url: url.logGetList,
-          nextCallback: function (res) {
-            resolve(res)
-          }
-        },
-        {
-          params
-        }))
-  })
+let logGetList = function (option = {}) {
+  return request(
+    Object.assign(
+      {
+        url: url.logGetList
+      },
+      option
+    )
+  )
 }
 
-let logGetOne = function ({params = {}}) {
-  return new Promise((resolve) => {
-    request(
-      Object.assign(
-        {
-          url: url.logGetOne,
-          nextCallback: function (res) {
-            resolve(res)
-          }
-        },
-        {
-          params
-        }))
-  })
+let logGetOne = function (option = {}) {
+  return request(
+    Object.assign(
+      {
+        url: url.logGetOne
+      },
+      option
+    )
+  )
 }
 
-let logUpdateOne = function ({data = {}, params = {}}) {
-  return new Promise((resolve) => {
-    request(
-      Object.assign(
-        {
-          method: 'post',
-          url: url.logUpdateOne,
-          nextCallback: function (res) {
-            resolve(res)
-          }
-        },
-        {
-          params,
-          data
-        }))
-  })
+let logUpdateOne = function (option = {}) {
+  return request(
+    Object.assign(
+      {
+        method: 'post',
+        url: url.logUpdateOne
+      },
+      option
+    )
+  )
 }
 
-let informationCreateOne = function ({data = {}}) {
-  return new Promise((resolve) => {
-    request(
-      Object.assign(
-        {
-          method: 'post',
-          url: url.informationCreateOne,
-          nextCallback: function (res) {
-            resolve(res)
-          }
-        },
-        {
-          data
-        }))
-  })
+let informationCreateOne = function (option = {}) {
+  return request(
+    Object.assign(
+      {
+        method: 'post',
+        url: url.informationCreateOne
+      },
+      option
+    )
+  )
 }
 
-let informationGetList = function ({params = {}}) {
-  return new Promise((resolve) => {
-    request(
-      Object.assign(
-        {
-          url: url.informationGetList,
-          nextCallback: function (res) {
-            resolve(res)
-          }
-        },
-        {
-          params
-        }))
-  })
+let informationGetList = function (option = {}) {
+  return request(
+    Object.assign(
+      {
+        url: url.informationGetList
+      },
+      option
+    )
+  )
 }
 
-let informationGetOne = function ({params = {}}) {
-  return new Promise((resolve) => {
-    request(
-      Object.assign(
-        {
-          url: url.informationGetOne,
-          nextCallback: function (res) {
-            resolve(res)
-          }
-        },
-        {
-          params
-        }))
-  })
+let informationGetOne = function (option = {}) {
+  return request(
+    Object.assign(
+      {
+        url: url.informationGetOne
+      },
+      option
+    )
+  )
 }
 
-let informationUpdateOne = function ({data = {}, params = {}}) {
-  return new Promise((resolve) => {
-    request(
-      Object.assign(
-        {
-          method: 'post',
-          url: url.informationUpdateOne,
-          nextCallback: function (res) {
-            resolve(res)
-          }
-        },
-        {
-          params,
-          data
-        }))
-  })
+let informationUpdateOne = function (option = {}) {
+  return request(
+    Object.assign(
+      {
+        method: 'post',
+        url: url.informationUpdateOne
+      },
+      option
+    )
+  )
 }
 
-let noticeCreateOne = function ({data = {}}) {
-  return new Promise((resolve) => {
-    request(
-      Object.assign(
-        {
-          method: 'post',
-          url: url.noticeCreateOne,
-          nextCallback: function (res) {
-            resolve(res)
-          }
-        },
-        {
-          data
-        }))
-  })
+let noticeCreateOne = function (option = {}) {
+  return request(
+    Object.assign(
+      {
+        method: 'post',
+        url: url.noticeCreateOne
+      },
+      option
+    )
+  )
 }
 
-let noticeGetList = function ({params = {}}) {
-  return new Promise((resolve) => {
-    request(
-      Object.assign(
-        {
-          url: url.noticeGetList,
-          nextCallback: function (res) {
-            resolve(res)
-          }
-        },
-        {
-          params
-        }))
-  })
+let noticeGetList = function (option = {}) {
+  return request(
+    Object.assign(
+      {
+        url: url.noticeGetList
+      },
+      option
+    )
+  )
 }
 
-let noticeGetOne = function ({params = {}}) {
-  return new Promise((resolve) => {
-    request(
-      Object.assign(
-        {
-          url: url.noticeGetOne,
-          nextCallback: function (res) {
-            resolve(res)
-          }
-        },
-        {
-          params
-        }))
-  })
+let noticeGetOne = function (option = {}) {
+  return request(
+    Object.assign(
+      {
+        url: url.noticeGetOne
+      },
+      option
+    )
+  )
 }
 
-let noticeUpdateOne = function ({data = {}, params = {}}) {
-  return new Promise((resolve) => {
-    request(
-      Object.assign(
-        {
-          method: 'post',
-          url: url.noticeUpdateOne,
-          nextCallback: function (res) {
-            resolve(res)
-          }
-        },
-        {
-          params,
-          data
-        }))
-  })
+let noticeUpdateOne = function (option = {}) {
+  return request(
+    Object.assign(
+      {
+        method: 'post',
+        url: url.noticeUpdateOne
+      },
+      option
+    )
+  )
 }
 
-let userCreateOne = function ({data = {}}) {
-  return new Promise((resolve) => {
-    request(
-      Object.assign(
-        {
-          method: 'post',
-          url: url.userCreateOne,
-          nextCallback: function (res) {
-            resolve(res)
-          }
-        },
-        {
-          data
-        }))
-  })
+let userCreateOne = function (option = {}) {
+  return request(
+    Object.assign(
+      {
+        method: 'post',
+        url: url.userCreateOne
+      },
+      option
+    )
+  )
 }
 
-let userGetList = function ({params = {}}) {
-  return new Promise((resolve) => {
-    request(
-      Object.assign(
-        {
-          url: url.userGetList,
-          nextCallback: function (res) {
-            resolve(res)
-          }
-        },
-        {
-          params
-        }))
-  })
+let userGetList = function (option = {}) {
+  return request(
+    Object.assign(
+      {
+        url: url.userGetList
+      },
+      option
+    )
+  )
 }
 
-let userGetOne = function ({params = {}}) {
-  return new Promise((resolve) => {
-    request(
-      Object.assign(
-        {
-          url: url.userGetOne,
-          nextCallback: function (res) {
-            resolve(res)
-          }
-        },
-        {
-          params
-        }))
-  })
+let userGetOne = function (option = {}) {
+  return request(
+    Object.assign(
+      {
+        url: url.userGetOne
+      },
+      option
+    )
+  )
 }
 
-let userUpdateOne = function ({data = {}, params = {}}) {
-  return new Promise((resolve) => {
-    request(
-      Object.assign(
-        {
-          method: 'post',
-          url: url.userUpdateOne,
-          nextCallback: function (res) {
-            resolve(res)
-          }
-        },
-        {
-          params,
-          data
-        }))
-  })
+let userUpdateOne = function (option = {}) {
+  return request(
+    Object.assign(
+      {
+        method: 'post',
+        url: url.userUpdateOne
+      },
+      option
+    )
+  )
 }
 
-let userLogin = function ({data = {}}) {
-  return new Promise((resolve) => {
-    request(
-      Object.assign(
-        {
-          method: 'post',
-          url: url.userLogin,
-          nextCallback: function (res) {
-            resolve(res)
-          }
-        },
-        {
-          data
-        }))
-  })
+let userLogin = function (option = {}) {
+  return request(
+    Object.assign(
+      {
+        method: 'post',
+        url: url.userLogin
+      },
+      option
+    )
+  )
 }
 
-let userLogout = function ({data = {}}) {
-  return new Promise((resolve) => {
-    request(
-      Object.assign(
-        {
-          method: 'post',
-          url: url.userLogout,
-          nextCallback: function (res) {
-            resolve(res)
-          }
-        },
-        {
-          data
-        }))
-  })
+let userLogout = function (option = {}) {
+  return request(
+    Object.assign(
+      {
+        method: 'post',
+        url: url.userLogout
+      },
+      option
+    )
+  )
 }
 
-let menuCreateOne = function ({data = {}}) {
-  return new Promise((resolve) => {
-    request(
-      Object.assign(
-        {
-          method: 'post',
-          url: url.menuCreateOne,
-          nextCallback: function (res) {
-            resolve(res)
-          }
-        },
-        {
-          data
-        }))
-  })
+let menuCreateOne = function (option = {}) {
+  return request(
+    Object.assign(
+      {
+        method: 'post',
+        url: url.menuCreateOne
+      },
+      option
+    )
+  )
 }
 
-let menuCreateRootOne = function ({data = {}}) {
-  return new Promise((resolve) => {
-    request(
-      Object.assign(
-        {
-          method: 'post',
-          url: url.menuCreateRootOne,
-          nextCallback: function (res) {
-            resolve(res)
-          }
-        },
-        {
-          data
-        }))
-  })
+let menuCreateRootOne = function (option = {}) {
+  return request(
+    Object.assign(
+      {
+        method: 'post',
+        url: url.menuCreateRootOne
+      },
+      option
+    )
+  )
 }
 
-let menuGetList = function ({params = {}}) {
-  return new Promise((resolve) => {
-    request(
-      Object.assign(
-        {
-          url: url.menuGetList,
-          nextCallback: function (res) {
-            resolve(res)
-          }
-        },
-        {
-          params
-        }))
-  })
+let menuGetList = function (option = {}) {
+  return request(
+    Object.assign(
+      {
+        url: url.menuGetList
+      },
+      option
+    )
+  )
 }
 
-let menuGetOne = function ({params = {}}) {
-  return new Promise((resolve) => {
-    request(
-      Object.assign(
-        {
-          url: url.menuGetOne,
-          nextCallback: function (res) {
-            resolve(res)
-          }
-        },
-        {
-          params
-        }))
-  })
+let menuGetUserList = function (option = {}) {
+  return request(
+    Object.assign(
+      {
+        url: url.menuGetUserList
+      },
+      option
+    )
+  )
 }
 
-let menuUpdateOne = function ({data = {}, params = {}}) {
-  return new Promise((resolve) => {
-    request(
-      Object.assign(
-        {
-          method: 'post',
-          url: url.menuUpdateOne,
-          nextCallback: function (res) {
-            resolve(res)
-          }
-        },
-        {
-          params,
-          data
-        }))
-  })
+let menuGetOne = function (option = {}) {
+  return request(
+    Object.assign(
+      {
+        url: url.menuGetOne
+      },
+      option
+    )
+  )
 }
 
-let authorityCreateOne = function ({data = {}}) {
-  return new Promise((resolve) => {
-    request(
-      Object.assign(
-        {
-          method: 'post',
-          url: url.authorityCreateOne,
-          nextCallback: function (res) {
-            resolve(res)
-          }
-        },
-        {
-          data
-        }))
-  })
+let menuUpdateOne = function (option = {}) {
+  return request(
+    Object.assign(
+      {
+        method: 'post',
+        url: url.menuUpdateOne
+      },
+      option
+    )
+  )
 }
 
-let authorityGetList = function ({params = {}}) {
-  return new Promise((resolve) => {
-    request(
-      Object.assign(
-        {
-          url: url.authorityGetList,
-          nextCallback: function (res) {
-            resolve(res)
-          }
-        },
-        {
-          params
-        }))
-  })
+let authorityCreateOne = function (option = {}) {
+  return request(
+    Object.assign(
+      {
+        method: 'post',
+        url: url.authorityCreateOne
+      },
+      option
+    )
+  )
 }
 
-let authorityGetOne = function ({params = {}}) {
-  return new Promise((resolve) => {
-    request(
-      Object.assign(
-        {
-          url: url.authorityGetOne,
-          nextCallback: function (res) {
-            resolve(res)
-          }
-        },
-        {
-          params
-        }))
-  })
+let authorityGetList = function (option = {}) {
+  return request(
+    Object.assign(
+      {
+        url: url.authorityGetList
+      },
+      option
+    )
+  )
 }
 
-let authorityUpdateOne = function ({data = {}, params = {}}) {
-  return new Promise((resolve) => {
-    request(
-      Object.assign(
-        {
-          method: 'post',
-          url: url.authorityUpdateOne,
-          nextCallback: function (res) {
-            resolve(res)
-          }
-        },
-        {
-          params,
-          data
-        }))
-  })
+let authorityGetOne = function (option = {}) {
+  return request(
+    Object.assign(
+      {
+        url: url.authorityGetOne
+      },
+      option
+    )
+  )
 }
 
-let roleCreateOne = function ({data = {}}) {
-  return new Promise((resolve) => {
-    request(
-      Object.assign(
-        {
-          method: 'post',
-          url: url.roleCreateOne,
-          nextCallback: function (res) {
-            resolve(res)
-          }
-        },
-        {
-          data
-        }))
-  })
+let authorityUpdateOne = function (option = {}) {
+  return request(
+    Object.assign(
+      {
+        method: 'post',
+        url: url.authorityUpdateOne
+      },
+      option
+    )
+  )
 }
 
-let roleGetList = function ({params = {}}) {
-  return new Promise((resolve) => {
-    request(
-      Object.assign(
-        {
-          url: url.roleGetList,
-          nextCallback: function (res) {
-            resolve(res)
-          }
-        },
-        {
-          params
-        }))
-  })
+let roleCreateOne = function (option = {}) {
+  return request(
+    Object.assign(
+      {
+        method: 'post',
+        url: url.roleCreateOne
+      },
+      option
+    )
+  )
 }
 
-let roleGetOne = function ({params = {}}) {
-  return new Promise((resolve) => {
-    request(
-      Object.assign(
-        {
-          url: url.roleGetOne,
-          nextCallback: function (res) {
-            resolve(res)
-          }
-        },
-        {
-          params
-        }))
-  })
+let roleGetList = function (option = {}) {
+  return request(
+    Object.assign(
+      {
+        url: url.roleGetList
+      },
+      option
+    )
+  )
 }
 
-let roleUpdateOne = function ({data = {}, params = {}}) {
-  return new Promise((resolve) => {
-    request(
-      Object.assign(
-        {
-          method: 'post',
-          url: url.roleUpdateOne,
-          nextCallback: function (res) {
-            resolve(res)
-          }
-        },
-        {
-          params,
-          data
-        }))
-  })
+let roleGetOne = function (option = {}) {
+  return request(
+    Object.assign(
+      {
+        url: url.roleGetOne
+      },
+      option
+    )
+  )
+}
+
+let roleUpdateOne = function (option = {}) {
+  return request(
+    Object.assign(
+      {
+        method: 'post',
+        url: url.roleUpdateOne
+      },
+      option
+    )
+  )
 }
 
 export {
@@ -916,6 +656,7 @@ export {
   userLogout,
   menuCreateOne,
   menuCreateRootOne,
+  menuGetUserList,
   menuGetList,
   menuGetOne,
   menuUpdateOne,

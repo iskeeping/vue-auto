@@ -73,17 +73,19 @@ export default {
       if (!this.$route.query.id) {
         return
       }
-      api.userGetOne({params: {_id: this.$route.query.id}}).then((res) => {
+      api.userGetOne({params: {_id: this.$route.query.id}, method: 'get'}).then((res) => {
         if (res.data.code === 0) {
           this.params = res.data.data
         }
+      }).catch(() => {
       })
     },
     userCreateOne() {
-      api.userCreateOne({data: this.params}).then((res) => {
+      api.userCreateOne({data: this.params, method: 'get'}).then((res) => {
         if (res.data.code === 0) {
           this.$router.go(-1)
         }
+      }).catch(() => {
       })
     },
     userUpdateOne() {
@@ -91,10 +93,11 @@ export default {
         if (res.data.code === 0) {
           this.$router.go(-1)
         }
+      }).catch(() => {
       })
     },
     roleGetList() {
-      api.roleGetList({params: this.params}).then((res) => {
+      api.roleGetList({params: this.params, method: 'get'}).then((res) => {
         if (res.data.code === 0) {
           this.totalSize = res.data.totalSize
           res.data.data.map((item) => {
@@ -103,6 +106,7 @@ export default {
           })
           this.roleListData = res.data.data
         }
+      }).catch(() => {
       })
 
     }

@@ -89,10 +89,11 @@ export default {
   },
   mounted() {
     this.simpleMDE()
-    this.columnGetList().then((data) => {
-      this.articleGetOne(data).then(() => {
-      }).catch(() => {
-      })
+    this.columnGetList().then((res) => {
+      if (res.data.code === 0) {
+        let listData = JSON.parse(JSON.stringify(res.data.data))
+        this.articleGetOne(listData)
+      }
     }).catch(() => {
     })
     this.tagGetList()
@@ -106,35 +107,34 @@ export default {
       }
     },
     articleGetOne(data) {
-      return new Promise((resolve, reject) => {
-        if (!this.$route.query.id) {
-          return
+      if (!this.$route.query.id) {
+        return
+      }
+      api.articleGetOne({params: {_id: this.$route.query.id}, method: 'get'}).then((res) => {
+        if (res.data.code === 0) {
+          let {
+            columnId
+          } = res.data.data
+          let columnIds = []
+          let columns = util.findParents(data, columnId)
+          columns.map((item) => {
+            columnIds.push(item['_id'])
+          })
+          this.params = res.data.data
+          this.columnIds = columnIds
+          this.simplemde.value(this.params.content)
         }
-        api.articleGetOne({params: {_id: this.$route.query.id}}).then((res) => {
-          if (res.data.code === 0) {
-            let {
-              columnId
-            } = res.data.data
-            let columnIds = []
-            let columns = util.findParents(data, columnId)
-            columns.map((item) => {
-              columnIds.push(item._id)
-            })
-            this.params = res.data.data
-            this.columnIds = columnIds
-            this.simplemde.value(this.params.content)
-            resolve()
-          }
-          // eslint-disable-next-line prefer-promise-reject-errors
-          reject()
-        })
+        // eslint-disable-next-line prefer-promise-reject-errors
+      }).catch(() => {
       })
+
     },
     articleCreateOne() {
       api.articleCreateOne({data: this.params}).then((res) => {
         if (res.data.code === 0) {
           this.$router.go(-1)
         }
+      }).catch(() => {
       })
     },
     articleUpdateOne() {
@@ -142,11 +142,12 @@ export default {
         if (res.data.code === 0) {
           this.$router.go(-1)
         }
+      }).catch(() => {
       })
     },
     columnGetList() {
       return new Promise((resolve, reject) => {
-        api.columnGetList({params: this.params}).then((res) => {
+        api.columnGetList({params: this.params, method: 'get'}).then((res) => {
           if (res.data.code === 0) {
             res.data.data.map((item) => {
               const d = util.getYMDHMS(item.createTime)
@@ -154,20 +155,20 @@ export default {
               if (typeof item.parentId === 'undefined') {
                 item.parentId = '0'
               }
-              item.value = item._id
+              item.value = item['_id']
               item.label = item.name
             })
-            let listData = JSON.parse(JSON.stringify(res.data.data))
             this.columnListData = util.createTree(res.data.data, this.rootId)
-            resolve(listData)
           }
+          resolve(res)
+        }).catch((err) => {
           // eslint-disable-next-line prefer-promise-reject-errors
-          reject()
+          reject(err)
         })
       })
     },
     tagGetList() {
-      api.tagGetList({params: this.params}).then((res) => {
+      api.tagGetList({params: this.params, method: 'get'}).then((res) => {
         if (res.data.code === 0) {
           this.totalSize = res.data.totalSize
           res.data.data.map((item) => {
@@ -176,6 +177,7 @@ export default {
           })
           this.tagListData = res.data.data
         }
+      }).catch(() => {
       })
 
     },
@@ -189,6 +191,7 @@ export default {
       simplemde.codemirror.on('change', () => {
         // let showdown = require('showdown')
         // let converter = new showdown.Converter()
+        // let html = converter.makeHtml(text)
         // let html = converter.makeHtml(text)
         let content = simplemde.value()
         this.params.content = content

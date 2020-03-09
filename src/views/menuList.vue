@@ -49,16 +49,16 @@ export default {
       if (type === 'addRoot') {
         this.$router.push(`${routerPath.menuCreatePath}`)
       } else if (type === 'add') {
-        this.$router.push(`${routerPath.menuCreatePath}?parentId=${data._id}`)
+        this.$router.push(`${routerPath.menuCreatePath}?parentId=${data['_id']}`)
       } else if (type === 'edit') {
-        this.$router.push(`${routerPath.menuCreatePath}?id=${data._id}`)
+        this.$router.push(`${routerPath.menuCreatePath}?id=${data['_id']}`)
       }
     },
-    remove(data) {
-
+    remove() {
+      // data
     },
     menuGetList() {
-      api.menuGetList({params: this.params}).then((res) => {
+      api.menuGetList({params: this.params, method: 'get'}).then((res) => {
         if (res.data.code === 0) {
           this.totalSize = res.data.totalSize
           res.data.data.map((item) => {
@@ -67,8 +67,8 @@ export default {
           })
           this.listData = util.createTree(res.data.data, this.rootId)
         }
+      }).catch(() => {
       })
-
     }
   }
 }

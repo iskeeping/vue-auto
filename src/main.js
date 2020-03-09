@@ -160,7 +160,7 @@ setTimeout(() => {
       item
     )
   })
-  new Vue({
+  window.APP = new Vue({
     router,
     store,
     render: h => h(app)
