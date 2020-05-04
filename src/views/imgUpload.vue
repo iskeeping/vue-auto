@@ -11,7 +11,7 @@
           </div>
         </el-form-item>
         <el-form-item label="图片：">
-          <img v-if="params.url" :src="params.url" class="avatar">
+          <img v-if="params.url" :src="params.url" class="avatar" @click="toggleImg(params.url,true)">
           <el-upload
             class="avatar-uploader"
             :action="url.imgUploadOne"
@@ -28,6 +28,18 @@
         </div>
       </el-form>
     </div>
+
+    <el-dialog
+      class="img-preview-dialog"
+      :visible.sync="dialogVisible"
+      width="500px"
+      left
+    >
+      <div class="img-preview-dialog-body">
+        <img :src="imgUrl">
+      </div>
+    </el-dialog>
+
   </mainContainer>
 </template>
 <script>
@@ -44,7 +56,9 @@ export default {
         url: ''
       },
       url,
-      headers: {}
+      headers: {},
+      imgUrl: '',
+      dialogVisible: false
     }
   },
   components: {
@@ -58,6 +72,10 @@ export default {
     this.imgGetOne()
   },
   methods: {
+    toggleImg(url, flag) {
+      this.imgUrl = url
+      this.dialogVisible = flag || false
+    },
     save() {
       if (this.$route.query.id) {
         this.imgUpdateOne()
@@ -160,4 +178,16 @@ export default {
       margin-right: 18px;
     }
   }
+
+  .img-preview-dialog {
+
+    .img-preview-dialog-body {
+      width: 100%;
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+
 </style>

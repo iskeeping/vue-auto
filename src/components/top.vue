@@ -7,7 +7,6 @@
     <el-dropdown>
       <span class="username"><!--{{userInfo.phone}}--> 欢迎您！<i class="el-icon-arrow-down"></i></span>
       <el-dropdown-menu slot="dropdown">
-        <el-dropdown-item @click.native="updatePassword">修改密码</el-dropdown-item>
         <el-dropdown-item @click.native="userLogout">退出登录</el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
@@ -45,8 +44,6 @@ export default {
   methods: {
     getCurrRoute() {
       this.currRoute = this.$route
-    },
-    updatePassword() {
     },
     userLogout() {
       api.userLogout({}).then((res) => {

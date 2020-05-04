@@ -6,7 +6,7 @@
       </div>
       <div class="login-body">
         <el-input v-model="form.phone" size="small" placeholder="请输入手机号" class="phone"></el-input>
-        <el-input v-model="form.password" type="password" size="small" placeholder="请输入密码" class="password"></el-input>
+        <el-input v-model="form.password" type="password" size="small" placeholder="请输入密码" class="password" @change="log"></el-input>
         <el-button type="primary" class="login-btn" @click="log" size="small">登录</el-button>
       </div>
     </div>
