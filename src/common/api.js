@@ -1,399 +1,88 @@
 import request from './request'
 import * as url from './url'
 
-let courseGetList = function (option = {}) {
-  return request(
-    Object.assign(
-      {
-        url: url.courseGetList
-      },
-      option
+// eslint-disable-next-line no-shadow
+function commonMethod({ url, method }) {
+  return function (option) {
+    return request(
+      Object.assign(
+        {
+          url: url,
+          method: method || 'get'
+        },
+        option || {}
+      )
     )
-  )
+  }
 }
 
-let courseCreateOne = function (option = {}) {
-  return request(
-    Object.assign(
-      {
-        method: 'post',
-        url: url.courseCreateOne
-      },
-      option
-    )
-  )
-}
+let courseGetList = commonMethod({ url: url.courseGetList })
 
-let courseUpdateOne = function (option = {}) {
-  return request(
-    Object.assign(
-      {
-        method: 'post',
-        url: url.courseUpdateOne
-      },
-      option
-    )
-  )
-}
+let courseCreateOne = commonMethod({ url: url.courseCreateOne, method: 'post' })
 
-let courseGetOne = function (option = {}) {
-  return request(
-    Object.assign(
-      {
-        method: 'post',
-        url: url.courseGetOne
-      },
-      option
-    )
-  )
-}
+let courseUpdateOne = commonMethod({ url: url.courseUpdateOne, method: 'post' })
 
-let imgCreateOne = function (option = {}) {
-  return request(
-    Object.assign(
-      {
-        method: 'post',
-        url: url.imgCreateOne
-      },
-      option
-    )
-  )
-}
+let courseGetOne = commonMethod({ url: url.courseGetOne, method: 'post' })
 
-let imgGetList = function (option = {}) {
-  return request(
-    Object.assign(
-      {
-        url: url.imgGetList
-      },
-      option
-    )
-  )
-}
+let imgCreateOne = commonMethod({ url: url.imgCreateOne, method: 'post' })
 
-let imgGetOne = function (option = {}) {
-  return request(
-    Object.assign(
-      {
-        url: url.imgGetOne
-      },
-      option
-    )
-  )
-}
+let imgGetList = commonMethod({ url: url.imgGetList, method: 'post' })
 
-let imgUpdateOne = function (option = {}) {
-  return request(
-    Object.assign(
-      {
-        method: 'post',
-        url: url.imgUpdateOne
-      },
-      option
-    )
-  )
-}
+let imgGetOne = commonMethod({ url: url.imgGetOne, method: 'post' })
 
-let columnCreateOne = function (option = {}) {
-  return request(
-    Object.assign(
-      {
-        method: 'post',
-        url: url.columnCreateOne
-      },
-      option
-    )
-  )
-}
+let imgUpdateOne = commonMethod({ url: url.imgUpdateOne, method: 'post' })
 
-let columnCreateRootOne = function (option = {}) {
-  return request(
-    Object.assign(
-      {
-        method: 'post',
-        url: url.columnCreateRootOne
-      },
-      option
-    )
-  )
-}
+let columnCreateOne = commonMethod({ url: url.columnCreateOne, method: 'post' })
 
-let columnGetList = function (option = {}) {
-  return request(
-    Object.assign(
-      {
-        url: url.columnGetList
-      },
-      option
-    )
-  )
-}
+let columnCreateRootOne = commonMethod({ url: url.columnCreateRootOne, method: 'post' })
 
-let columnGetOne = function (option = {}) {
-  return request(
-    Object.assign(
-      {
-        url: url.columnGetOne
-      },
-      option
-    )
-  )
-}
+let columnGetList = commonMethod({ url: url.columnGetList, method: 'post' })
 
-let columnUpdateOne = function (option = {}) {
-  return request(
-    Object.assign(
-      {
-        method: 'post',
-        url: url.columnUpdateOne
-      },
-      option
-    )
-  )
-}
+let columnGetOne = commonMethod({ url: url.columnGetOne, method: 'post' })
 
-let userCreateOne = function (option = {}) {
-  return request(
-    Object.assign(
-      {
-        method: 'post',
-        url: url.userCreateOne
-      },
-      option
-    )
-  )
-}
+let columnUpdateOne = commonMethod({ url: url.columnUpdateOne, method: 'post' })
 
-let userGetList = function (option = {}) {
-  return request(
-    Object.assign(
-      {
-        url: url.userGetList
-      },
-      option
-    )
-  )
-}
+let userCreateOne = commonMethod({ url: url.userCreateOne, method: 'post' })
 
-let userGetOne = function (option = {}) {
-  return request(
-    Object.assign(
-      {
-        url: url.userGetOne
-      },
-      option
-    )
-  )
-}
+let userGetList = commonMethod({ url: url.userGetList, method: 'post' })
 
-let userUpdateOne = function (option = {}) {
-  return request(
-    Object.assign(
-      {
-        method: 'post',
-        url: url.userUpdateOne
-      },
-      option
-    )
-  )
-}
+let userGetOne = commonMethod({ url: url.userGetOne })
 
-let userDeleteOne = function (option = {}) {
-  return request(
-    Object.assign(
-      {
-        method: 'get',
-        url: url.userDeleteOne
-      },
-      option
-    )
-  )
-}
+let userUpdateOne = commonMethod({ url: url.userUpdateOne })
 
-let userLogin = function (option = {}) {
-  return request(
-    Object.assign(
-      {
-        method: 'post',
-        url: url.userLogin
-      },
-      option
-    )
-  )
-}
+let userDeleteOne = commonMethod({ url: url.userDeleteOne })
 
-let userLogout = function (option = {}) {
-  return request(
-    Object.assign(
-      {
-        method: 'get',
-        url: url.userLogout
-      },
-      option
-    )
-  )
-}
+let userLogin = commonMethod({ url: url.userLogin, method: 'post' })
 
-let menuCreateOne = function (option = {}) {
-  return request(
-    Object.assign(
-      {
-        method: 'post',
-        url: url.menuCreateOne
-      },
-      option
-    )
-  )
-}
+let userLogout = commonMethod({ url: url.userLogout, method: 'post' })
 
-let menuCreateRootOne = function (option = {}) {
-  return request(
-    Object.assign(
-      {
-        method: 'post',
-        url: url.menuCreateRootOne
-      },
-      option
-    )
-  )
-}
+let menuCreateOne = commonMethod({ url: url.menuCreateOne, method: 'post' })
 
-let menuGetList = function (option = {}) {
-  return request(
-    Object.assign(
-      {
-        url: url.menuGetList
-      },
-      option
-    )
-  )
-}
+let menuCreateRootOne = commonMethod({ url: url.menuCreateRootOne, method: 'post' })
 
-let menuGetUserList = function (option = {}) {
-  return request(
-    Object.assign(
-      {
-        url: url.menuGetUserList
-      },
-      option
-    )
-  )
-}
+let menuGetList = commonMethod({ url: url.menuGetList })
 
-let menuGetOne = function (option = {}) {
-  return request(
-    Object.assign(
-      {
-        url: url.menuGetOne
-      },
-      option
-    )
-  )
-}
+let menuGetUserList = commonMethod({ url: url.menuGetUserList })
 
-let menuUpdateOne = function (option = {}) {
-  return request(
-    Object.assign(
-      {
-        method: 'post',
-        url: url.menuUpdateOne
-      },
-      option
-    )
-  )
-}
+let menuGetOne = commonMethod({ url: url.menuGetOne })
 
-let authorityCreateOne = function (option = {}) {
-  return request(
-    Object.assign(
-      {
-        method: 'post',
-        url: url.authorityCreateOne
-      },
-      option
-    )
-  )
-}
+let menuUpdateOne = commonMethod({ url: url.menuUpdateOne, method: 'post' })
 
-let authorityGetList = function (option = {}) {
-  return request(
-    Object.assign(
-      {
-        url: url.authorityGetList
-      },
-      option
-    )
-  )
-}
+let authorityCreateOne = commonMethod({ url: url.authorityCreateOne, method: 'post' })
 
-let authorityGetOne = function (option = {}) {
-  return request(
-    Object.assign(
-      {
-        url: url.authorityGetOne
-      },
-      option
-    )
-  )
-}
+let authorityGetList = commonMethod({ url: url.authorityGetList })
 
-let authorityUpdateOne = function (option = {}) {
-  return request(
-    Object.assign(
-      {
-        method: 'post',
-        url: url.authorityUpdateOne
-      },
-      option
-    )
-  )
-}
+let authorityGetOne = commonMethod({ url: url.authorityGetOne })
 
-let roleCreateOne = function (option = {}) {
-  return request(
-    Object.assign(
-      {
-        method: 'post',
-        url: url.roleCreateOne
-      },
-      option
-    )
-  )
-}
+let authorityUpdateOne = commonMethod({ url: url.authorityUpdateOne, method: 'post' })
 
-let roleGetList = function (option = {}) {
-  return request(
-    Object.assign(
-      {
-        url: url.roleGetList
-      },
-      option
-    )
-  )
-}
+let roleCreateOne = commonMethod({ url: url.roleCreateOne, method: 'post' })
 
-let roleGetOne = function (option = {}) {
-  return request(
-    Object.assign(
-      {
-        url: url.roleGetOne
-      },
-      option
-    )
-  )
-}
+let roleGetList = commonMethod({ url: url.roleGetList })
 
-let roleUpdateOne = function (option = {}) {
-  return request(
-    Object.assign(
-      {
-        method: 'post',
-        url: url.roleUpdateOne
-      },
-      option
-    )
-  )
-}
+let roleGetOne = commonMethod({ url: url.roleGetOne })
+
+let roleUpdateOne = commonMethod({ url: url.roleUpdateOne, method: 'post' })
 
 export {
   courseGetList,

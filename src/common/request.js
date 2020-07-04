@@ -35,7 +35,6 @@ axios.interceptors.response.use(res => {
   } else if (error.response.status === 404) {
     //未找到资源
   } else if (error.response.status === 401) {
-    debugger
     //'请先登录'
     window.APP.$router.push('/login')
   } else if (error.response.status === 500) {
