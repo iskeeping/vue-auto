@@ -24,21 +24,21 @@ let initRoutes = [
         }
       },
       {
-        path: 'articleList',
-        name: '文章管理',
-        component: () => import(/* webpackChunkName: "articleList" */ '@/views/articleList.vue'),
+        path: 'courseList',
+        name: '课程管理',
+        component: () => import(/* webpackChunkName: "courseList" */ '@/views/courseList.vue'),
         meta: {
           keepAlive: true,
-          path: routerPath.articleListPath,
+          path: routerPath.courseListPath,
           requireAuth: true
         }
       },
       {
-        path: 'articleCreate',
-        name: '文章新建',
-        component: () => import(/* webpackChunkName: "articleCreate" */ '@/views/articleCreate.vue'),
+        path: 'courseCreate',
+        name: '课程新建',
+        component: () => import(/* webpackChunkName: "courseCreate" */ '@/views/courseCreate.vue'),
         meta: {
-          path: routerPath.articleListPath,
+          path: routerPath.courseListPath,
           requireAuth: true
         }
       },
@@ -58,34 +58,6 @@ let initRoutes = [
         component: () => import(/* webpackChunkName: "columnCreate" */ '@/views/columnCreate.vue'),
         meta: {
           path: routerPath.columnListPath,
-          requireAuth: true
-        }
-      },
-      {
-        path: 'tagList',
-        name: '标签管理',
-        component: () => import(/* webpackChunkName: "tagList" */ '@/views/tagList.vue'),
-        meta: {
-          keepAlive: true,
-          path: routerPath.tagListPath,
-          requireAuth: true
-        }
-      },
-      {
-        path: 'tagCreate',
-        name: '标签新建',
-        component: () => import(/* webpackChunkName: "tagCreate" */ '@/views/tagCreate.vue'),
-        meta: {
-          path: routerPath.tagListPath,
-          requireAuth: true
-        }
-      },
-      {
-        path: 'commentList',
-        name: '留言管理',
-        component: () => import(/* webpackChunkName: "commentList" */ '@/views/commentList.vue'),
-        meta: {
-          path: routerPath.commentListPath,
           requireAuth: true
         }
       },
@@ -166,39 +138,21 @@ let initRoutes = [
         }
       },
       {
-        path: 'logList',
-        name: '日志管理',
-        component: () => import(/* webpackChunkName: "logList" */ '@/views/logList.vue'),
-        meta: {
-          path: routerPath.logListPath,
-          requireAuth: true
-        }
-      },
-      {
-        path: 'informationList',
-        name: '消息管理',
-        component: () => import(/* webpackChunkName: "informationList" */ '@/views/informationList.vue'),
-        meta: {
-          path: routerPath.informationListPath,
-          requireAuth: true
-        }
-      },
-      {
-        path: 'noticeList',
-        name: '公告管理',
-        component: () => import(/* webpackChunkName: "noticeList" */ '@/views/noticeList.vue'),
+        path: 'imgList',
+        name: '图片管理',
+        component: () => import(/* webpackChunkName: "imgList" */ '@/views/imgList.vue'),
         meta: {
           keepAlive: true,
-          path: routerPath.noticeListPath,
+          path: routerPath.imgListPath,
           requireAuth: true
         }
       },
       {
-        path: 'noticeCreate',
-        name: '公告新建',
-        component: () => import(/* webpackChunkName: "noticeCreate" */ '@/views/noticeCreate.vue'),
+        path: 'imgCreate',
+        name: '图片新建',
+        component: () => import(/* webpackChunkName: "imgCreate" */ '@/views/imgCreate.vue'),
         meta: {
-          path: routerPath.noticeListPath,
+          path: routerPath.imgListPath,
           requireAuth: true
         }
       }

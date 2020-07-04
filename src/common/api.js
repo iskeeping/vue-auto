@@ -1,47 +1,47 @@
 import request from './request'
 import * as url from './url'
 
-let articleGetList = function (option = {}) {
+let courseGetList = function (option = {}) {
   return request(
     Object.assign(
       {
-        url: url.articleGetList
+        url: url.courseGetList
       },
       option
     )
   )
 }
 
-let articleCreateOne = function (option = {}) {
+let courseCreateOne = function (option = {}) {
   return request(
     Object.assign(
       {
         method: 'post',
-        url: url.articleCreateOne
+        url: url.courseCreateOne
       },
       option
     )
   )
 }
 
-let articleUpdateOne = function (option = {}) {
+let courseUpdateOne = function (option = {}) {
   return request(
     Object.assign(
       {
         method: 'post',
-        url: url.articleUpdateOne
+        url: url.courseUpdateOne
       },
       option
     )
   )
 }
 
-let articleGetOne = function (option = {}) {
+let courseGetOne = function (option = {}) {
   return request(
     Object.assign(
       {
         method: 'post',
-        url: url.articleGetOne
+        url: url.courseGetOne
       },
       option
     )
@@ -152,237 +152,6 @@ let columnUpdateOne = function (option = {}) {
   )
 }
 
-let tagCreateOne = function (option = {}) {
-  return request(
-    Object.assign(
-      {
-        method: 'post',
-        url: url.tagCreateOne
-      },
-      option
-    )
-  )
-}
-
-let tagGetList = function (option = {}) {
-  return request(
-    Object.assign(
-      {
-        url: url.tagGetList
-      },
-      option
-    )
-  )
-}
-
-let tagGetOne = function (option = {}) {
-  return request(
-    Object.assign(
-      {
-        url: url.tagGetOne
-      },
-      option
-    )
-  )
-}
-
-let tagUpdateOne = function (option = {}) {
-  return request(
-    Object.assign(
-      {
-        method: 'post',
-        url: url.tagUpdateOne
-      },
-      option
-    )
-  )
-}
-
-let commentCreateOne = function (option = {}) {
-  return request(
-    Object.assign(
-      {
-        method: 'post',
-        url: url.commentCreateOne
-      },
-      option
-    )
-  )
-}
-
-let commentGetList = function (option = {}) {
-  return request(
-    Object.assign(
-      {
-        url: url.commentGetList,
-        method: 'get'
-      },
-      option
-    )
-  )
-}
-
-let commentGetOne = function (option = {}) {
-  return request(
-    Object.assign(
-      {
-        url: url.commentGetOne
-      },
-      option
-    )
-  )
-}
-
-let commentUpdateOne = function (option = {}) {
-  return request(
-    Object.assign(
-      {
-        method: 'post',
-        url: url.commentUpdateOne
-      },
-      option
-    )
-  )
-}
-
-let logCreateOne = function (option = {}) {
-  return request(
-    Object.assign(
-      {
-        method: 'post',
-        url: url.logCreateOne
-      },
-      option
-    )
-  )
-}
-
-let logGetList = function (option = {}) {
-  return request(
-    Object.assign(
-      {
-        url: url.logGetList
-      },
-      option
-    )
-  )
-}
-
-let logGetOne = function (option = {}) {
-  return request(
-    Object.assign(
-      {
-        url: url.logGetOne
-      },
-      option
-    )
-  )
-}
-
-let logUpdateOne = function (option = {}) {
-  return request(
-    Object.assign(
-      {
-        method: 'post',
-        url: url.logUpdateOne
-      },
-      option
-    )
-  )
-}
-
-let informationCreateOne = function (option = {}) {
-  return request(
-    Object.assign(
-      {
-        method: 'post',
-        url: url.informationCreateOne
-      },
-      option
-    )
-  )
-}
-
-let informationGetList = function (option = {}) {
-  return request(
-    Object.assign(
-      {
-        url: url.informationGetList
-      },
-      option
-    )
-  )
-}
-
-let informationGetOne = function (option = {}) {
-  return request(
-    Object.assign(
-      {
-        url: url.informationGetOne
-      },
-      option
-    )
-  )
-}
-
-let informationUpdateOne = function (option = {}) {
-  return request(
-    Object.assign(
-      {
-        method: 'post',
-        url: url.informationUpdateOne
-      },
-      option
-    )
-  )
-}
-
-let noticeCreateOne = function (option = {}) {
-  return request(
-    Object.assign(
-      {
-        method: 'post',
-        url: url.noticeCreateOne
-      },
-      option
-    )
-  )
-}
-
-let noticeGetList = function (option = {}) {
-  return request(
-    Object.assign(
-      {
-        url: url.noticeGetList
-      },
-      option
-    )
-  )
-}
-
-let noticeGetOne = function (option = {}) {
-  return request(
-    Object.assign(
-      {
-        url: url.noticeGetOne
-      },
-      option
-    )
-  )
-}
-
-let noticeUpdateOne = function (option = {}) {
-  return request(
-    Object.assign(
-      {
-        method: 'post',
-        url: url.noticeUpdateOne
-      },
-      option
-    )
-  )
-}
-
 let userCreateOne = function (option = {}) {
   return request(
     Object.assign(
@@ -429,6 +198,18 @@ let userUpdateOne = function (option = {}) {
   )
 }
 
+let userDeleteOne = function (option = {}) {
+  return request(
+    Object.assign(
+      {
+        method: 'get',
+        url: url.userDeleteOne
+      },
+      option
+    )
+  )
+}
+
 let userLogin = function (option = {}) {
   return request(
     Object.assign(
@@ -445,7 +226,7 @@ let userLogout = function (option = {}) {
   return request(
     Object.assign(
       {
-        method: 'post',
+        method: 'get',
         url: url.userLogout
       },
       option
@@ -615,10 +396,10 @@ let roleUpdateOne = function (option = {}) {
 }
 
 export {
-  articleGetList,
-  articleCreateOne,
-  articleUpdateOne,
-  articleGetOne,
+  courseGetList,
+  courseCreateOne,
+  courseUpdateOne,
+  courseGetOne,
   imgCreateOne,
   imgGetList,
   imgGetOne,
@@ -628,30 +409,11 @@ export {
   columnGetList,
   columnGetOne,
   columnUpdateOne,
-  tagCreateOne,
-  tagGetList,
-  tagGetOne,
-  tagUpdateOne,
-  commentCreateOne,
-  commentGetList,
-  commentGetOne,
-  commentUpdateOne,
-  logCreateOne,
-  logGetList,
-  logGetOne,
-  logUpdateOne,
-  informationCreateOne,
-  informationGetList,
-  informationGetOne,
-  informationUpdateOne,
-  noticeCreateOne,
-  noticeGetList,
-  noticeGetOne,
-  noticeUpdateOne,
   userCreateOne,
   userGetList,
   userGetOne,
   userUpdateOne,
+  userDeleteOne,
   userLogin,
   userLogout,
   menuCreateOne,

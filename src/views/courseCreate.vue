@@ -4,10 +4,22 @@
       <el-form ref="form"
                :model="params" label-width="100px"
                label-position="left" size="small">
-        <el-form-item label="文章标题：">
+        <el-form-item label="标题：">
           <div class="input-itm">
-            <el-input placeholder="请输入文章标题" type="text"
+            <el-input placeholder="请输入标题" type="text"
                       v-model="params.title"></el-input>
+          </div>
+        </el-form-item>
+        <el-form-item label="主图">
+          <div class="input-itm">
+            <el-select v-model="params.imgId" placeholder="请选择主图">
+              <el-option
+                v-for="item in roleListData"
+                :key="item._id"
+                :label="item.name"
+                :value="item._id">
+              </el-option>
+            </el-select>
           </div>
         </el-form-item>
         <el-form-item label="作者：">
@@ -28,20 +40,8 @@
             </el-cascader>
           </div>
         </el-form-item>
-        <el-form-item label="文章标签：">
-          <div class="input-itm">
-            <el-select v-model="params.tagIds" multiple filterable placeholder="请选择文章标签">
-              <el-option
-                v-for="item in tagListData"
-                :key="item._id"
-                :label="item.name"
-                :value="item._id">
-              </el-option>
-            </el-select>
-          </div>
-        </el-form-item>
-        <el-form-item label="文章内容：">
-          <textarea id="simpleMDE" style="width:100%" placeholder="请用markdown编辑文章内容"></textarea>
+        <el-form-item label="内容：">
+          <textarea id="simpleMDE" style="width:100%" placeholder="请用markdown编辑课程内容"></textarea>
         </el-form-item>
         <div class="btns">
           <el-button type="primary" size="small" @click="save">保存</el-button>
@@ -59,7 +59,7 @@ import util from '@/common/util'
 import routerPath from '@/router/routerPath'
 
 export default {
-  name: 'articleCreate',
+  name: 'courseCreate',
   data() {
     return {
       params: {
@@ -67,7 +67,8 @@ export default {
         author: '',
         columnId: '',
         content: '',
-        tagIds: []
+        imgId: '',
+        videoId: ''
       },
       columnIds: [],
       simplemde: null,
@@ -92,7 +93,7 @@ export default {
     this.columnGetList().then((res) => {
       if (res.data.code === 0) {
         let listData = JSON.parse(JSON.stringify(res.data.data))
-        this.articleGetOne(listData)
+        this.courseGetOne(listData)
       }
     }).catch(() => {
     })
@@ -101,16 +102,16 @@ export default {
   methods: {
     save() {
       if (this.$route.query.id) {
-        this.articleUpdateOne()
+        this.courseUpdateOne()
       } else {
-        this.articleCreateOne()
+        this.courseCreateOne()
       }
     },
-    articleGetOne(data) {
+    courseGetOne(data) {
       if (!this.$route.query.id) {
         return
       }
-      api.articleGetOne({params: {_id: this.$route.query.id}, method: 'get'}).then((res) => {
+      api.courseGetOne({params: {_id: this.$route.query.id}, method: 'get'}).then((res) => {
         if (res.data.code === 0) {
           let {
             columnId
@@ -129,16 +130,16 @@ export default {
       })
 
     },
-    articleCreateOne() {
-      api.articleCreateOne({data: this.params}).then((res) => {
+    courseCreateOne() {
+      api.courseCreateOne({data: this.params}).then((res) => {
         if (res.data.code === 0) {
           this.$router.go(-1)
         }
       }).catch(() => {
       })
     },
-    articleUpdateOne() {
-      api.articleUpdateOne({data: this.params, params: {_id: this.$route.query.id}}).then((res) => {
+    courseUpdateOne() {
+      api.courseUpdateOne({data: this.params, params: {_id: this.$route.query.id}}).then((res) => {
         if (res.data.code === 0) {
           this.$router.go(-1)
         }

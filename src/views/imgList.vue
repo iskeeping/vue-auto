@@ -17,7 +17,7 @@
     </div>
 
     <div class="table-btn-con">
-      <i class="el-icon-circle-plus-outline" @click="$router.push(routerPath.imgUploadPath)"></i>
+      <i class="el-icon-circle-plus-outline" @click="$router.push(routerPath.imgCreatePath)"></i>
     </div>
 
     <div class="table-con">
@@ -33,7 +33,7 @@
           <template slot-scope="scope">
             <div class="btn-con">
               <i class="el-icon-edit-outline"
-                 @click="$router.push(`${routerPath.imgUploadPath}?id=${scope.row._id}`)"></i>
+                 @click="$router.push(`${routerPath.imgCreatePath}?id=${scope.row._id}`)"></i>
               <i class="el-icon-delete"></i>
             </div>
           </template>

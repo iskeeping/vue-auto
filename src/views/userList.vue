@@ -28,7 +28,7 @@
         <el-table-column prop="_id" label="ID" align="center"></el-table-column>
         <el-table-column label="角色" align="center">
           <template slot-scope="scope">
-            {{scope.row.role.name}}
+            {{scope.row.phone}}
           </template>
         </el-table-column>
         <el-table-column prop="phone" label="手机号" align="center"></el-table-column>
@@ -38,7 +38,7 @@
           <template slot-scope="scope">
             <div class="btn-con">
               <i class="el-icon-edit-outline" @click="$router.push(`userCreate?id=${scope.row._id}`)"></i>
-              <i class="el-icon-delete"></i>
+              <i class="el-icon-delete" @click="userDeleteOne(`${scope.row._id}`)"></i>
             </div>
           </template>
         </el-table-column>
@@ -104,11 +104,27 @@ export default {
       this.params.currentPage = currentPage
       this.userGetList()
     },
+    userDeleteOne(id) {
+      this.$confirm('是否确定删除？', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      })
+        .then(() => {
+          api.userDeleteOne({params: {_id: id}, method: 'get'}).then((res) => {
+            if (res.data.code === 1) {
+              this.userGetList()
+            }
+          }).catch(() => {
+          })
+        }).catch(() => {
+        })
+    },
     userGetList() {
       api.userGetList({params: this.params, method: 'get'}).then((res) => {
-        if (res.data.code === 0) {
+        if (res.data.code === 1) {
           this.totalSize = res.data.totalSize
-          res.data.data.map((item) => {
+          res.data.data.forEach((item) => {
             const d = util.getYMDHMS(item.createTime)
             item.createTime = [d.year, '.', d.month, '.', d.date, ' ', d.hour, ':', d.minute, ':', d.second].join('')
           })

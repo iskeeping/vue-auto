@@ -8,7 +8,7 @@
 import mainContainer from '@/components/mainContainer'
 
 export default {
-  name: 'articleList',
+  name: 'courseList',
   data() {
     return {}
   },

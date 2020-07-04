@@ -1,8 +1,8 @@
 <template>
   <div class="side">
     <div class="logo">
-      <img :src="img.logo" alt="">
-      <span :style="{display:isCollapse?'none':''}">内容管理系统</span>
+      <img alt="" style="display:none;">
+      <span :style="{display:isCollapse?'none':''}">在线教育系统</span>
     </div>
     <div class="side-menu">
       <el-menu
@@ -39,15 +39,41 @@ export default {
   name: 'side',
   data() {
     return {
-      menu: [],
+      defaultActive: '',
+      menu: [
+        {
+          name: '内容管理', 
+          icon: 'el-icon-suitcase',
+          _id: '2',
+          children: [
+            {name: '课程管理', url: '/admin/courseList', _id: '21'},
+            {name: '栏目管理', url: '/admin/columnList', _id: '22'},
+            {name: '图片管理', url: '/admin/imgList', _id: '23'},
+            {name: '订单管理', url: '/admin/imgList', _id: '24'}
+          ]
+        },
+        {
+          name: '系统管理', 
+          icon: 'el-icon-setting', 
+          _id: '1',
+          children: [
+            {name: '用户管理', url: '/admin/userList', _id: '11'},
+            {name: '角色管理', url: '/admin/roleList', _id: '12'},
+            {name: '权限管理', url: '/admin/authorityList', _id: '13'},
+            {name: '菜单管理', url: '/admin/menuList', _id: '14'}
+          ]
+        }
+      ],
       img,
       routerPath
     }
   },
+  watch:{
+    $route(to, from){
+      this.defaultActive = this.$route.meta.path
+    }
+  },
   computed: {
-    defaultActive() {
-      return this.$route.meta.path
-    },
     isCollapse() {
       return this.$store.state.sideStatus
     }
@@ -56,7 +82,8 @@ export default {
   created() {
   },
   mounted() {
-    this.menuGetUserList()
+    this.defaultActive = this.$route.meta.path
+    // this.menuGetUserList()
   },
   methods: {
     menuGetUserList() {

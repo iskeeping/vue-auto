@@ -3,11 +3,12 @@
     <div class="login-box">
       <div class="login-header">
         <img :src="img.logo"/>
+        <span>在线教育系统</span>
       </div>
       <div class="login-body">
         <el-input v-model="form.phone" size="small" placeholder="请输入手机号" class="phone"></el-input>
-        <el-input v-model="form.password" type="password" size="small" placeholder="请输入密码" class="password" @change="log"></el-input>
-        <el-button type="primary" class="login-btn" @click="log" size="small">登录</el-button>
+        <el-input v-model="form.password" type="password" size="small" placeholder="请输入密码" class="password"></el-input>
+        <el-button type="primary" class="login-btn" @click="userLogin" size="small">登录</el-button>
       </div>
     </div>
   </div>
@@ -25,7 +26,10 @@ export default {
     return {
       form: {
         phone: '',
-        password: ''
+        password: '',
+        in: {
+          name: ''
+        }
       },
       img
     }
@@ -34,12 +38,9 @@ export default {
   created() {
   },
   methods: {
-    log() {
-      this.userLogin()
-    },
     userLogin() {
       api.userLogin({data: this.form}).then((res) => {
-        if (res.data.code === 0) {
+        if (res.data.code === 1) {
           localStorage.setItem('jwt-token', res.data.data.token)
           this.$store.dispatch(storeTypes.setUserInfo, {phone: res.data.data.phone})
           this.$router.push(routerPath.homePath)
@@ -80,6 +81,13 @@ export default {
 
         img {
           height: 30px;
+          margin-right: 10px;
+          display: none;
+        }
+
+        span {
+          font-size: 14px;
+          color: #ffffff;
         }
       }
 

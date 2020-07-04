@@ -46,8 +46,8 @@ export default {
       this.currRoute = this.$route
     },
     userLogout() {
-      api.userLogout({}).then((res) => {
-        if (res.data.code === 0) {
+      api.userLogout().then((res) => {
+        if (res.data.code === 1) {
           this.$router.push(routerPath.loginPath)
           localStorage.removeItem('jwt-token')
         }

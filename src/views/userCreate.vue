@@ -45,8 +45,8 @@ export default {
   data() {
     return {
       params: {
-        name: '',
-        remark: '',
+        phone: '',
+        password: '',
         roleId: ''
       },
       roleListData: []
@@ -74,15 +74,15 @@ export default {
         return
       }
       api.userGetOne({params: {_id: this.$route.query.id}, method: 'get'}).then((res) => {
-        if (res.data.code === 0) {
+        if (res.data.code === 1) {
           this.params = res.data.data
         }
       }).catch(() => {
       })
     },
     userCreateOne() {
-      api.userCreateOne({data: this.params, method: 'get'}).then((res) => {
-        if (res.data.code === 0) {
+      api.userCreateOne({data: this.params, method: 'post'}).then((res) => {
+        if (res.data.code === 1) {
           this.$router.go(-1)
         }
       }).catch(() => {
@@ -90,7 +90,7 @@ export default {
     },
     userUpdateOne() {
       api.userUpdateOne({data: this.params, params: {_id: this.$route.query.id}}).then((res) => {
-        if (res.data.code === 0) {
+        if (res.data.code === 1) {
           this.$router.go(-1)
         }
       }).catch(() => {

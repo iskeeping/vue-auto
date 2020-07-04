@@ -1,10 +1,10 @@
 let base = './api/'
 
-//文章管理
-let articleGetList = base + 'article/getList'
-let articleCreateOne = base + 'article/createOne'
-let articleUpdateOne = base + 'article/updateOne'
-let articleGetOne = base + 'article/getOne'
+//课程管理
+let courseGetList = base + 'course/getList'
+let courseCreateOne = base + 'coursesControllers/createOne'
+let courseUpdateOne = base + 'course/updateOne'
+let courseGetOne = base + 'course/getOne'
 //图片管理
 let imgUploadOne = base + 'img/uploadOne'
 let imgCreateOne = base + 'img/createOne'
@@ -17,38 +17,14 @@ let columnCreateRootOne = base + 'column/createRootOne'
 let columnGetList = base + 'column/getList'
 let columnGetOne = base + 'column/getOne'
 let columnUpdateOne = base + 'column/updateOne'
-//标签管理
-let tagCreateOne = base + 'tag/createOne'
-let tagGetList = base + 'tag/getList'
-let tagGetOne = base + 'tag/getOne'
-let tagUpdateOne = base + 'tag/updateOne'
-//留言管理
-let commentCreateOne = base + 'comment/createOne'
-let commentGetList = base + 'comment/getList'
-let commentGetOne = base + 'comment/getOne'
-let commentUpdateOne = base + 'comment/updateOne'
-//日志管理
-let logCreateOne = base + 'log/createOne'
-let logGetList = base + 'log/getList'
-let logGetOne = base + 'log/getOne'
-let logUpdateOne = base + 'log/updateOne'
-//消息管理
-let informationCreateOne = base + 'information/createOne'
-let informationGetList = base + 'information/getList'
-let informationGetOne = base + 'information/getOne'
-let informationUpdateOne = base + 'information/updateOne'
-//公告管理
-let noticeCreateOne = base + 'notice/createOne'
-let noticeGetList = base + 'notice/getList'
-let noticeGetOne = base + 'notice/getOne'
-let noticeUpdateOne = base + 'notice/updateOne'
 //用户管理
-let userCreateOne = base + 'user/createOne'
-let userGetList = base + 'user/getList'
-let userGetOne = base + 'user/getOne'
-let userUpdateOne = base + 'user/updateOne'
-let userLogin = base + 'user/login'
-let userLogout = base + 'user/logout'
+let userCreateOne = base + 'users/createOne'
+let userGetList = base + 'users/getList'
+let userGetOne = base + 'users/getOne'
+let userUpdateOne = base + 'users/updateOne'
+let userDeleteOne = base + 'users/deleteOne'
+let userLogin = base + 'users/login'
+let userLogout = base + 'users/logout'
 //菜单管理
 let menuCreateOne = base + 'menu/createOne'
 let menuCreateRootOne = base + 'menu/createRootOne'
@@ -68,10 +44,10 @@ let roleGetOne = base + 'role/getOne'
 let roleUpdateOne = base + 'role/updateOne'
 
 export {
-  articleGetList,
-  articleCreateOne,
-  articleUpdateOne,
-  articleGetOne,
+  courseGetList,
+  courseCreateOne,
+  courseUpdateOne,
+  courseGetOne,
   imgUploadOne,
   imgCreateOne,
   imgGetList,
@@ -82,30 +58,11 @@ export {
   columnGetList,
   columnGetOne,
   columnUpdateOne,
-  tagCreateOne,
-  tagGetList,
-  tagGetOne,
-  tagUpdateOne,
-  commentCreateOne,
-  commentGetList,
-  commentGetOne,
-  commentUpdateOne,
-  logCreateOne,
-  logGetList,
-  logGetOne,
-  logUpdateOne,
-  informationCreateOne,
-  informationGetList,
-  informationGetOne,
-  informationUpdateOne,
-  noticeCreateOne,
-  noticeGetList,
-  noticeGetOne,
-  noticeUpdateOne,
   userCreateOne,
   userGetList,
   userGetOne,
   userUpdateOne,
+  userDeleteOne,
   userLogin,
   userLogout,
   menuCreateOne,

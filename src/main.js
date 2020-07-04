@@ -74,8 +74,6 @@ import {
 } from 'element-ui'
 import lang from 'element-ui/lib/locale/lang/zh-CN'
 import locale from 'element-ui/lib/locale'
-import '@/assets/font/iconfont.css'
-import dynamicRoutes from '@/router/dynamic'
 
 // 设置语言
 locale.use(lang)
@@ -154,15 +152,9 @@ Vue.prototype.$notify = Notification
 Vue.prototype.$message = Message
 
 Vue.config.productionTip = false
-setTimeout(() => {
-  dynamicRoutes.map(item => {
-    router.addRoutes(
-      item
-    )
-  })
-  window.APP = new Vue({
-    router,
-    store,
-    render: h => h(app)
-  }).$mount('#app')
-}, 0)
+window.APP = new Vue({
+  router,
+  store,
+  render: h => h(app)
+}).$mount('#app')
+

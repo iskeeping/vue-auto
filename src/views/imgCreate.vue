@@ -48,7 +48,7 @@ import * as url from '@/common/url'
 import * as api from '@/common/api'
 
 export default {
-  name: 'imgUpload',
+  name: 'imgCreate',
   data() {
     return {
       params: {
