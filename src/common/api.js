@@ -48,7 +48,7 @@ let userGetList = commonMethod({ url: url.userGetList, method: 'post' })
 
 let userGetOne = commonMethod({ url: url.userGetOne })
 
-let userUpdateOne = commonMethod({ url: url.userUpdateOne })
+let userUpdateOne = commonMethod({ url: url.userUpdateOne, method: 'post' })
 
 let userDeleteOne = commonMethod({ url: url.userDeleteOne })
 
