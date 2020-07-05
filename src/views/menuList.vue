@@ -59,7 +59,7 @@ export default {
     },
     menuGetList() {
       api.menuGetList({params: this.params, method: 'get'}).then((res) => {
-        if (res.data.code === 0) {
+        if (res.data.code === 1) {
           this.totalSize = res.data.totalSize
           res.data.data.map((item) => {
             const d = util.getYMDHMS(item.createTime)
