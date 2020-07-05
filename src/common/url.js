@@ -27,6 +27,7 @@ let userLogin = base + 'users/login'
 let userLogout = base + 'users/logout'
 //菜单管理
 let menuCreateOne = base + 'menus/createOne'
+let menuDeleteOne = base + 'menus/deleteOne'
 let menuCreateRootOne = base + 'menus/createRootOne'
 let menuGetUserList = base + 'menus/getUserList'
 let menuGetList = base + 'menus/getList'
@@ -66,6 +67,7 @@ export {
   userLogin,
   userLogout,
   menuCreateOne,
+  menuDeleteOne,
   menuCreateRootOne,
   menuGetUserList,
   menuGetList,

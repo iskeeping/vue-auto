@@ -14,8 +14,8 @@
         <span class="tree-name">{{ data.name }}</span>
         <span>
           <i class="el-icon-circle-plus-outline" @click="append('add',data)" v-if="data.parentId==rootId"></i>
-          <i class="el-icon-edit-outline" @click="() => append('edit',data)"></i>
-          <i class="el-icon-delete"></i>
+          <i class="el-icon-edit-outline" @click="append('edit',data)"></i>
+          <i class="el-icon-delete" @click="menuDeleteOne(data._id)"></i>
         </span>
       </span>
       </el-tree>
@@ -54,11 +54,24 @@ export default {
         this.$router.push(`${routerPath.menuCreatePath}?id=${data['_id']}`)
       }
     },
-    remove() {
-      // data
+    menuDeleteOne(id) {
+      this.$confirm('是否确定删除？', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      })
+        .then(() => {
+          api.menuDeleteOne({params: {_id: id}}).then((res) => {
+            if (res.data.code === 1) {
+              this.menuGetList()
+            }
+          }).catch(() => {
+          })
+        }).catch(() => {
+        })
     },
     menuGetList() {
-      api.menuGetList({params: this.params, method: 'get'}).then((res) => {
+      api.menuGetList({params: this.params}).then((res) => {
         if (res.data.code === 1) {
           this.totalSize = res.data.totalSize
           res.data.data.map((item) => {

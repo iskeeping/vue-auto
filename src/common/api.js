@@ -58,6 +58,8 @@ let userLogout = commonMethod({ url: url.userLogout, method: 'post' })
 
 let menuCreateOne = commonMethod({ url: url.menuCreateOne, method: 'post' })
 
+let menuDeleteOne = commonMethod({ url: url.menuDeleteOne, method: 'get' })
+
 let menuCreateRootOne = commonMethod({ url: url.menuCreateRootOne, method: 'post' })
 
 let menuGetList = commonMethod({ url: url.menuGetList })
@@ -106,6 +108,7 @@ export {
   userLogin,
   userLogout,
   menuCreateOne,
+  menuDeleteOne,
   menuCreateRootOne,
   menuGetUserList,
   menuGetList,

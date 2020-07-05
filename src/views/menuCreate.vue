@@ -81,7 +81,7 @@ export default {
         return
       }
       api.menuGetOne({params: {_id: this.$route.query.id}, method: 'get'}).then((res) => {
-        if (res.data.code === 0) {
+        if (res.data.code === 1) {
           this.params = res.data.data
         }
       }).catch(() => {
@@ -100,7 +100,7 @@ export default {
           parentId
         }
       }).then((res) => {
-        if (res.data.code === 0) {
+        if (res.data.code === 1) {
           this.$router.go(-1)
         }
       }).catch(() => {
@@ -117,7 +117,7 @@ export default {
           remark
         }
       }).then((res) => {
-        if (res.data.code === 0) {
+        if (res.data.code === 1) {
           this.$router.go(-1)
         }
       }).catch(() => {
@@ -125,7 +125,7 @@ export default {
     },
     menuUpdateOne() {
       api.menuUpdateOne({data: this.params, params: {_id: this.$route.query.id}}).then((res) => {
-        if (res.data.code === 0) {
+        if (res.data.code === 1) {
           this.$router.go(-1)
         }
       }).catch(() => {
