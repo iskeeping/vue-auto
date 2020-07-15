@@ -70,7 +70,7 @@ export default {
     return {
       totalSize: 0,
       params: {
-        name: '',
+        phone: '',
         currentPage: 1,
         pageSize: 10
       },

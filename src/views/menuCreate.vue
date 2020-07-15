@@ -43,7 +43,6 @@
 </template>
 <script>
 import mainContainer from '@/components/mainContainer'
-import 'simplemde/dist/simplemde.min.css'
 import * as api from '@/common/api'
 
 export default {
