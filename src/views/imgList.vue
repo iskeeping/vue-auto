@@ -33,9 +33,9 @@
           <template slot-scope="scope">
             <div class="btn-con">
               <i class="el-icon-edit-outline"
-                 @click="$router.push(`${routerPath.imgCreatePath}?id=${scope.row._id}`)"></i>
-              <i class="el-icon-delete"></i>
-            </div>
+                 @click="$router.push(`${routerPath.imgCreatePath}?id=${scope.row._id}&name=${scope.row.name}&url=${scope.row.url}`)"></i>
+              <i class="el-icon-delete" @click="deleteOne(scope.row._id)"></i>
+            </div>  
           </template>
         </el-table-column>
       </el-table>
@@ -99,7 +99,7 @@ export default {
       this.dialogVisible = flag || false
     },
     search() {
-      this.imgGetList()
+      this.imgGetOne()
     },
     reset() {
       this.params = Object.assign(
@@ -110,6 +110,7 @@ export default {
           id: ''
         }
       )
+      this.imgGetList()
     },
     sizeChange(pageSize) {
       this.params.pageSize = pageSize
@@ -121,12 +122,47 @@ export default {
     },
     imgGetList() {
       api.imgGetList({params: this.params, method: 'get'}).then((res) => {
-        if (res.data.code === 0) {
+        if (res.data.code === 1) {
           this.listData = res.data.data
           this.totalSize = res.data.totalSize
         }
       }).catch(() => {
       })
+    },
+    imgGetOne () {
+      if(!this.params.name) {
+        return
+      }
+      api.imgGetOne({params: this.params, method: 'get'}).then((res) => {
+        if (res.data.code === 1) {
+          if(!res.data.data) {
+              this.$message("没有查找到")
+          } else {
+             this.listData = [res.data.data]
+          } 
+        }
+      }).catch(() => {
+      })
+    },
+    deleteOne(id) {
+      console.log(id)
+      this.$confirm("是否确定删除？", "提示" , {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+      }).then( () => {
+        api.imgDeleteOne({params:{_id: id}}).then((res) => {
+          console.log(res)
+          if(res.data.code === 1) {
+            this.$message.success("删除成功")
+            this.imgGetList()
+          } else {
+            this.$message.error("删除失败")
+          }
+        }).catch(() => {
+           this.$message.error("删除失败")
+        })
+      } )
     }
   }
 }

@@ -32,6 +32,8 @@ let imgGetOne = commonMethod({ url: url.imgGetOne, method: 'post' })
 
 let imgUpdateOne = commonMethod({ url: url.imgUpdateOne, method: 'post' })
 
+let imgDeleteOne = commonMethod({ url: url.imgDeleteOne, method: 'get' })
+
 let columnCreateOne = commonMethod({ url: url.columnCreateOne, method: 'post' })
 
 let columnCreateRootOne = commonMethod({ url: url.columnCreateRootOne, method: 'post' })
@@ -95,6 +97,7 @@ export {
   imgGetList,
   imgGetOne,
   imgUpdateOne,
+  imgDeleteOne,
   columnCreateOne,
   columnCreateRootOne,
   columnGetList,

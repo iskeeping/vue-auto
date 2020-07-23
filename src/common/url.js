@@ -11,6 +11,7 @@ let imgCreateOne = base + 'img/createOne'
 let imgGetList = base + 'img/getList'
 let imgGetOne = base + 'img/getOne'
 let imgUpdateOne = base + 'img/updateOne'
+let imgDeleteOne = base + 'img/deleteOne'
 //栏目管理
 let columnCreateOne = base + 'column/createOne'
 let columnCreateRootOne = base + 'column/createRootOne'
@@ -54,6 +55,7 @@ export {
   imgGetList,
   imgGetOne,
   imgUpdateOne,
+  imgDeleteOne,
   columnCreateOne,
   columnCreateRootOne,
   columnGetList,

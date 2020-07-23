@@ -11,17 +11,10 @@
           </div>
         </el-form-item>
         <el-form-item label="图片：">
-          <img v-if="params.url" :src="params.url" class="avatar" @click="toggleImg(params.url,true)">
-          <el-upload
-            class="avatar-uploader"
-            :action="url.imgUploadOne"
-            :headers="headers"
-            :show-file-list="false"
-            :on-success="uploadImgSuccess"
-            :before-upload="beforeUploadImg">
-
-            <i class="el-icon-plus avatar-uploader-icon"></i>
-          </el-upload>
+          <div class="input-itm">
+            <el-input placeholder="请输入图片地址" type="text"
+                      v-model="params.url"></el-input>
+          </div>
         </el-form-item>
         <div class="btns">
           <el-button type="primary" size="small" @click="save">保存</el-button>
@@ -69,7 +62,11 @@ export default {
   mounted() {
     let jwtToken = localStorage.getItem('jwt-token')
     this.headers.authorization = jwtToken ? 'Bearer ' + jwtToken : ''
-    this.imgGetOne()
+    // this.imgGetOne()
+
+    if(this.$route.query) {
+      this.params = this.$route.query
+    }
   },
   methods: {
     toggleImg(url, flag) {
@@ -77,6 +74,14 @@ export default {
       this.dialogVisible = flag || false
     },
     save() {
+        if (!this.params.name) {
+        this.$message.error('请填写图片名称')
+        return
+      }
+      if (!this.params.url) {
+        this.$message.error('请填写图片地址')
+        return
+      }
       if (this.$route.query.id) {
         this.imgUpdateOne()
       } else {
@@ -102,7 +107,8 @@ export default {
     },
     imgCreateOne() {
       api.imgCreateOne({data: this.params}).then((res) => {
-        if (res.data.code === 0) {
+        if (res.data.code === 1) {
+          this.$message.success('保存成功')
           this.$router.go(-1)
         }
       }).catch(() => {
@@ -121,7 +127,7 @@ export default {
     },
     imgUpdateOne() {
       api.imgUpdateOne({params: {_id: this.$route.query.id}, data: this.params}).then((res) => {
-        if (res.data.code === 0) {
+        if (res.data.code === 1) {
           this.$router.go(-1)
         }
       }).catch(() => {
