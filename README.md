@@ -1,6 +1,6 @@
 # 介绍
 
-项目使用了vue vue-router vuex elementui axios sass，其中路由用到了动态路由
+项目使用了vue vue-router vuex elementui axios sass
 
 ## 参考文档
 
