@@ -99,7 +99,7 @@ export default {
       this.dialogVisible = flag || false
     },
     search() {
-      this.imgGetOne()
+      this.imgGetList()
     },
     reset() {
       this.params = Object.assign(
