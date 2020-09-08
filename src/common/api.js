@@ -44,6 +44,8 @@ let columnGetOne = commonMethod({ url: url.columnGetOne, method: 'post' })
 
 let columnUpdateOne = commonMethod({ url: url.columnUpdateOne, method: 'post' })
 
+let columnDeleteOne = commonMethod({ url: url.columnDeleteOne, method: 'get' })
+
 let userCreateOne = commonMethod({ url: url.userCreateOne, method: 'post' })
 
 let userGetList = commonMethod({ url: url.userGetList, method: 'post' })
@@ -103,6 +105,7 @@ export {
   columnGetList,
   columnGetOne,
   columnUpdateOne,
+  columnDeleteOne,
   userCreateOne,
   userGetList,
   userGetOne,
