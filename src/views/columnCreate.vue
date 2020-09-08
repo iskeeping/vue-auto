@@ -47,6 +47,12 @@ export default {
   },
   methods: {
     save() {
+      
+      if(!this.params.name ) {
+          this.$message.error('请输入栏目名称')
+          return
+      }
+
       if (this.$route.query.id) {
         this.columnUpdateOne()
       } else if (this.$route.query.parentId) {
@@ -60,7 +66,7 @@ export default {
         return
       }
       api.columnGetOne({params: {_id: this.$route.query.id}, method: 'get'}).then((res) => {
-        if (res.data.code === 0) {
+        if (res.data.code === 1) {
           this.params = res.data.data
         }
       }).catch(() => {
@@ -77,7 +83,8 @@ export default {
           remark
         }
       }).then((res) => {
-        if (res.data.code === 0) {
+        if (res.data.code === 1) {
+          this.$message.success('添加成功')
           this.$router.go(-1)
         }
       }).catch(() => {
@@ -96,7 +103,8 @@ export default {
           parentId
         }
       }).then((res) => {
-        if (res.data.code === 0) {
+        if (res.data.code === 1) {
+           this.$message.success('添加成功')
           this.$router.go(-1)
         }
       }).catch(() => {
@@ -104,7 +112,8 @@ export default {
     },
     columnUpdateOne() {
       api.columnUpdateOne({data: this.params, params: {_id: this.$route.query.id}}).then((res) => {
-        if (res.data.code === 0) {
+        if (res.data.code === 1) {
+           this.$message.success('修改成功')
           this.$router.go(-1)
         }
       }).catch(() => {

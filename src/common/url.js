@@ -18,6 +18,7 @@ let columnCreateRootOne = base + 'column/createRootOne'
 let columnGetList = base + 'column/getList'
 let columnGetOne = base + 'column/getOne'
 let columnUpdateOne = base + 'column/updateOne'
+let columnDeleteOne = base + 'column/deleteOne' 
 //用户管理
 let userCreateOne = base + 'users/createOne'
 let userGetList = base + 'users/getList'
@@ -61,6 +62,7 @@ export {
   columnGetList,
   columnGetOne,
   columnUpdateOne,
+  columnDeleteOne,
   userCreateOne,
   userGetList,
   userGetOne,

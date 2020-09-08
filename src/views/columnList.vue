@@ -15,7 +15,7 @@
         <span>
           <i class="el-icon-circle-plus-outline" @click="append('add',data)"></i>
           <i class="el-icon-edit-outline" @click="() => append('edit',data)"></i>
-          <i class="el-icon-delete"></i>
+          <i class="el-icon-delete"  @click="() => remove(data._id)"></i>
         </span>
       </span>
       </el-tree>
@@ -56,12 +56,27 @@ export default {
       }
 
     },
-    remove() {
+    remove(id) {
       // data
+       this.$confirm('是否确定删除？', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      })
+        .then(() => {
+          api.columnDeleteOne({params: {_id: id}}).then((res) => {
+            if (res.data.code === 1) {
+               this.$message.success('删除成功')
+              this.columnGetList()
+            }
+          }).catch(() => {
+          })
+        }).catch(() => {
+        })
     },
     columnGetList() {
       api.columnGetList({params: this.params, method: 'get'}).then((res) => {
-        if (res.data.code === 0) {
+        if (res.data.code === 1) {
           res.data.data.map((item) => {
             const d = util.getYMDHMS(item.createTime)
             item.createTime = [d.year, '.', d.month, '.', d.date, ' ', d.hour, ':', d.minute, ':', d.second].join('')
